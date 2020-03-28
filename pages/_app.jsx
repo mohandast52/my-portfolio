@@ -4,17 +4,21 @@ import Router from 'next/router';
 import PropTypes from 'prop-types';
 import * as Progress from 'util/progress';
 import Layout from 'components/Layout';
+import GlobalStyle from 'components/GlobalStyles';
 
 const MyApp = ({ Component, pageProps }) => (
-  <Container>
-    <Head>
-      <title>Mohan Portfolio</title>
-    </Head>
+  <>
+    <Container>
+      <Head>
+        <title>Mohan Portfolio</title>
+      </Head>
 
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
-  </Container>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    </Container>
+    <GlobalStyle />
+  </>
 );
 
 MyApp.propTypes = {

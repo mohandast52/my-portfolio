@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "common-util": ["./common-util"],
+      "components": ["./components"],
+      "util": ["./util"]
+    }
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}

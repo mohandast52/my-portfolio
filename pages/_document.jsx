@@ -17,8 +17,14 @@ export default class MyDocument extends Document {
     return (
       <html lang="en">
         <Head>
+          <link rel="preconnect" href="https://fonts.gstatic.com" />
+          <link
+            href="https://fonts.googleapis.com/css?family=Josefin+Sans:400,600,700&display=swap"
+            rel="stylesheet"
+          />
           {styleTags}
         </Head>
+
         <body>
           <Main />
           <NextScript />

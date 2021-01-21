@@ -3,10 +3,19 @@ import { COLOR } from 'util/theme';
 
 // const GlobalStyles = styled.div`
 const GlobalStyle = createGlobalStyle`
-  body {
+
+  body,
+  html {
+    visibility: hidden;
+    user-select: none;
+    background: ${COLOR.WHITE};
+    overscroll-behavior: none;
     margin: 0;
-    background: ${COLOR.LIGHT_GREY};
+    font-family: 'Josefin Sans', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
+
 `;
 
 export default GlobalStyle;

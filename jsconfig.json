@@ -4,7 +4,8 @@
     "paths": {
       "common-util": ["./common-util"],
       "components": ["./components"],
-      "util": ["./util"]
+      "util": ["./util"],
+      "static": ["./static"]
     }
   },
   "exclude": [

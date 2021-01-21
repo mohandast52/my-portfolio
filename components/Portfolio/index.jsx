@@ -1,13 +1,9 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useEffect, useState } from 'react';
-import Link from 'next/link';
+// import Link from 'next/link';
 import gsap from 'gsap';
-import Home from './Pages/Home';
-import About from './Pages/About';
-import CaseStudies from './Pages/CaseStudies';
-import Services from './Pages/Services';
-import Approch from './Pages/Approch';
 import Header from './Header';
+import Home from './Pages/Home';
 import Navigation from './Navigation';
 import { Container } from './styles';
 
@@ -20,14 +16,6 @@ const debounce = (fn, ms = 300) => {
     }, ms);
   };
 };
-
-const PATH = [
-  { path: '/', name: 'Home', Component: Home },
-  { path: '/about', name: 'Home', Component: About },
-  { path: '/case-studies', name: 'Case Studies', Component: CaseStudies },
-  { path: '/services', name: 'Services', Component: Services },
-  { path: '/approach', name: 'Approach', Component: Approch },
-];
 
 const App = () => {
   // const [dimensions, setDimensions] = useState({
@@ -65,15 +53,9 @@ const App = () => {
   return (
     <Container>
       <Header dimensions={dimensions} />
-
       <div className="App">
-        {PATH.map(({ path, Component }) => (
-          <Link href={path} key={path}>
-            <Component />
-          </Link>
-        ))}
+        <Home />
       </div>
-
       <Navigation />
     </Container>
   );

@@ -1,7 +1,8 @@
 export const COLOR = {
   BLUE: '',
-  ORANGE: '#f97168',
-  LIGHT_GREY: '#f2f2f2',
+  ORANGE: '#F97168',
+  LIGHT_GREY: '#F2F2F2',
+  YELLOW: '#FFC600',
 };
 
 export const BOX_SHADOW = {};

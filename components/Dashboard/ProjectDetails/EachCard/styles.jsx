@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import { COLOR, FONT_WEIGHT } from '../../Helpers';
 
+const iconSize = '20px';
+
 export const Header = styled.div`
   display: flex;
   justify-content: space-between;
@@ -80,10 +82,12 @@ export const Footer = styled.div`
   border-top: 1px solid ${COLOR.WHITE};
 
   .small-icons {
-    position: relative;
+    display: flex;
+    align-items: center;
+
     div {
-      width: 20px;
-      height: 20px;
+      width: ${iconSize};
+      height: ${iconSize};
       border-radius: 50%;
       background-size: cover;
 
@@ -92,11 +96,16 @@ export const Footer = styled.div`
       }
 
       &:nth-child(2) {
-        position: absolute;
-        top: 0;
-        left: 14px;
+        position: relative;
+        left: -4px;
         background-image: url("/images/girl_2.jpg");
       }
+    }
+
+    svg {
+      width: ${iconSize};
+      height: ${iconSize};
+      cursor: pointer;
     }
   }
 `;
@@ -116,12 +125,22 @@ export const Container = styled.div`
   width: 14rem;
   padding: 1rem;
   font-size: 14px;
+  cursor: pointer;
   background-color: ${props => props.bgColor};
   box-shadow: 5px 5px 20px 0px #bebebe26, -6px -7px 60px #ffffff96;
-  ${ActionButton} {
-    color: ${props => props.progressColor};
+  transition: 0.1s ease-in;
+  transition-property: box-shadow border-color;
+  border: 1px solid transparent;
+
+  &:hover {
+    border-color: ${props => props.progressColor};
+    box-shadow: 20px 20px 37px #e8e8e8, -20px -20px 37px #ffffff;
   }
+
   ${Completed} {
     background-color: ${props => props.progressColor};
+  }
+  ${ActionButton}, ${Footer} svg {
+    color: ${props => props.progressColor};
   }
 `;

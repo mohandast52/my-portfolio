@@ -25,6 +25,13 @@ export const ColumnOne = styled.div`
     border: none;
     outline: none;
     border-radius: 20px;
+    transition: box-shadow 0.1s ease;
+
+    &:focus,
+    &:active {
+      box-shadow: 0 1px 5px 0 rgb(0 0 0 / 20%), 0 2px 2px 0 rgb(0 0 0 / 14%),
+        0 3px 1px -2px rgb(0 0 0 / 12%);
+    }
   }
 `;
 
@@ -54,14 +61,15 @@ export const ColumnTwo = styled.div`
   align-items: center;
 
   .icon {
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    border: 1px solid ${COLOR.BLACK};
-    visibility: hidden;
+    svg {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      color: ${COLOR.BLACK};
+    }
 
-    &:not(:last-child) {
-      margin-right: 0.5rem;
+    &.icon-1 {
+      margin-right: 0.75rem;
     }
   }
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import { FaPlusCircle, FaRegBell } from 'react-icons/fa';
 import {
   LeftNavBarContainer, ColumnOne, ColumnTwo, Logo,
 } from './styles';
@@ -16,12 +17,20 @@ const LeftNavBar = () => (
     </ColumnOne>
 
     <ColumnTwo>
-      <span className="icon icon-1">1</span>
-      <span className="icon icon-2">2</span>
+      <span className="icon icon-1">
+        <FaRegBell />
+      </span>
+
+      <span className="icon icon-2">
+        <FaPlusCircle />
+      </span>
+
       <span className="divider" />
+
       <div className="profile-picture">
         <img src="/images/girl_1.jpg" alt="Profile" />
       </div>
+
       <span className="profile-name">Mohan</span>
     </ColumnTwo>
   </LeftNavBarContainer>

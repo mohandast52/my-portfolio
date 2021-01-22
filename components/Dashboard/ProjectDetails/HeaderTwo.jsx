@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { FaListUl, FaBorderAll } from 'react-icons/fa';
 import { HeaderTwoContainer } from './styles';
+import { Icon } from '../styles';
 
 const LIST = [
   {
@@ -24,22 +26,46 @@ const LIST = [
   },
 ];
 
-const HeaderTwo = () => (
-  <HeaderTwoContainer>
-    <div className="details-count">
-      {LIST.map(({ id, count, name }) => (
-        <div className="detail" key={id}>
-          <span>{count}</span>
-          <span>{name}</span>
-        </div>
-      ))}
-    </div>
+const SORT_TYPES = [
+  {
+    id: 'list',
+    name: 'List',
+    Component: FaListUl,
+  },
+  {
+    id: 'grid',
+    name: 'Grid',
+    Component: FaBorderAll,
+  },
+];
 
-    <div className="listing-type">
-      <div>1</div>
-      <div>2</div>
-    </div>
-  </HeaderTwoContainer>
-);
+const HeaderTwo = () => {
+  const [sortingOrder, setSortingOrder] = useState('grid');
+
+  return (
+    <HeaderTwoContainer>
+      <div className="details-count">
+        {LIST.map(({ id, count, name }) => (
+          <div className="detail" key={id}>
+            <span>{count}</span>
+            <span>{name}</span>
+          </div>
+        ))}
+      </div>
+
+      <div className="sorting-type">
+        {SORT_TYPES.map(({ id, Component }) => (
+          <Icon
+            key={id}
+            className={`${id} ${id === sortingOrder ? 'active' : ''}`}
+            onClick={() => setSortingOrder(id)}
+          >
+            <Component />
+          </Icon>
+        ))}
+      </div>
+    </HeaderTwoContainer>
+  );
+};
 
 export default HeaderTwo;

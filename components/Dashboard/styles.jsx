@@ -31,3 +31,36 @@ export const Container = styled.div``;
 export const Row = styled.div`
   display: flex;
 `;
+
+export const SectionTitle = styled.h3`
+  margin: 0;
+  font-size: 19px;
+`;
+
+export const Icon = styled.div`
+  width: ${props => props.size || '32px'};
+  height: ${props => props.size || '32px'};
+  border-radius: 50%;
+  background-color: transparent;
+  transition: background-color 0.12s ease-in-out;
+
+  &.active {
+    background-color: ${COLOR.DARK_BLACK};
+    svg {
+      color: ${COLOR.WHITE};
+    }
+  }
+
+  svg {
+    padding: 8px;
+    font-size: 16px;
+  }
+
+  &:hover {
+    cursor: pointer;
+    background-color: ${COLOR.DARK_BLACK};
+    svg {
+      color: ${COLOR.WHITE};
+    }
+  }
+`;

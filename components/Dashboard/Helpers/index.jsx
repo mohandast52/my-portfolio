@@ -19,8 +19,10 @@ export const COLOR = {
 
   WHITE: '#FFFFFF',
   LIGHT_GREY: '#BBBBBB66',
+  LIGHT_GREY_2: '#ACB4B6',
   BG_GREY: '#BCC1D8',
   BLACK: '#474343',
+  DARK_BLACK: '#000000',
 };
 
 export const FONT_WEIGHT = {

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { FaPlusCircle } from 'react-icons/fa';
 import {
   Container,
   Header,
@@ -52,7 +53,7 @@ const EachCard = ({
       <div className="small-icons">
         <div />
         <div />
-        {/* <i className="fas fa-plus-circle" /> */}
+        <FaPlusCircle />
       </div>
 
       <ActionButton type="button">{timeLeft}</ActionButton>

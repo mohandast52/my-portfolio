@@ -53,14 +53,24 @@ export const HeaderTwoContainer = styled.div`
       }
     }
   }
+
+  .sorting-type {
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+
+    .list {
+      margin-right: 0.5rem;
+    }
+  }
 `;
 
 export const ProfileDetailsContainer = styled.div`
   width: 50vw;
-  margin-left: 2rem;
+  height: calc(100vh - 168px);
   padding: 2rem 2rem 0rem 2rem;
+  overflow: auto;
   border-radius: 40px;
-  /* background-color: #FCFCFC; */
   background-color: ${COLOR.WHITE};
 `;
 
@@ -70,7 +80,6 @@ export const CardsContainer = styled.div`
   justify-content: space-evenly;
   align-items: flex-start;
   width: calc(100% + 4rem);
-  height: 70vh;
   margin-left: -2rem;
-  overflow: auto;
+  overflow: hidden;
 `;

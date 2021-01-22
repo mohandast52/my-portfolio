@@ -4,10 +4,17 @@ import { COLOR } from '../Helpers';
 export const MessagesContainer = styled.div`
   width: 34vw;
 
-  h2 {
-    margin: 0;
+  h3 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     padding: 2rem 1rem 1rem 1rem;
     border-bottom: 1px solid ${COLOR.LIGHT_GREY};
+    svg {
+      font-size: 14px;
+      color: ${COLOR.LIGHT_GREY_2};
+      font-weight: 100;
+    }
   }
 `;
 
@@ -51,6 +58,9 @@ export const Content = styled.div`
   padding-right: 1rem;
 
   .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     h4 {
       margin: 0;
       font-size: 20px;
@@ -65,5 +75,9 @@ export const Content = styled.div`
   .date {
     text-align: right;
     font-size: 12px;
+    font-weight: bold;
+    color: ${COLOR.LIGHT_GREY_2}
   }
 `;
+
+export const Starred = styled.div``;

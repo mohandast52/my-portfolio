@@ -1,11 +1,12 @@
 import React from 'react';
 import { HeaderOneContainer } from './styles';
+import { SectionTitle } from '../styles';
 
 const HeaderOne = () => (
   <HeaderOneContainer>
-    <h2>Projects</h2>
+    <SectionTitle>Projects</SectionTitle>
 
-    <div className="date">July,2020</div>
+    <div className="date">July, 2020</div>
   </HeaderOneContainer>
 );
 

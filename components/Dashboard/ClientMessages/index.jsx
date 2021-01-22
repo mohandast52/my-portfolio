@@ -1,11 +1,14 @@
 import React from 'react';
+import { FaSearch, FaStar, FaRegStar } from 'react-icons/fa';
 import {
   MessagesContainer,
   Messages,
   EachMessage,
   Avatar,
   Content,
+  Starred,
 } from './styles';
+import { SectionTitle } from '../styles';
 
 const MESSAGES = [
   {
@@ -42,6 +45,7 @@ const MESSAGES = [
     text:
       'Cumque esse odit optio quae est ut facere voluptate accusantium aliquid dignissimos.',
   },
+  /*
   {
     id: 'message-105',
     sender: 'William',
@@ -60,11 +64,17 @@ const MESSAGES = [
     text:
       'Cumque esse odit optio quae est ut facere voluptate accusantium aliquid dignissimos.',
   },
+  */
 ];
 
 const ClientMessages = () => (
   <MessagesContainer>
-    <h2>Client Messages</h2>
+    <SectionTitle>
+      <span>Client Messages</span>
+      <span>
+        <FaSearch />
+      </span>
+    </SectionTitle>
 
     <Messages>
       {MESSAGES.map(({
@@ -78,7 +88,18 @@ const ClientMessages = () => (
           <Content>
             <div className="header">
               <h4>{sender}</h4>
-              <span>{isStarred}</span>
+
+              <Starred>
+                {isStarred ? (
+                  <span className="active">
+                    <FaStar />
+                  </span>
+                ) : (
+                  <span>
+                    <FaRegStar />
+                  </span>
+                )}
+              </Starred>
             </div>
 
             <div className="info">{text}</div>

@@ -96,6 +96,11 @@ export const ColumnTwo = styled.div`
 
   .profile-name {
     font-size: 18px;
+    text-decoration: none;
     font-weight: bold;
+    color: ${COLOR.LAVENDAR};
+    &:hover {
+      text-decoration: underline;
+    }
   }
 `;

@@ -6,7 +6,7 @@ const HeaderOne = () => (
   <HeaderOneContainer>
     <SectionTitle>Projects</SectionTitle>
 
-    <div className="date">July, 2020</div>
+    <div className="date">January, 2021</div>
   </HeaderOneContainer>
 );
 

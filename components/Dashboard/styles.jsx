@@ -64,3 +64,13 @@ export const Icon = styled.div`
     }
   }
 `;
+
+export const HyperLink = styled.a`
+  font-size: 18px;
+  text-decoration: none;
+  font-weight: bold;
+  color: ${COLOR.LAVENDAR};
+  &:hover {
+    text-decoration: underline;
+  }
+`;

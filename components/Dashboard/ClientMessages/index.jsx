@@ -7,8 +7,9 @@ import {
   Avatar,
   Content,
   Starred,
+  InspiredBy,
 } from './styles';
-import { SectionTitle } from '../styles';
+import { SectionTitle, HyperLink } from '../styles';
 
 const MESSAGES = [
   {
@@ -109,6 +110,18 @@ const ClientMessages = () => (
         </EachMessage>
       ))}
     </Messages>
+
+    <InspiredBy>
+      Inspired by&nbsp;
+      <HyperLink
+        href="https://dribbble.com/shots/14038313-Project-Management-Dashboard-UX-UI-Design"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="profile-name"
+      >
+        Hira
+      </HyperLink>
+    </InspiredBy>
   </MessagesContainer>
 );
 

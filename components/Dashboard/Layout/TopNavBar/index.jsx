@@ -3,6 +3,7 @@ import { FaPlusCircle, FaRegBell } from 'react-icons/fa';
 import {
   LeftNavBarContainer, ColumnOne, ColumnTwo, Logo,
 } from './styles';
+import { HyperLink } from '../../styles';
 
 const LeftNavBar = () => (
   <LeftNavBarContainer>
@@ -31,7 +32,14 @@ const LeftNavBar = () => (
         <img src="/images/girl_1.jpg" alt="Profile" />
       </div>
 
-      <span className="profile-name">Mohan</span>
+      <HyperLink
+        href="https://github.com/mohandast52"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="profile-name"
+      >
+        Mohan
+      </HyperLink>
     </ColumnTwo>
   </LeftNavBarContainer>
 );

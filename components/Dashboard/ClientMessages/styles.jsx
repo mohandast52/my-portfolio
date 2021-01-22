@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { COLOR } from '../Helpers';
 
 export const MessagesContainer = styled.div`
+  position: relative;
   width: 34vw;
 
   h3 {
@@ -76,8 +77,14 @@ export const Content = styled.div`
     text-align: right;
     font-size: 12px;
     font-weight: bold;
-    color: ${COLOR.LIGHT_GREY_2}
+    color: ${COLOR.LIGHT_GREY_2};
   }
 `;
 
 export const Starred = styled.div``;
+
+export const InspiredBy = styled.div`
+  position: absolute;
+  bottom: 0.5rem;
+  right: 2rem;
+`;

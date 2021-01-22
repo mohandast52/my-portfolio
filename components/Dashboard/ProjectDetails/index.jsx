@@ -1,7 +1,7 @@
 import React from 'react';
 import HeaderOne from './HeaderOne';
 import HeaderTwo from './HeaderTwo';
-import EachCard from '../EachCard';
+import EachCard from './EachCard';
 import { COLOR } from '../Helpers';
 
 import { Container, Body } from './styles';

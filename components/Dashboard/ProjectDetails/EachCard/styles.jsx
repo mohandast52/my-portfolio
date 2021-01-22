@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { COLOR, FONT_WEIGHT } from '../Helpers';
+import { COLOR, FONT_WEIGHT } from '../../Helpers';
 
 export const Header = styled.div`
   display: flex;
@@ -77,7 +77,7 @@ export const Footer = styled.div`
   align-items: center;
   margin: 0 -1rem;
   padding: 0.75rem 1rem 0 1rem;
-  border-top: 2px solid ${COLOR.LIGHT_GREY};
+  border-top: 1px solid ${COLOR.WHITE};
 
   .small-icons {
     position: relative;
@@ -90,6 +90,7 @@ export const Footer = styled.div`
       &:nth-child(1) {
         background-image: url("/images/boy_1.jpg");
       }
+
       &:nth-child(2) {
         position: absolute;
         top: 0;

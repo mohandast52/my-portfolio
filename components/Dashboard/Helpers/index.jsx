@@ -11,7 +11,7 @@ export const COLOR = {
   LAVENDAR: '#4F3FF0',
   LIGHT_LAVENDAR: '#E9E7FD',
 
-  YELLOW: '#FFF0D3',
+  YELLOW: '#FFBB38',
   LIGHT_YELLOW: '#FFF0D3',
 
   BLUE: '#2AC8FF',
@@ -19,6 +19,7 @@ export const COLOR = {
 
   WHITE: '#FFFFFF',
   LIGHT_GREY: '#BBBBBB66',
+  BG_GREY: '#BCC1D8',
   BLACK: '#474343',
 };
 

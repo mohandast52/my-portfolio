@@ -1,6 +1,10 @@
 import React from 'react';
 import {
-  Messages, EachMessage, Avatar, Content,
+  MessagesContainer,
+  Messages,
+  EachMessage,
+  Avatar,
+  Content,
 } from './styles';
 
 const MESSAGES = [
@@ -41,7 +45,7 @@ const MESSAGES = [
 ];
 
 const ClientMessages = () => (
-  <div>
+  <MessagesContainer>
     <h2>Client Messages</h2>
 
     <Messages>
@@ -66,7 +70,7 @@ const ClientMessages = () => (
         </EachMessage>
       ))}
     </Messages>
-  </div>
+  </MessagesContainer>
 );
 
 export default ClientMessages;

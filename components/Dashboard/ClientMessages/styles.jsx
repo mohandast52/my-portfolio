@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 import { COLOR } from '../Helpers';
 
+export const MessagesContainer = styled.div`
+  width: 34vw;
+`;
+
 export const Messages = styled.div``;
 
 export const EachMessage = styled.div`

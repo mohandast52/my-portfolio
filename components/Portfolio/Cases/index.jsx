@@ -7,19 +7,19 @@ const CASE_STUDIES = [
   {
     id: 'case-1',
     subtitle: 'Mohan',
-    title: 'A custom formula for your brain ',
+    title: 'Working on it..',
     img: 'curology-min',
   },
   {
     id: 'case-2',
     subtitle: 'Mohan',
-    title: 'A custom formula for your brain ',
+    title: 'Working on it..',
     img: 'yourspace-min',
   },
   {
     id: 'case-3',
     subtitle: 'Mohan',
-    title: 'A custom formula for your brain ',
+    title: 'Working on it..',
     img: 'lumin-min',
   },
 ];

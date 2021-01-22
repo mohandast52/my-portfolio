@@ -8,17 +8,17 @@ const Banner = () => (
       <div className="row">
         <h2>
           <div className="line">
-            <span>Creating Unique brand is</span>
+            <span>Hi, I'm Mohan from Mumbai, India</span>
           </div>
 
           <div className="line">
-            <span>What we do</span>
+            <span>Glad you are here!</span>
           </div>
         </h2>
 
         <div className="btn-row">
           <a href="/">
-            More about us
+            More about me
             {/* <RightArrow /> */}
           </a>
         </div>

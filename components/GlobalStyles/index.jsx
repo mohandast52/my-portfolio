@@ -6,7 +6,7 @@ const GlobalStyle = createGlobalStyle`
 
   body,
   html {
-    visibility: hidden;
+    /* visibility: hidden; */
     user-select: none;
     background: ${COLOR.WHITE};
     overscroll-behavior: none;

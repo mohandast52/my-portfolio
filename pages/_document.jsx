@@ -22,6 +22,16 @@ export default class MyDocument extends Document {
             href="https://fonts.googleapis.com/css?family=Josefin+Sans:400,600,700&display=swap"
             rel="stylesheet"
           />
+          <link
+            href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap"
+            rel="stylesheet"
+          />
+          <link
+            rel="stylesheet"
+            href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
+            integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
+            crossOrigin="anonymous"
+          />
           {styleTags}
         </Head>
 

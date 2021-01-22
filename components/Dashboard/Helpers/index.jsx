@@ -1,0 +1,27 @@
+export const COLOR = {
+  ORANGE: '#FF7239',
+  LIGHT_ORANGE: '#FEE4CB',
+
+  GREEN: '#03D052',
+  LIGHT_GREEN: '#BAF4D2',
+
+  PINK: '#FF72AC',
+  LIGHT_PINK: '#FFD3E2',
+
+  LAVENDAR: '#4F3FF0',
+  LIGHT_LAVENDAR: '#E9E7FD',
+
+  YELLOW: '#FFF0D3',
+  LIGHT_YELLOW: '#FFF0D3',
+
+  BLUE: '#2AC8FF',
+  LIGHT_BLUE: '#DBF6FD',
+
+  WHITE: '#FFFFFF',
+  LIGHT_GREY: '#BBBBBB66',
+  BLACK: '#474343',
+};
+
+export const FONT_WEIGHT = {
+  bold: 900,
+};

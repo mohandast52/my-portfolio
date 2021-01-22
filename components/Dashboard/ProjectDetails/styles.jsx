@@ -55,21 +55,20 @@ export const HeaderTwoContainer = styled.div`
   }
 `;
 
-export const Container = styled.div`
+export const ProfileDetailsContainer = styled.div`
   width: 50vw;
-  margin-top: 2rem;
   margin-left: 2rem;
   padding: 2rem 2rem 0rem 2rem;
   border-radius: 40px;
-  background-color: #fcfcfc;
+  /* background-color: #FCFCFC; */
+  background-color: ${COLOR.WHITE};
 `;
 
-export const Body = styled.div`
-  /* border: 2px solid ${COLOR.BLACK}; */
+export const CardsContainer = styled.div`
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-evenly;
   align-items: flex-start;
-  flex-wrap: wrap;
   width: calc(100% + 4rem);
   height: 70vh;
   margin-left: -2rem;

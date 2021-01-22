@@ -1,19 +1,21 @@
 import React from 'react';
-// import LeftProjectDetails from './ProjectDetails';
-// import ClientMessages from './ClientMessages';
 import LeftNavBar from './Layout/LeftNavBar';
+import TopNavBar from './Layout/TopNavBar';
+import LeftProjectDetails from './ProjectDetails';
+import ClientMessages from './ClientMessages';
 import { GlobalStyle, DashboardContainer, Row } from './styles';
 
 const Dashboard = () => (
   <>
     <DashboardContainer>
       <Row>
-        <LeftNavBar />
+        <TopNavBar />
       </Row>
 
       <Row>
-        {/* <LeftProjectDetails /> */}
-        {/* <ClientMessages /> */}
+        <LeftNavBar />
+        <LeftProjectDetails />
+        <ClientMessages />
       </Row>
     </DashboardContainer>
     <GlobalStyle />

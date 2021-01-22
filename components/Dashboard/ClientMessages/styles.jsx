@@ -3,6 +3,12 @@ import { COLOR } from '../Helpers';
 
 export const MessagesContainer = styled.div`
   width: 34vw;
+
+  h2 {
+    margin: 0;
+    padding: 2rem 1rem 1rem 1rem;
+    border-bottom: 1px solid ${COLOR.LIGHT_GREY};
+  }
 `;
 
 export const Messages = styled.div``;
@@ -16,11 +22,12 @@ export const EachMessage = styled.div`
   transition: transform 0.1s ease-in;
 
   &:hover {
-    border-radius: 1rem;
+    width: 110%;
     cursor: pointer;
+    border-radius: 1rem;
+    transform: translate(16px, -8px);
     background-color: ${COLOR.WHITE};
     border-bottom: 1px solid ${COLOR.WHITE};
-    transform: translate(16px, -8px);
     box-shadow: 22px 22px 28px #cecece54;
   }
 `;

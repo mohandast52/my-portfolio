@@ -4,7 +4,7 @@ import HeaderTwo from './HeaderTwo';
 import EachCard from './EachCard';
 import { COLOR } from '../Helpers';
 
-import { Container, Body } from './styles';
+import { ProfileDetailsContainer, CardsContainer } from './styles';
 
 const ProjectList = [
   {
@@ -91,12 +91,12 @@ const getColor = type => {
   return null;
 };
 
-const Dashboard = () => (
-  <Container>
+const ProfileDetails = () => (
+  <ProfileDetailsContainer>
     <HeaderOne />
     <HeaderTwo />
 
-    <Body>
+    <CardsContainer>
       {ProjectList.map(
         ({
           id, date, title, info, percentage, timeLeft, color,
@@ -117,8 +117,8 @@ const Dashboard = () => (
           );
         },
       )}
-    </Body>
-  </Container>
+    </CardsContainer>
+  </ProfileDetailsContainer>
 );
 
-export default Dashboard;
+export default ProfileDetails;

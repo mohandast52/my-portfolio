@@ -42,6 +42,24 @@ const MESSAGES = [
     text:
       'Cumque esse odit optio quae est ut facere voluptate accusantium aliquid dignissimos.',
   },
+  {
+    id: 'message-105',
+    sender: 'William',
+    date: '17 July',
+    isStarred: false,
+    imageName: 'boy_2',
+    text:
+      'Cumque esse odit optio quae est ut facere voluptate accusantium aliquid dignissimos.',
+  },
+  {
+    id: 'message-106',
+    sender: 'William',
+    date: '17 July',
+    isStarred: false,
+    imageName: 'boy_2',
+    text:
+      'Cumque esse odit optio quae est ut facere voluptate accusantium aliquid dignissimos.',
+  },
 ];
 
 const ClientMessages = () => (

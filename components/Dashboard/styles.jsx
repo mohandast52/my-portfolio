@@ -4,7 +4,7 @@ import { COLOR } from './Helpers';
 export const GlobalStyle = createGlobalStyle`
   body {
     /* padding: 2rem; */
-    /* overflow: hidden; */
+    overflow: hidden;
     height: 100vh;
     background-color: ${COLOR.BG_GREY} !important;
   }
@@ -13,15 +13,13 @@ export const GlobalStyle = createGlobalStyle`
 export const DashboardContainer = styled.div`
   position: relative;
   top: 2rem;
-  margin: 0 auto;
-  width: calc(100vw - 4rem);
+  width: calc(100vw - 10rem);
   height: calc(100vh - 4rem);
-  /* display: flex; */
-  color: ${COLOR.BLACK};
-  overflow: hidden;
-  background-color: #f3f6fd;
+  max-width: 1140px;
+  margin: 0 auto;
   border-radius: 2rem;
-  max-width: 1400px;
+  color: ${COLOR.BLACK};
+  background-color: #f3f6fd;
 
   * {
     font-family: "PT Sans", sans-serif !important;

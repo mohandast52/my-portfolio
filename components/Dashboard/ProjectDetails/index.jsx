@@ -1,6 +1,6 @@
 import React from 'react';
-import HeaderOne from './HeaderOne';
-import HeaderTwo from './HeaderTwo';
+import HeaderOne from './Headers/HeaderOne';
+import HeaderTwo from './Headers/HeaderTwo';
 import EachCard from './EachCard';
 import { COLOR } from '../Helpers';
 

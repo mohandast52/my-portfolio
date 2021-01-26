@@ -3,7 +3,6 @@ import { COLOR } from './Helpers';
 
 export const GlobalStyle = createGlobalStyle`
   body {
-    /* padding: 2rem; */
     overflow: hidden;
     height: 100vh;
     background-color: ${COLOR.BG_GREY} !important;

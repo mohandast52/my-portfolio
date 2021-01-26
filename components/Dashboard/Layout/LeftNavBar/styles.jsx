@@ -2,7 +2,6 @@ import styled from 'styled-components';
 // import { COLOR } from '../../Helpers';
 
 export const RightNavBarContainer = styled.div`
-  /* width: 10%; */
   display: flex;
   flex-direction: column;
   padding: 1.5rem;

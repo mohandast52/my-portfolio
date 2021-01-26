@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { FaListUl, FaBorderAll } from 'react-icons/fa';
-import { HeaderTwoContainer } from './styles';
-import { Icon } from '../styles';
+import { HeaderTwoContainer } from '../styles';
+import { Icon } from '../../styles';
 
 const LIST = [
   {

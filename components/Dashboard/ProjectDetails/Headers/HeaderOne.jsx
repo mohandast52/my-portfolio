@@ -1,6 +1,6 @@
 import React from 'react';
-import { HeaderOneContainer } from './styles';
-import { SectionTitle } from '../styles';
+import { HeaderOneContainer } from '../styles';
+import { SectionTitle } from '../../styles';
 
 const HeaderOne = () => (
   <HeaderOneContainer>

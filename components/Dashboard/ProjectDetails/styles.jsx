@@ -48,7 +48,6 @@ export const HeaderTwoContainer = styled.div`
         width: 4px;
         height: 4px;
         border-radius: 50%;
-        /* transform: translate(0%, -50%); */
         border: 1px solid ${COLOR.BLACK};
       }
     }

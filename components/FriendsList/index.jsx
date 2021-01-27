@@ -1,27 +1,30 @@
 import React, { useRef, useReducer, useEffect } from 'react';
-import {
-  FaSearch,
-  FaStar,
-  FaRegStar,
-  FaTrash,
-  FaTrashAlt,
-} from 'react-icons/fa';
-import { API_TYPES, INITIAL_STATE } from './helpers';
+
+import { API_TYPES, FRIENDS_DB, INITIAL_STATE } from './helpers';
+import Pagination from './Pagination';
+import FriendList from './List';
 import {
   ParentContainer,
   Container,
   SearchInput,
-  List,
-  EachFriend,
-  Name,
-  Actions,
+  PaginationContainer,
 } from './styles';
 
 const reducer = (state, action) => {
   const { type, payload } = action;
   switch (type) {
     case API_TYPES.SEARCH_CHANGE: {
-      return { ...state, search: payload };
+      // const listCopy = [...FRIENDS_DB].filter(friend => {
+      //   const { name } = friend || {};
+      //   return name.toLowerCase().includes(payload.toLowerCase());
+      // });
+
+      return {
+        ...state,
+        pageNumber: 1,
+        search: payload,
+        // friends: listCopy,
+      };
     }
 
     case API_TYPES.ADD_NEW_FRIEND: {
@@ -33,7 +36,12 @@ const reducer = (state, action) => {
         isDeleted: false,
       });
 
-      return { ...state, search: '', friends: listCopy };
+      return {
+        ...state,
+        pageNumber: 1,
+        search: '',
+        friends: listCopy,
+      };
     }
 
     case API_TYPES.FAVOURTIE: {
@@ -58,6 +66,10 @@ const reducer = (state, action) => {
       return { ...state, friends: listCopy };
     }
 
+    case API_TYPES.UPDATE_PAGE_NUMBER: {
+      return { ...state, pageNumber: payload };
+    }
+
     default:
       throw new Error();
   }
@@ -66,7 +78,7 @@ const reducer = (state, action) => {
 const FriendsList = () => {
   const searchElement = useRef(null);
   const [state, dispatch] = useReducer(reducer, INITIAL_STATE);
-  const { search, friends } = state;
+  const { search, pageNumber, friends } = state;
 
   useEffect(() => {
     searchElement.current.focus();
@@ -90,52 +102,34 @@ const FriendsList = () => {
     dispatch({ type: API_TYPES.DELETE, payload: id });
   };
 
+  const updatePageNumber = pageNo => {
+    dispatch({ type: API_TYPES.UPDATE_PAGE_NUMBER, payload: pageNo });
+  };
+
   return (
     <ParentContainer>
       <Container>
         <SearchInput
+          placeholder="Enter your friend's name"
           value={search}
           ref={searchElement}
           onChange={handleChange}
           onKeyPress={handleTest}
         />
 
-        <List>
-          {friends.map(({
-            id, name, isFavourite, isDeleted,
-          }) => {
-            if (isDeleted) {
-              console.log('deleted!');
-            }
+        <FriendList
+          friends={friends}
+          handleMarkFavourite={handleMarkFavourite}
+          handleDelete={handleDelete}
+        />
 
-            return (
-              <EachFriend key={id} className={isDeleted ? 'deleted' : ''}>
-                <Name>
-                  <h3>{name}</h3>
-                  <span>is your friend</span>
-                </Name>
-
-                <Actions>
-                  <button
-                    type="button"
-                    className="fav"
-                    onClick={() => handleMarkFavourite(id)}
-                  >
-                    {isFavourite ? <FaStar /> : <FaRegStar />}
-                  </button>
-
-                  <button
-                    type="button"
-                    className="fav"
-                    onClick={() => handleDelete(id)}
-                  >
-                    {isDeleted ? <FaTrash /> : <FaTrashAlt />}
-                  </button>
-                </Actions>
-              </EachFriend>
-            );
-          })}
-        </List>
+        <PaginationContainer>
+          <Pagination
+            friendsCount={80}
+            activePage={pageNumber}
+            updatePageNumber={updatePageNumber}
+          />
+        </PaginationContainer>
       </Container>
     </ParentContainer>
   );

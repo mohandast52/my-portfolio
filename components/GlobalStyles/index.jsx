@@ -3,6 +3,9 @@ import { COLOR } from 'util/theme';
 
 // const GlobalStyles = styled.div`
 const GlobalStyle = createGlobalStyle`
+  * {
+    box-sizing: border-box;
+  }
 
   body,
   html {

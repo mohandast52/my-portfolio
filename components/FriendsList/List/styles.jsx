@@ -1,8 +1,26 @@
 import styled from 'styled-components';
-import { COLORS, BOX_SHADOW } from '../helpers';
+import { COLORS, BOX_SHADOW } from '../Helper';
 
 export const Container = styled.div`
-  min-height: 15rem;
+  min-height: 288px;
+  margin-bottom: 1.5rem;
+  box-shadow: ${BOX_SHADOW.OUT};
+`;
+
+export const NoDataFound = styled.div`
+  position: relative;
+  top: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: ${COLORS.TEXT_COLOR};
+
+  svg {
+    display: block;
+    margin-bottom: 1rem;
+    font-size: 5rem;
+    opacity: 0.4;
+  }
 `;
 
 export const EachFriend = styled.div`
@@ -12,8 +30,7 @@ export const EachFriend = styled.div`
   align-items: center;
   padding: 1rem;
   transition: background-color 0.15s ease;
-  box-shadow: ${BOX_SHADOW.OUT};
-  margin-bottom: 1rem;
+  border-bottom: 1px solid #80808026;
 
   h3 {
     margin: 0 0 0.25rem 0;
@@ -25,7 +42,9 @@ export const EachFriend = styled.div`
   }
 `;
 
-export const Name = styled.div``;
+export const Name = styled.div`
+  color: ${COLORS.TEXT_COLOR};
+`;
 
 export const Actions = styled.div`
   button {

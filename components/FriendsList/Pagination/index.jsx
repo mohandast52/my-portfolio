@@ -5,7 +5,7 @@ import { PaginationButton, Dots } from '../styles';
 const DOTS = '...';
 
 const Pagination = ({ friendsCount, activePage, updatePageNumber }) => {
-  const pages = parseInt(friendsCount / 4, 10);
+  const pages = Math.ceil(friendsCount / 4, 10);
 
   const onClick = event => {
     const { page } = event.target.dataset;
@@ -31,18 +31,22 @@ const Pagination = ({ friendsCount, activePage, updatePageNumber }) => {
   /* if pages <= 5, printing <= 5 buttons */
   if (pages <= 5) {
     return [...Array(pages)]
-      .map((_, i) => i)
-      .map(eachValue => getType(eachValue));
+      .map((_, i) => i + 1)
+      .map(eachValue => getType(eachValue, `p-initial-${eachValue}`));
   }
 
   if (activePage < 3) {
-    return <>{[1, 2, 3, DOTS, pages].map(eachValue => getType(eachValue))}</>;
+    return (
+      <>
+        {[1, 2, 3, DOTS, pages].map(eachValue => getType(eachValue, `p-start-${eachValue}`))}
+      </>
+    );
   }
 
   if (activePage > pages - 2) {
     return (
       <>
-        {[1, DOTS, pages - 2, pages - 1, pages].map(eachValue => getType(eachValue))}
+        {[1, DOTS, pages - 2, pages - 1, pages].map(eachValue => getType(eachValue, `p-last-${eachValue}`))}
       </>
     );
   }
@@ -57,7 +61,7 @@ const Pagination = ({ friendsCount, activePage, updatePageNumber }) => {
         activePage + 1,
         DOTS,
         pages,
-      ].map(eachValue => getType(eachValue))}
+      ].map(eachValue => getType(eachValue, `p-between-${eachValue}`))}
     </>
   );
 };

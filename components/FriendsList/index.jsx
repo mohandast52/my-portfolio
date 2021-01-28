@@ -1,96 +1,40 @@
-import React, { useRef, useReducer, useEffect } from 'react';
-
-import { API_TYPES, FRIENDS_DB, INITIAL_STATE } from './helpers';
+import React, { useReducer } from 'react';
+import { FaHeart } from 'react-icons/fa';
+import { API_TYPES, INITIAL_STATE } from './Helper';
+import Reducer from './Reducer';
 import Pagination from './Pagination';
 import FriendList from './List';
 import {
   ParentContainer,
   Container,
+  AddInput,
   SearchInput,
+  SortContainer,
+  SortButton,
   PaginationContainer,
 } from './styles';
 
-const reducer = (state, action) => {
-  const { type, payload } = action;
-  switch (type) {
-    case API_TYPES.SEARCH_CHANGE: {
-      // const listCopy = [...FRIENDS_DB].filter(friend => {
-      //   const { name } = friend || {};
-      //   return name.toLowerCase().includes(payload.toLowerCase());
-      // });
-
-      return {
-        ...state,
-        pageNumber: 1,
-        search: payload,
-        // friends: listCopy,
-      };
-    }
-
-    case API_TYPES.ADD_NEW_FRIEND: {
-      const listCopy = [...state.friends];
-      listCopy.unshift({
-        id: `unique-id-${listCopy.length}`,
-        name: payload,
-        isFavourite: false,
-        isDeleted: false,
-      });
-
-      return {
-        ...state,
-        pageNumber: 1,
-        search: '',
-        friends: listCopy,
-      };
-    }
-
-    case API_TYPES.FAVOURTIE: {
-      const listCopy = [...state.friends].map(friend => {
-        const { id, isFavourite } = friend || {};
-
-        return id !== payload
-          ? friend
-          : { ...friend, isFavourite: !isFavourite };
-      });
-
-      return { ...state, friends: listCopy };
-    }
-
-    case API_TYPES.DELETE: {
-      const listCopy = [...state.friends].map(friend => {
-        const { id, isDeleted } = friend || {};
-
-        return id !== payload ? friend : { ...friend, isDeleted: !isDeleted };
-      });
-
-      return { ...state, friends: listCopy };
-    }
-
-    case API_TYPES.UPDATE_PAGE_NUMBER: {
-      return { ...state, pageNumber: payload };
-    }
-
-    default:
-      throw new Error();
-  }
-};
-
 const FriendsList = () => {
-  const searchElement = useRef(null);
-  const [state, dispatch] = useReducer(reducer, INITIAL_STATE);
-  const { search, pageNumber, friends } = state;
+  const [state, dispatch] = useReducer(Reducer, INITIAL_STATE);
+  const {
+    sortByFavourite, search, newFriendName, pageNumber, friends,
+  } = state;
 
-  useEffect(() => {
-    searchElement.current.focus();
-  }, []);
+  const toggleFavSort = () => {
+    dispatch({ type: API_TYPES.TOGGLE_FAV_SORT, payload: !sortByFavourite });
+  };
 
-  const handleChange = ({ target }) => {
+  const handleSearch = ({ target }) => {
     dispatch({ type: API_TYPES.SEARCH_CHANGE, payload: target.value });
   };
 
-  const handleTest = e => {
+  const handleAddNewFriend = ({ target }) => {
+    dispatch({ type: API_TYPES.NEW_FRIEND_NAME, payload: target.value });
+  };
+
+  const onAddInputKeyPress = e => {
     if (e.key === 'Enter') {
-      dispatch({ type: API_TYPES.ADD_NEW_FRIEND, payload: search });
+      dispatch({ type: API_TYPES.ADD_NEW_FRIEND, payload: newFriendName });
     }
   };
 
@@ -109,15 +53,32 @@ const FriendsList = () => {
   return (
     <ParentContainer>
       <Container>
-        <SearchInput
-          placeholder="Enter your friend's name"
-          value={search}
-          ref={searchElement}
-          onChange={handleChange}
-          onKeyPress={handleTest}
+        <SortContainer>
+          <SearchInput
+            placeholder="Search"
+            value={search}
+            onChange={handleSearch}
+          />
+
+          <SortButton
+            type="button"
+            className={sortByFavourite ? 'active' : ''}
+            onClick={toggleFavSort}
+          >
+            Sort by
+            <FaHeart />
+          </SortButton>
+        </SortContainer>
+
+        <AddInput
+          placeholder="Add your friend's name"
+          value={newFriendName}
+          onChange={handleAddNewFriend}
+          onKeyPress={onAddInputKeyPress}
         />
 
         <FriendList
+          pageNumber={pageNumber}
           friends={friends}
           handleMarkFavourite={handleMarkFavourite}
           handleDelete={handleDelete}
@@ -125,7 +86,7 @@ const FriendsList = () => {
 
         <PaginationContainer>
           <Pagination
-            friendsCount={80}
+            friendsCount={friends.length}
             activePage={pageNumber}
             updatePageNumber={updatePageNumber}
           />

@@ -58,12 +58,14 @@ const FriendsList = () => {
             placeholder="Search"
             value={search}
             onChange={handleSearch}
+            data-testid="search-input" 
           />
 
           <SortButton
             type="button"
             className={sortByFavourite ? 'active' : ''}
             onClick={toggleFavSort}
+            data-testid="sort-by-button" 
           >
             Sort by
             <FaHeart />

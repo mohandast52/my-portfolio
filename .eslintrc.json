@@ -4,7 +4,12 @@
     "es6": true
   },
   "parser": "babel-eslint",
-  "extends": ["eslint:recommended", "plugin:react/recommended", "airbnb"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "airbnb",
+    "plugin:jest/all"
+  ],
   "settings": {
     "react": {
       "version": "detect"
@@ -17,7 +22,7 @@
     "ecmaVersion": 2018,
     "sourceType": "module"
   },
-  "plugins": ["react"],
+  "plugins": ["react", "jest"],
   "rules": {
     "react/react-in-jsx-scope": "off",
     "react/jsx-props-no-spreading": "off",
@@ -25,11 +30,7 @@
     "import/no-unresolved": [
       2,
       {
-        "ignore": [
-          "util",
-          "common-util",
-          "components"
-        ]
+        "ignore": ["util", "common-util", "components"]
       }
     ]
   }

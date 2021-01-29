@@ -12,13 +12,13 @@ export const FRIENDS_DB = [
   {
     id: 'unique-id-0',
     name: 'Rakesh Gupta',
-    isFavourite: true,
+    isFavourite: false,
     isDeleted: false,
   },
   {
     id: 'unique-id-1',
     name: 'Shivangi Sharma',
-    isFavourite: false,
+    isFavourite: true,
     isDeleted: true,
   },
   {
@@ -28,7 +28,7 @@ export const FRIENDS_DB = [
     isDeleted: false,
   },
 
-  // /*
+  /*
   {
     id: 'unique-id-3',
     name: '3',
@@ -65,7 +65,7 @@ export const FRIENDS_DB = [
     isFavourite: false,
     isDeleted: false,
   },
-  // */
+  */
 ];
 
 export const INITIAL_STATE = {

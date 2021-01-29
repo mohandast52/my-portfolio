@@ -1,9 +1,7 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { FaHeart, FaTimes, FaSearchengin } from 'react-icons/fa';
-import {
-  Container, NoDataFound, EachFriend, Name, Actions,
-} from './styles';
+import React from "react";
+import PropTypes from "prop-types";
+import { FaHeart, FaTimes, FaSearchengin } from "react-icons/fa";
+import { Container, NoDataFound, EachFriend, Name, Actions } from "./styles";
 
 export const List = ({
   pageNumber,
@@ -14,7 +12,7 @@ export const List = ({
   if ((friends || []).length === 0) {
     return (
       <Container>
-        <NoDataFound>
+        <NoDataFound data-testid="no-data-found">
           <FaSearchengin />
           No Data Found
         </NoDataFound>
@@ -23,15 +21,13 @@ export const List = ({
   }
 
   return (
-    <Container>
-      {(friends || []).map(({
-        id, name, isFavourite, isDeleted,
-      }, index) => {
+    <Container data-testid="friend-list">
+      {(friends || []).map(({ id, name, isFavourite, isDeleted }, index) => {
         const currentView = 4 * (pageNumber - 1) + (index % 4);
         if (currentView !== index) return null;
 
         return (
-          <EachFriend key={id} className={isDeleted ? 'deleted' : ''}>
+          <EachFriend key={id} className={isDeleted ? "deleted" : ""}>
             <Name>
               <h3>{name}</h3>
               <span>is your friend</span>
@@ -40,7 +36,7 @@ export const List = ({
             <Actions>
               <button
                 type="button"
-                className={`${isFavourite ? 'fav' : ''}`}
+                className={`${isFavourite ? "fav" : ""}`}
                 onClick={() => handleMarkFavourite(id)}
               >
                 <FaHeart />
@@ -48,7 +44,7 @@ export const List = ({
 
               <button
                 type="button"
-                className={`${isDeleted ? 'deleted' : ''}`}
+                className={`${isDeleted ? "deleted" : ""}`}
                 onClick={() => handleDelete(id)}
               >
                 <FaTimes />

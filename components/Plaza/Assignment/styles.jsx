@@ -18,7 +18,7 @@ export const Container = styled.div`
   width: 100vw;
   overflow: hidden;
   background-color: ${COLOR.BG_COLOR};
-  background-image: url("/images/yoga.jpg");
+  background-image: url("/images/yoga-1.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   font-family: sans-serif !important;
@@ -29,7 +29,6 @@ export const Container = styled.div`
 `;
 
 /* ---------------- common ---------------- */
-
 export const Label = styled.label`
   display: block;
   font-size: 12px;
@@ -65,13 +64,57 @@ export const RedButton = styled(Button)`
   font-weight: bold;
 `;
 
+export const TransparentButton = styled(Button)`
+  background-color: transparent !important;
+  color: ${COLOR.BLACK};
+  border: 1px solid ${COLOR.BLACK};
+  font-weight: bold;
+  margin-bottom: 1rem;
+`;
+
+/* ---------------- video ---------------- */
+export const VideoContainer = styled.div`
+  width: calc(100% - 540px);
+  max-width: 1000px;
+  height: 480px;
+  margin-right: 4rem;
+  background-color: ${COLOR.VIDEO_BG};
+
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  color: ${COLOR.WHITE};
+
+  .video-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    .message {
+      font-size: 12px;
+      margin-bottom: 0.5rem;
+      font-weight: bold;
+    }
+    .icons {
+      svg {
+        width: 50px;
+        height: 50px;
+        padding: 12px;
+        border: 2px solid white;
+        border-radius: 50%;
+        margin: 0.25rem;
+      }
+    }
+  }
+`;
+
 /* ---------------- card ---------------- */
 export const CardContainer = styled.label`
   min-height: 400px;
-  width: 360px;
+  width: 340px;
   margin-right: 4rem;
   border-radius: 4px;
-  padding: 2rem 2rem 0.5rem 2rem;
+  padding: 1.5rem 2rem 0.5rem 2rem;
   background-color: ${COLOR.BG_COLOR};
 `;
 
@@ -102,7 +145,7 @@ export const CardFooter = styled.div`
   align-items: center;
   justify-content: center;
   padding-top: 0.5rem;
-  
+
   span {
     color: ${COLOR.GREY_TEXT_1};
     &:nth-child(1) {
@@ -127,7 +170,7 @@ export const Form = styled.div`
 `;
 
 export const ScheduleContainer = styled.div`
-  margin: 2rem 0;
+  margin: 1rem 0 2rem 0;
   font-size: 12px;
 
   .question {
@@ -140,6 +183,39 @@ export const ScheduleContainer = styled.div`
     text-decoration: none;
     &:hover {
       text-decoration: underline;
+    }
+  }
+`;
+
+export const StepOneContainer = styled.div`
+  .message {
+    padding: 0 1rem 1rem 1rem;
+    text-align: center;
+    font-weight: 100;
+    font-size: 13px;
+    border-bottom: 1px solid #757575;
+  }
+
+  .info-table {
+    padding: 1rem 0;
+
+    .row {
+      display: flex;
+      font-size: 13px;
+      padding-bottom: 0.75rem;
+
+      &.email {
+        margin-bottom: 2rem;
+      }
+
+      .row-title {
+        font-weight: 100;
+        padding-right: 0.25rem;
+      }
+
+      .row-value {
+        font-weight: bold;
+      }
     }
   }
 `;

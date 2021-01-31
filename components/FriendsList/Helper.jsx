@@ -27,14 +27,13 @@ export const FRIENDS_DB = [
     isFavourite: false,
     isDeleted: false,
   },
-
-  /*
   {
     id: 'unique-id-3',
-    name: '3',
+    name: 'Mohan Das',
     isFavourite: true,
     isDeleted: false,
   },
+  /*
   {
     id: 'unique-id-4',
     name: '4',

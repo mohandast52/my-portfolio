@@ -73,6 +73,7 @@ const FriendsList = () => {
         </SortContainer>
 
         <AddInput
+          data-testid="add-friend-input"
           placeholder="Add your friend's name"
           value={newFriendName}
           onChange={handleAddNewFriend}
@@ -86,7 +87,7 @@ const FriendsList = () => {
           handleDelete={handleDelete}
         />
 
-        <PaginationContainer>
+        <PaginationContainer data-testid="pagination-list">
           <Pagination
             friendsCount={friends.length}
             activePage={pageNumber}

@@ -2,6 +2,10 @@ import styled from 'styled-components';
 import { COLORS, BOX_SHADOW } from './Helper';
 
 export const ParentContainer = styled.div`
+ * {
+    box-sizing: border-box;
+  }
+
   display: flex;
   height: 100vh;
   background-color: ${COLORS.BG_COLOR};

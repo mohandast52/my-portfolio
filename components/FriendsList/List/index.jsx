@@ -2,7 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FaHeart, FaTimes, FaSearchengin } from 'react-icons/fa';
 import {
-  Container, NoDataFound, EachFriend, Name, Actions,
+  Container,
+  NoDataFound,
+  EachFriend,
+  Name,
+  Actions,
+  RedText,
 } from './styles';
 
 export const List = ({
@@ -34,7 +39,11 @@ export const List = ({
           <EachFriend key={id} className={isDeleted ? 'deleted' : ''}>
             <Name>
               <h3>{name}</h3>
-              <span>is your friend</span>
+              <span className="info-text">
+                is
+                <RedText>{isDeleted ? ' not ' : ' '}</RedText>
+                your friend
+              </span>
             </Name>
 
             <Actions>

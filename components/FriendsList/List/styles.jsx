@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { COLORS, BOX_SHADOW } from '../Helper';
+import { COLORS, BOX_SHADOW } from '../Helpers/theme';
 
 export const Container = styled.div`
   min-height: 288px;
@@ -34,6 +34,9 @@ export const EachFriend = styled.div`
 
   h3 {
     margin: 0 0 0.25rem 0;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
   }
 
   &.deleted {
@@ -44,6 +47,14 @@ export const EachFriend = styled.div`
 
 export const Name = styled.div`
   color: ${COLORS.TEXT_COLOR};
+  max-width: 12.5rem;
+  .info-text {
+    font-size: 14px;
+  }
+`;
+
+export const RedText = styled.span`
+  color: ${COLORS.RED};
 `;
 
 export const Actions = styled.div`

@@ -1,13 +1,14 @@
 import styled from 'styled-components';
-import { COLORS, BOX_SHADOW } from './Helper';
+import { COLORS, BOX_SHADOW } from './Helpers/theme';
 
 export const ParentContainer = styled.div`
- * {
+  * {
     box-sizing: border-box;
   }
 
   display: flex;
   height: 100vh;
+  transform: scale(1.25);
   background-color: ${COLORS.BG_COLOR};
 `;
 
@@ -59,6 +60,9 @@ export const SortButton = styled(Button)`
 
 export const AddInput = styled(Input)`
   margin-bottom: 1rem;
+  &.has-error {
+    color: ${COLORS.RED};
+  }
 `;
 
 export const SearchInput = styled(Input)`

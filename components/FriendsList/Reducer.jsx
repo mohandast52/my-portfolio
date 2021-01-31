@@ -1,5 +1,5 @@
 
-import { API_TYPES } from './Helper';
+import { API_TYPES } from './Helpers';
 
 const Reducer = (state, action) => {
   const { type, payload } = action;

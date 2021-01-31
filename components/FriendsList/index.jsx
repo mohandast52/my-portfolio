@@ -1,6 +1,6 @@
 import React, { useReducer } from 'react';
 import { FaHeart } from 'react-icons/fa';
-import { API_TYPES, INITIAL_STATE } from './Helper';
+import { API_TYPES, INITIAL_STATE, isValidName } from './Helpers';
 import Reducer from './Reducer';
 import Pagination from './Pagination';
 import FriendList from './List';
@@ -34,7 +34,9 @@ const FriendsList = () => {
 
   const onAddInputKeyPress = e => {
     if (e.key === 'Enter') {
-      dispatch({ type: API_TYPES.ADD_NEW_FRIEND, payload: newFriendName });
+      if (isValidName(newFriendName)) {
+        dispatch({ type: API_TYPES.ADD_NEW_FRIEND, payload: newFriendName });
+      }
     }
   };
 
@@ -75,6 +77,7 @@ const FriendsList = () => {
         <AddInput
           data-testid="add-friend-input"
           placeholder="Add your friend's name"
+          className={isValidName(newFriendName) ? '' : 'has-error'}
           value={newFriendName}
           onChange={handleAddNewFriend}
           onKeyPress={onAddInputKeyPress}

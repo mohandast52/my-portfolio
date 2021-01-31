@@ -1,6 +1,14 @@
 import styled from 'styled-components';
 
 export const ParentContainer = styled.div`
+  &.container-fluid {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 25%;
+  }
+
   .container {
     display: flex;
     flex-direction: column;

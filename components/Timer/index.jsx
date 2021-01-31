@@ -1,57 +1,69 @@
+/* eslint-disable react/prop-types */
 import React, { useState, useRef, useEffect } from 'react';
 import { ParentContainer } from './styles';
 
-const Timer = () => {
+const StopWatch = ({ initial = '0', interval = '1' }) => {
   const [isTimerOn, setTimerOn] = useState(false);
-  const [duration, setDuration] = useState(50);
+  const [duration, setDuration] = useState(parseInt(initial, 10));
   const timerRef = useRef(null);
 
-  const handleStart = () => {
-    setTimerOn(true);
+  const handleStartPause = () => {
+    setTimerOn(!isTimerOn);
   };
 
   const handleStop = () => {
+    setDuration(0);
     setTimerOn(false);
   };
 
   useEffect(() => {
     if (isTimerOn) {
       timerRef.current = setInterval(() => {
-        setDuration(prevDuration => prevDuration + 1);
+        setDuration(prevDuration => {
+          const newTime = prevDuration + parseInt(interval, 10);
+          if (newTime > 90) {
+            setTimerOn(false);
+          }
+          return newTime;
+        });
       }, 1000);
     } else if (timerRef) {
       clearInterval(timerRef.current);
     }
   }, [isTimerOn]);
 
-  // const hrs = Math.floor(duration / 3600);
   const minutes = Math.floor((duration % 3600) / 60);
   const seconds = Math.floor(duration % 60);
 
   return (
-    <ParentContainer>
-      <div className="container">
-        <div className="circle">
-          <div className="show-timerRef">
-            <span>{minutes < 10 ? `0${minutes}` : minutes}</span>
-            :
-            <span>{seconds < 10 ? `0${seconds}` : seconds}</span>
-          </div>
-        </div>
-
-        <div className="buttons">
-          <button type="button" onClick={handleStart}>
-            Start
-          </button>
-          <button type="button" onClick={handleStop}>
-            Stop
-          </button>
+    <div className="container">
+      <div className="circle">
+        <div className="show-timer">
+          <span>{minutes < 10 ? `0${minutes}` : minutes}</span>
+          :
+          <span>{seconds < 10 ? `0${seconds}` : seconds}</span>
         </div>
       </div>
-    </ParentContainer>
+
+      <div className="buttons">
+        <button type="button" onClick={handleStartPause}>
+          {isTimerOn ? 'Pause' : 'Start'}
+        </button>
+        <button type="button" onClick={handleStop}>
+          Stop
+        </button>
+      </div>
+    </div>
   );
 };
 
-export default Timer;
+/* ------------------------- */
+const TimerComponent = () => (
+  <ParentContainer className="container-fluid">
+    <StopWatch initial="12" interval="2" />
+    <StopWatch initial="74" interval="6" />
+    <StopWatch initial="9" interval="1" />
+  </ParentContainer>
+);
 
-// https://codepen.io/Basit600/pen/YzwRaRp?editors=0010
+export default TimerComponent;

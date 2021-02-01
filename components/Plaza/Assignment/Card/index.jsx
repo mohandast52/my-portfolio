@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { ImOmega } from 'react-icons/im';
 import { StepZero, StepOne, StepTwo } from './Helper';
 import { CardContainer, CardHeader, CardFooter } from '../styles';
@@ -23,7 +23,7 @@ const LIST = [
   'test503@gmail.com',
 ];
 
-const debounce = (fn, delay = 2000) => {
+const debounce = (fn, delay = 500) => {
   let timeoutID;
   return (...args) => {
     if (timeoutID) {
@@ -37,16 +37,18 @@ const Card = ({ step, handleClick }) => {
   const [email, setEmail] = useState('');
   const [emails, setemails] = useState(LIST);
 
-  const debouncedFn = debounce(() => {
-    const c = LIST.filter(e => e.includes(email));
-    console.log(c);
-    return c;
-  });
+  /* returns same function on every re-render! */
+  const debounceLoadData = useCallback(
+    debounce(emailTyped => {
+      const emailList = LIST.filter(e => e.includes(emailTyped));
+      setemails(emailList);
+    }),
+    [],
+  );
 
   const onEmailSearch = value => {
     setEmail(value);
-    console.log(debouncedFn());
-    // setemails(filteredEmails(value));
+    debounceLoadData(value);
   };
 
   return (

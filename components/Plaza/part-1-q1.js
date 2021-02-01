@@ -13,6 +13,7 @@ f(null, console.log);
 */
 
 /**
+ * ----------------------------------------------------
  * using promise's resolve & reject method
  */
 const myPromise = name => new Promise((resolve, reject) => {

@@ -167,6 +167,24 @@ export const WelcomeMessage = styled.div`
 
 export const Form = styled.div`
   margin: 2rem 0;
+  .email-input-row {
+    position: relative;
+    .autocomplete-container {
+      position: absolute;
+      top: 50px;
+      width: 100%;
+      height: 120px;
+      overflow: auto;
+      z-index: 2;
+      background-color: white;
+      border: 1px solid ${COLOR.GREY_TEXT_1};
+      padding: 0.5rem;
+      font-size: 14px;
+      > div {
+        margin-bottom: 0.25rem;
+      }
+    }
+  }
 `;
 
 export const ScheduleContainer = styled.div`

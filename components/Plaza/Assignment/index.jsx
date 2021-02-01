@@ -3,6 +3,7 @@ import { FaVideo, FaMicrophone } from 'react-icons/fa';
 import Card from './Card';
 import { Container, VideoContainer } from './styles';
 
+
 const Assignment = () => {
   const [step, setStep] = useState(0);
 

@@ -15,14 +15,30 @@ import {
 } from '../styles';
 
 /* ------------------- Step Zero------------------ */
-export const StepZero = ({ handleClick }) => (
+export const StepZero = ({
+  email, emails, handleClick, onEmailSearch,
+}) => (
   <>
     <WelcomeMessage>Welcome to Lululemon Vitrual Shopping</WelcomeMessage>
 
     <Form className="form">
-      <div>
+      <div className="email-input-row">
         <Label htmlFor="email">EMAIL</Label>
-        <Input id="email" />
+        <Input
+          id="email"
+          value={email}
+          placeholder="Type 'test' for autocomplete"
+          onChange={({ target }) => onEmailSearch(target.value)}
+          autoComplete="off"
+        />
+
+        {emails.length !== 0 && (
+          <div className="autocomplete-container">
+            {emails.map(e => (
+              <div>{e}</div>
+            ))}
+          </div>
+        )}
       </div>
 
       <div>

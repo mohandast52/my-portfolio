@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
-const list = [0, 2, 4, 6, 8];
-const k = 4;
+const list = [3, 6, 10, -15, 1];
+const k = 35;
 
 const fn = (total, i, array, finalOp) => {
   if (total === k) {
@@ -18,9 +18,13 @@ const fn = (total, i, array, finalOp) => {
   return null;
 };
 
-fn(0, 0, list, '');
+if (!fn(0, 0, list, '')) {
+  console.log('None');
+}
 
 /**
+ * Will print all the possible o/p!
+ *
  * Time complexity: 2^n as we are either selecting the value or not-selecting
  * which call recursively.
  */

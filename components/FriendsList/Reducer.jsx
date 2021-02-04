@@ -1,38 +1,54 @@
-
 import { API_TYPES } from './Helpers';
 
 const Reducer = (state, action) => {
   const { type, payload } = action;
   switch (type) {
     case API_TYPES.TOGGLE_FAV_SORT: {
-      if (!payload) {
-        return { ...state, sortByFavourite: payload };
-      }
+      // if (!payload) {
+      //   return {
+      //     ...state,
+      //     sortByFavourite: payload,
+      //     friends: [...state.friendsCopy],
+      //   };
+      // }
 
       const sorted = [];
       const unsorted = [];
 
-      [...state.friendsCopy].forEach(friend => {
-        const { isFavourite } = friend;
+      if (payload) {
+        [...state.friendsCopy].forEach(friend => {
+          const { name, isFavourite } = friend;
 
-        if (isFavourite) sorted.push(friend);
-        else unsorted.push(friend);
-      });
+          if (name.toLowerCase().includes(state.search.toLowerCase())) {
+            if (isFavourite) sorted.push(friend);
+            else unsorted.push(friend);
+          }
+        });
+      } else {
+        [...state.friendsCopy].forEach(friend => {
+          const { name } = friend || {};
+          if (name.toLowerCase().includes(state.search.toLowerCase())) {
+            unsorted.push(friend);
+          }
+        });
+      }
 
       return {
         ...state,
-        search: '',
+        // search: '',
         friends: [...sorted, ...unsorted],
-        friendsCopy: [...sorted, ...unsorted],
+        // friendsCopy: [...sorted, ...unsorted],
         sortByFavourite: payload,
       };
     }
 
     case API_TYPES.SEARCH_CHANGE: {
+      // console.log(state.friendsCopy);
       const listCopy = [...state.friendsCopy].filter(friend => {
         const { name } = friend || {};
         return name.toLowerCase().includes(payload.toLowerCase());
       });
+      // console.log(listCopy);
 
       return {
         ...state,
@@ -51,7 +67,8 @@ const Reducer = (state, action) => {
     }
 
     case API_TYPES.ADD_NEW_FRIEND: {
-      const listCopy = [...state.friends];
+      const listCopy = [...state.friendsCopy];
+      // console.log(listCopy);
       listCopy.unshift({
         id: `unique-id-${listCopy.length}`,
         name: payload,
@@ -63,7 +80,7 @@ const Reducer = (state, action) => {
         ...state,
         pageNumber: 1,
         newFriendName: '',
-        friends: listCopy,
+        // friends: listCopy,
         friendsCopy: listCopy,
       };
     }

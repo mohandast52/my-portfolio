@@ -36,6 +36,7 @@ const FriendsList = () => {
     if (e.key === 'Enter') {
       if (isValidName(newFriendName)) {
         dispatch({ type: API_TYPES.ADD_NEW_FRIEND, payload: newFriendName });
+        dispatch({ type: API_TYPES.SEARCH_CHANGE, payload: search });
       }
     }
   };

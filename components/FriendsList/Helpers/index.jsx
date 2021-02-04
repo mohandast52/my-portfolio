@@ -31,6 +31,18 @@ export const FRIENDS_DB = [
   {
     id: 'unique-id-3',
     name: 'Mohan Das',
+    isFavourite: false,
+    isDeleted: false,
+  },
+  {
+    id: 'unique-id-4',
+    name: 'Mohan',
+    isFavourite: true,
+    isDeleted: false,
+  },
+  {
+    id: 'unique-id-5',
+    name: 'Mohan Stark',
     isFavourite: true,
     isDeleted: false,
   },

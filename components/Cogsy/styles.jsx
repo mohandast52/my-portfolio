@@ -6,9 +6,10 @@ export const Container = styled.div`
   align-items: center;
   flex-wrap: wrap;
   padding: 5rem;
+
   .just-for-spacing {
     flex-basis: 50%;
-    margin-bottom: 2rem;
+    margin-bottom: 6rem;
   }
 
   /* re-usable styles (to be added in global styles) */
@@ -17,10 +18,12 @@ export const Container = styled.div`
     font-size: 24px;
     line-height: 32px;
   }
+
   .f-m {
     font-size: 16px;
     line-height: 24px;
   }
+
   .f-s {
     font-size: 14px;
     line-height: 22px;

@@ -5,18 +5,16 @@ import { Container } from './styles';
 const MENU_LIST = ['Save', 'Edit', 'Preview'];
 
 const CARD_LIST = [
-  /*
   {
     id: 'random-uuid-1',
-    source: '' ,
-    source_type: 'img' ,
+    source: '/images/empty_image.png',
+    source_type: 'img',
     heading: 'Countdown Announcement - Unlimited',
     subheading: 'Last edited 2 days ago',
     description: '',
     is_favourite: false,
     is_menu_required: true,
   },
-  */
   {
     id: 'random-uuid-2',
     source: null,
@@ -43,6 +41,27 @@ const CARD_LIST = [
     is_favourite: null,
     is_menu_required: false,
   },
+  {
+    id: 'random-uuid-5',
+    source: [
+      {
+        link:
+          'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm',
+        type: 'video/webm',
+      },
+      {
+        link:
+          'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4',
+        type: 'video/mp4',
+      },
+    ],
+    source_type: 'video',
+    heading: 'Countdown Announcement - Unlimited',
+    subheading: 'Last edited 2 days ago',
+    description: '',
+    is_favourite: false,
+    is_menu_required: true,
+  },
 ];
 
 const App = () => (
@@ -57,25 +76,21 @@ const App = () => (
         description,
         is_favourite: isFavourite,
         is_menu_required: isMenuRequired,
-      }) => {
-        console.log('object');
-
-        return (
-          <div className="just-for-spacing">
-            <Card
-              key={id}
-              source={source}
-              sourceType={sourceType}
-              heading={heading}
-              subheading={subheading}
-              description={description}
-              isFavourite={isFavourite}
-              isMenuRequired={isMenuRequired}
-              menuList={MENU_LIST}
-            />
-          </div>
-        );
-      },
+      }) => (
+        <div className="just-for-spacing">
+          <Card
+            key={id}
+            source={source}
+            sourceType={sourceType}
+            heading={heading}
+            subheading={subheading}
+            description={description}
+            isFavourite={isFavourite}
+            isMenuRequired={isMenuRequired}
+            menuList={MENU_LIST}
+          />
+        </div>
+      ),
     )}
   </Container>
 );

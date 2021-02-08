@@ -1,15 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { InactiveStarIcon, ActiveStarIcon, KebabIcon } from '../Helpers/icons';
+import { Header, Footer } from './helper';
 import {
   CardContainer,
   Body,
-  Heading,
   SubHeading,
   Description,
-  Footer,
-  Favourite,
-  MenuIcon,
+  Heading,
 } from './styles';
 
 const Card = ({
@@ -20,50 +17,28 @@ const Card = ({
   description,
   isFavourite,
   isMenuRequired,
-}) => {
-  const [isActive, setFavourite] = useState(isFavourite);
+}) => (
+  <CardContainer>
+    <div className="content">
+      <div className="heading">
+        <Header source={source} sourceType={sourceType} />
 
-  return (
-    <CardContainer>
-      <div className="content">
-        <div className="heading">
-          {source && (
-            <div>
-              {source}
-              {sourceType}
-            </div>
+        <Body>
+          <Heading className="f-l">{heading}</Heading>
+          <SubHeading className="f-s">{subheading}</SubHeading>
+          {description && (
+            <Description className="f-s">{description}</Description>
           )}
+        </Body>
 
-          <Body>
-            <Heading className="f-l">{heading}</Heading>
-            <SubHeading className="f-s">{subheading}</SubHeading>
-            {description && (
-              <Description className="f-s">{description}</Description>
-            )}
-          </Body>
-
-          {(isFavourite !== null || isMenuRequired) && (
-            <Footer>
-              {isFavourite !== null && (
-                <Favourite onClick={() => setFavourite(!isActive)}>
-                  {isActive ? <InactiveStarIcon /> : <ActiveStarIcon />}
-                </Favourite>
-              )}
-              {isMenuRequired && (
-                <MenuIcon>
-                  <KebabIcon />
-                </MenuIcon>
-              )}
-            </Footer>
-          )}
-        </div>
+        <Footer isFavourite={isFavourite} isMenuRequired={isMenuRequired} />
       </div>
-    </CardContainer>
-  );
-};
+    </div>
+  </CardContainer>
+);
 
 Card.propTypes = {
-  source: PropTypes.string,
+  source: PropTypes.oneOfType([PropTypes.string, PropTypes.shape([])]),
   sourceType: PropTypes.oneOf(['img', 'video', 'svg']),
   heading: PropTypes.string.isRequired,
   subheading: PropTypes.string.isRequired,

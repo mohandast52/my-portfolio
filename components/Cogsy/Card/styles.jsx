@@ -10,6 +10,12 @@ export const CardContainer = styled.div`
   margin: 0 auto;
   border-radius: 5px;
   border: ${COMMON.border};
+  transition: box-shadow 0.1s ease;
+
+  &:hover {
+    box-shadow: rgb(100 100 111 / 20%) 0px 7px 29px 0px;
+    border-color: transparent;
+  }
 `;
 
 /* ------------- Head ------------- */
@@ -30,6 +36,11 @@ export const Body = styled.div`
 `;
 
 export const Heading = styled.h3`
+  display: -webkit-box;
+  max-width: 200px;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
   margin: 0;
   font-weight: normal;
 `;

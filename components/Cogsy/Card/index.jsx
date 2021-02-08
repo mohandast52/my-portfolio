@@ -19,21 +19,15 @@ const Card = ({
   isMenuRequired,
 }) => (
   <CardContainer>
-    <div className="content">
-      <div className="heading">
-        <Header source={source} sourceType={sourceType} />
+    <Header source={source} sourceType={sourceType} />
 
-        <Body>
-          <Heading className="f-l">{heading}</Heading>
-          <SubHeading className="f-s">{subheading}</SubHeading>
-          {description && (
-            <Description className="f-s">{description}</Description>
-          )}
-        </Body>
+    <Body>
+      <Heading className="f-l">{heading}</Heading>
+      <SubHeading className="f-s">{subheading}</SubHeading>
+      {description && <Description className="f-s">{description}</Description>}
+    </Body>
 
-        <Footer isFavourite={isFavourite} isMenuRequired={isMenuRequired} />
-      </div>
-    </div>
+    <Footer isFavourite={isFavourite} isMenuRequired={isMenuRequired} />
   </CardContainer>
 );
 

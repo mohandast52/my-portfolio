@@ -10,9 +10,9 @@ import {
   MenuIcon,
 } from './styles';
 
+/* ------------- Menu ------------- */
 const LIST = ['Save', 'Edit', 'Preview'];
 
-/* ------------- Menu ------------- */
 export const Menu = () => (
   <MenuContainer>
     {LIST.map(eachValue => (
@@ -32,7 +32,7 @@ export const Header = ({ source, sourceType }) => {
       {sourceType === 'video' && (
         <video controls>
           {(source || []).map(({ link, type }) => (
-            <source src={link} type={type} />
+            <source src={link} type={type} key={link} />
           ))}
           Your browser does not support HTML video.
         </video>

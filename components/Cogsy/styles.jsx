@@ -1,11 +1,10 @@
 import styled from 'styled-components';
-// import { COLORS, BOX_SHADOW } from './Helpers/theme';
 
 export const Container = styled.div`
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  padding: 5rem;
+  padding: 5rem 8rem;
 
   .just-for-spacing {
     flex-basis: 50%;

@@ -2,8 +2,6 @@ import React from 'react';
 import Card from './Card';
 import { Container } from './styles';
 
-const MENU_LIST = ['Save', 'Edit', 'Preview'];
-
 const CARD_LIST = [
   {
     id: 'random-uuid-1',
@@ -11,7 +9,7 @@ const CARD_LIST = [
     source_type: 'img',
     heading: 'Countdown Announcement - Unlimited',
     subheading: 'Last edited 2 days ago',
-    description: '',
+    description: null,
     is_favourite: false,
     is_menu_required: true,
   },
@@ -58,7 +56,7 @@ const CARD_LIST = [
     source_type: 'video',
     heading: 'Countdown Announcement - Unlimited',
     subheading: 'Last edited 2 days ago',
-    description: '',
+    description: null,
     is_favourite: false,
     is_menu_required: true,
   },
@@ -77,9 +75,8 @@ const App = () => (
         is_favourite: isFavourite,
         is_menu_required: isMenuRequired,
       }) => (
-        <div className="just-for-spacing">
+        <div className="just-for-spacing" key={id}>
           <Card
-            key={id}
             source={source}
             sourceType={sourceType}
             heading={heading}
@@ -87,7 +84,6 @@ const App = () => (
             description={description}
             isFavourite={isFavourite}
             isMenuRequired={isMenuRequired}
-            menuList={MENU_LIST}
           />
         </div>
       ),

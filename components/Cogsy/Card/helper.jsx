@@ -10,19 +10,6 @@ import {
   MenuIcon,
 } from './styles';
 
-/* ------------- Menu ------------- */
-const LIST = ['Save', 'Edit', 'Preview'];
-
-export const Menu = () => (
-  <MenuContainer>
-    {LIST.map(eachValue => (
-      <li key={eachValue} value={eachValue}>
-        {eachValue}
-      </li>
-    ))}
-  </MenuContainer>
-);
-
 /* ------------- HeaderContainer ------------- */
 export const Header = ({ source, sourceType }) => {
   if (!source) return null;
@@ -52,6 +39,19 @@ Header.defaultProps = {
   source: null,
   sourceType: null,
 };
+
+/* ------------- Menu ------------- */
+const LIST = ['Save', 'Edit', 'Preview'];
+
+export const Menu = () => (
+  <MenuContainer>
+    {LIST.map(eachValue => (
+      <li key={eachValue} value={eachValue}>
+        {eachValue}
+      </li>
+    ))}
+  </MenuContainer>
+);
 
 /* -------------- Footer ------------- */
 export const Footer = ({ isFavourite, isMenuRequired }) => {

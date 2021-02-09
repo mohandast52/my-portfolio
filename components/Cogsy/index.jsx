@@ -62,7 +62,7 @@ const CARD_LIST = [
   },
 ];
 
-const App = () => (
+const Cogsy = () => (
   <Container>
     {CARD_LIST.map(
       ({
@@ -91,4 +91,4 @@ const App = () => (
   </Container>
 );
 
-export default App;
+export default Cogsy;

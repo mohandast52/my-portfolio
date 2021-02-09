@@ -9,6 +9,10 @@ import {
   Heading,
 } from './styles';
 
+/**
+ * Card Component can handle all the possible cases mentioned in assignment
+ */
+
 const Card = ({
   source,
   sourceType,

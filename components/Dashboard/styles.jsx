@@ -51,7 +51,7 @@ export const Icon = styled.div`
   }
 
   svg {
-    padding: 8px;
+    margin: 0.5rem;
     font-size: 16px;
   }
 

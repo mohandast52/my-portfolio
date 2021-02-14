@@ -3,7 +3,7 @@ import { COLOR } from '../Helpers';
 
 export const MessagesContainer = styled.div`
   position: relative;
-  width: 34vw;
+  width: 31vw;
 
   h3 {
     display: flex;
@@ -42,7 +42,7 @@ export const EachMessage = styled.div`
 
 export const Avatar = styled.div`
   flex: 0 0 auto;
-  padding: 1rem;
+  margin: 1rem;
   width: 50px;
   height: 50px;
 

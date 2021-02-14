@@ -1,3 +1,3 @@
-import FriendsList from 'components/FriendsList';
+import FriendsList from 'components/Assignments/Haptik';
 
 export default FriendsList;

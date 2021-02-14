@@ -2,10 +2,6 @@ import styled from 'styled-components';
 import { COLORS, BOX_SHADOW } from './Helpers/theme';
 
 export const ParentContainer = styled.div`
-  * {
-    box-sizing: border-box;
-  }
-
   display: flex;
   height: 100vh;
   transform: scale(1.25);

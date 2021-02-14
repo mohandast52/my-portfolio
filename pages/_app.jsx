@@ -39,3 +39,5 @@ Router.onRouteChangeStart = () => {
 Router.onRouteChangeComplete = () => {
   Progress.stop();
 };
+
+// https://github.com/vercel/next.js/issues/7945

@@ -122,7 +122,7 @@ export const ActionButton = styled.div`
 export const Container = styled.div`
   border-radius: 32px;
   margin: 0 1.5rem 2rem 1.5rem;
-  width: 14rem;
+  width: 16rem;
   padding: 1rem;
   font-size: 14px;
   cursor: pointer;

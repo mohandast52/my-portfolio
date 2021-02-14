@@ -12,6 +12,8 @@ export const Container = styled.div`
   }
 
   /* re-usable styles (to be added in global styles) */
+  font-family: "Helvetica Neue" !important;
+
   /* -------- font size-------- */
   .f-l {
     font-size: 24px;
@@ -26,12 +28,6 @@ export const Container = styled.div`
   .f-s {
     font-size: 14px;
     line-height: 22px;
-  }
-
-  /* overriding global-styles! */
-  font-family: "Helvetica Neue" !important;
-  * {
-    box-sizing: border-box;
   }
 `;
 

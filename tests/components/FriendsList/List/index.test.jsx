@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
-import FriendsList from 'components/FriendsList';
+import FriendsList from 'components/Assignments/Haptik';
 
 describe('<FriendsList />', () => {
   it('search filter works', () => {

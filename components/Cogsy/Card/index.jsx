@@ -50,7 +50,7 @@ Card.defaultProps = {
   sourceType: null,
   description: null,
   isFavourite: null /* if null ? don't show icon */,
-  isMenuRequired: false,
+  isMenuRequired: false, /* if false ? don't show menu */
 };
 
 export default Card;

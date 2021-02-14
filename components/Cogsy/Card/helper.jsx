@@ -12,6 +12,7 @@ import {
 
 /* ------------- HeaderContainer ------------- */
 export const Header = ({ source, sourceType }) => {
+  /* if source is empty, header will not be shown  */
   if (!source) return null;
 
   return (
@@ -55,6 +56,7 @@ export const Menu = () => (
 
 /* -------------- Footer ------------- */
 export const Footer = ({ isFavourite, isMenuRequired }) => {
+  /* if (favourite & menu is not required) ? footer will not be shown  */
   if (!(isFavourite !== null || isMenuRequired)) return null;
 
   const [isActive, setFavourite] = useState(isFavourite);

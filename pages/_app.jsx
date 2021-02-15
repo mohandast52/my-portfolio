@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import * as Progress from 'util/progress';
 import Layout from 'components/Layout';
 import GlobalStyle from 'components/GlobalStyles';
+import './styles.less';
 
 const MyApp = ({ Component, pageProps }) => (
   <>

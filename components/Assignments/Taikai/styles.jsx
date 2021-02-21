@@ -15,11 +15,27 @@ export const Container = styled.div`
   font-family: "Helvetica Neue" !important;
 `;
 
+export const NoDataFound = styled.div`
+  position: relative;
+  top: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: ${COLORS.TEXT_COLOR};
+
+  svg {
+    display: block;
+    margin-bottom: 1rem;
+    font-size: 5rem;
+    opacity: 0.4;
+  }
+`;
+
 export const CompanyContainer = styled.div`
   max-width: 1200px;
   width: 100%;
   padding: 1rem;
-  margin-bottom: 2rem;
+  margin-top: 1.5rem;
   border: 1px solid #e4e7f0;
   background-color: ${COLORS.WHITE};
   border-radius: 4px;
@@ -55,33 +71,6 @@ export const Avatar = styled.div`
     height: 100%;
     object-fit: cover;
     border-radius: 50%;
-  }
-`;
-
-export const EachJob = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.75rem 0.5rem;
-  border: 1px solid ${COLORS.BORDER_1};
-  border-bottom: 0;
-
-  &:last-child {
-    border-bottom: 1px solid ${COLORS.BORDER_1};
-  }
-
-  .row-1 {
-    display: flex;
-  }
-
-  .row-2 {
-    display: flex;
-    align-items: center;
-    .posted {
-      color: ${COLORS.GREEN};
-      margin-right: 0.5rem;
-    }
   }
 `;
 

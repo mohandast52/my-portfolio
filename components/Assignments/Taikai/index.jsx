@@ -1,118 +1,77 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable camelcase */
-import React, { useState } from 'react';
+import React, { useReducer } from 'react';
 import 'antd/dist/antd.css';
-import { Button } from 'antd';
-import { LISTING } from './Helpers/dummyJobs';
+import { Input } from 'antd';
+import { SearchOutlined } from '@ant-design/icons';
+import { FaSearchengin } from 'react-icons/fa';
+import Reducer from './Reducer';
 import JobDetails from './JobDetails';
+import { API_TYPES, INITIAL_STATE, Employees } from './Helpers';
 import {
   Container,
+  NoDataFound,
   CompanyContainer,
   CompanyInfo,
   Avatar,
-  EachJob,
   Title,
 } from './styles';
 
-const Equity = ({ equity }) => (
-  <div>
-    {equity.min}
-    %&nbsp;-&nbsp;
-    {equity.max}
-    %&nbsp;
-  </div>
-);
-
-const Compensation = ({ compensation }) => (
-  <div>
-    {compensation.min}
-    k&nbsp;-&nbsp;
-    {compensation.max}
-    k&nbsp;
-  </div>
-);
-
 const Taikai = () => {
-  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [state, dispatch] = useReducer(Reducer, INITIAL_STATE);
+  const { search, list } = state;
 
-  const showModal = () => {
-    setIsModalVisible(true);
-  };
-
-  const handleCancel = () => {
-    setIsModalVisible(false);
+  const handleSearch = ({ target }) => {
+    dispatch({ type: API_TYPES.SEARCH_CHANGE, payload: target.value });
   };
 
   return (
     <Container>
-      {LISTING.map(({ id, company, roles }) => {
-        const {
-          name, info, employees_count, logo,
-        } = company;
+      <Input
+        value={search}
+        placeholder="Search by Job Title, Company Name"
+        size="large"
+        prefix={<SearchOutlined />}
+        onChange={handleSearch}
+      />
 
-        return (
-          <CompanyContainer key={id}>
-            <CompanyInfo>
-              <Avatar>
-                <img src={`/images/${logo}.jpg`} alt="" />
-              </Avatar>
-              <div>
-                <Title>{name}</Title>
-                <div className="info">{info}</div>
-                <div className="employees">
-                  {employees_count.min}
-                  &nbsp; - &nbsp;
-                  {employees_count.max}
-                  &nbsp; EMPLOYEES
-                </div>
-              </div>
-            </CompanyInfo>
+      {list.length === 0 ? (
+        <>
+          <NoDataFound data-testid="no-data-found">
+            <FaSearchengin />
+            Sorry Aliean, we could not find a job.
+          </NoDataFound>
+        </>
+      ) : (
+        <>
+          {list.map(({ id, company, roles }) => {
+            const {
+              name, info, employees_count, logo,
+            } = company;
 
-            {roles.map(role => {
-              const {
-                job_id,
-                title,
-                locations,
-                posted,
-                compensation_in_thousands,
-                equity_in_percentage,
-                has_applied,
-              } = role;
+            return (
+              <CompanyContainer key={id}>
+                <CompanyInfo>
+                  <Avatar>
+                    <img src={`/images/${logo}.jpg`} alt="" />
+                  </Avatar>
 
-              return (
-                <EachJob key={job_id}>
-                  <div className="row-1">
-                    <div>{title}</div>
-                    <div>{locations.join(' • ')}</div>
-                    •
-                    <Compensation compensation={compensation_in_thousands} />
-                    •
-                    <Equity equity={equity_in_percentage} />
+                  <div>
+                    <Title>{name}</Title>
+                    <div className="info">{info}</div>
+                    <Employees employees={employees_count} />
                   </div>
+                </CompanyInfo>
 
-                  <div className="row-2">
-                    <div className="posted">{posted}</div>
-                    <Button
-                      type="default"
-                      disabled={has_applied}
-                      onClick={showModal}
-                    >
-                      {has_applied ? 'Applied' : 'Apply'}
-                    </Button>
-
-                    {/* Modal to open job details! */}
-                    <JobDetails
-                      isModalVisible={isModalVisible}
-                      roleDescription={role}
-                      handleCancel={handleCancel}
-                    />
-                  </div>
-                </EachJob>
-              );
-            })}
-          </CompanyContainer>
-        );
-      })}
+                {roles.map(role => {
+                  const { job_id } = role;
+                  return <JobDetails key={job_id} roleDescription={role} />;
+                })}
+              </CompanyContainer>
+            );
+          })}
+        </>
+      )}
     </Container>
   );
 };

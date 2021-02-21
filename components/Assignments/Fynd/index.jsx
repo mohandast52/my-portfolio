@@ -6,6 +6,12 @@ import { ParentContainer, List } from './styles';
 
 // const CheckboxGroup = Checkbox.Group;
 
+const getInitalList = list => list.map((eachItem, index) => ({
+  id: `id-${index}`,
+  title: eachItem,
+  checked: false,
+}));
+
 // eslint-disable-next-line react/prop-types
 export const CustomCheckbox = React.memo(({ title, checked }) => {
   const [isChecked, setCheckbox] = React.useState(checked);
@@ -20,42 +26,27 @@ export const CustomCheckbox = React.memo(({ title, checked }) => {
 
 /* --------------------------------------- */
 const Fynd = () => {
-  const [checkedList, setCheckedList] = React.useState([]);
-  const [indeterminate, setIndeterminate] = React.useState(true);
+  const [checkedList, setCheckedList] = React.useState(
+    getInitalList(optionsOne),
+  );
   const [checkAll, setCheckAll] = React.useState(false);
 
   const onChange = list => {
-    setCheckedList(list);
-    setIndeterminate(!!list.length && list.length < optionsOne.length);
-    setCheckAll(list.length === optionsOne.length);
-  };
-
-  const onCheckAllChange = e => {
-    setCheckedList(e.target.checked ? optionsOne : []);
-    setIndeterminate(false);
-    setCheckAll(e.target.checked);
+    console.log(list);
   };
 
   return (
     <ParentContainer>
-      <Checkbox
-        indeterminate={indeterminate}
-        onChange={onCheckAllChange}
-        checked={checkAll}
-      >
-        Check all
-      </Checkbox>
-
       <Divider />
 
-      <List>
-        {optionsOne.map(option => {
+      <List className="custom-scroll-bar">
+        {checkedList.map(option => {
           let title = option;
           let key = option;
 
           if (typeof option === 'object') {
             title = option.title;
-            key = option.path;
+            key = option.id;
           }
 
           return (
@@ -64,6 +55,7 @@ const Fynd = () => {
               value={key}
               title={title}
               checked={false}
+              onChange={() => onChange(key)}
             />
           );
         })}

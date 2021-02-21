@@ -2,76 +2,114 @@
 /* eslint-disable camelcase */
 import React, { useReducer } from 'react';
 import 'antd/dist/antd.css';
-import { Input } from 'antd';
+import {
+  Input, Select, Layout, Slider,
+} from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
-import { FaSearchengin } from 'react-icons/fa';
 import Reducer from './Reducer';
-import JobDetails from './JobDetails';
-import { API_TYPES, INITIAL_STATE, Employees } from './Helpers';
+import Pagination from './Pagination';
+import JobList from './List';
+import { API_TYPES, INITIAL_STATE } from './Helpers';
+import { TECH_STACK, LOCATION } from './Helpers/dummyJobs';
 import {
   Container,
-  NoDataFound,
-  CompanyContainer,
-  CompanyInfo,
-  Avatar,
-  Title,
+  PaginationContainer,
+  FilterContainer,
+  FilterLabel,
 } from './styles';
+
+const { Option } = Select;
+const { Content, Sider } = Layout;
 
 const Taikai = () => {
   const [state, dispatch] = useReducer(Reducer, INITIAL_STATE);
-  const { search, list } = state;
+  const { search, list, pageNumber } = state;
 
   const handleSearch = ({ target }) => {
     dispatch({ type: API_TYPES.SEARCH_CHANGE, payload: target.value });
   };
 
+  const updatePageNumber = pageNo => {
+    dispatch({ type: API_TYPES.UPDATE_PAGE_NUMBER, payload: pageNo });
+  };
+
+  const handleChange = selectedItems => {
+    dispatch({ type: API_TYPES.ON_TECH_STACK_CHANGE, payload: selectedItems });
+  };
+
+  const handleLocation = selectedItems => {
+    dispatch({ type: API_TYPES.ON_LOCATION_CHANGE, payload: selectedItems });
+  };
+
+  const onSalaryChange = values => {
+    dispatch({ type: API_TYPES.ON_SALARY_CHANGE, payload: values });
+  };
+
   return (
     <Container>
-      <Input
-        value={search}
-        placeholder="Search by Job Title, Company Name"
-        size="large"
-        prefix={<SearchOutlined />}
-        onChange={handleSearch}
-      />
+      <Layout>
+        <Sider theme="light">
+          <FilterContainer>
+            <FilterLabel>Tech Stack</FilterLabel>
+            <Select
+              mode="multiple"
+              allowClear
+              placeholder="Select Stack"
+              defaultValue={[]}
+              onChange={handleChange}
+            >
+              {TECH_STACK.map(stack => (
+                <Option key={stack}>{stack}</Option>
+              ))}
+            </Select>
 
-      {list.length === 0 ? (
-        <>
-          <NoDataFound data-testid="no-data-found">
-            <FaSearchengin />
-            Sorry Aliean, we could not find a job.
-          </NoDataFound>
-        </>
-      ) : (
-        <>
-          {list.map(({ id, company, roles }) => {
-            const {
-              name, info, employees_count, logo,
-            } = company;
+            <FilterLabel>Location</FilterLabel>
+            <Select
+              mode="multiple"
+              allowClear
+              placeholder="Select Location"
+              defaultValue={[]}
+              onChange={handleLocation}
+            >
+              {LOCATION.map(stack => (
+                <Option key={stack}>{stack}</Option>
+              ))}
+            </Select>
 
-            return (
-              <CompanyContainer key={id}>
-                <CompanyInfo>
-                  <Avatar>
-                    <img src={`/images/${logo}.jpg`} alt="" />
-                  </Avatar>
+            <FilterLabel>Salary</FilterLabel>
+            <Slider
+              range
+              tipFormatter={value => `${value}T`}
+              defaultValue={[0, 100]}
+              onAfterChange={onSalaryChange}
+            />
+          </FilterContainer>
+        </Sider>
 
-                  <div>
-                    <Title>{name}</Title>
-                    <div className="info">{info}</div>
-                    <Employees employees={employees_count} />
-                  </div>
-                </CompanyInfo>
+        <Layout className="site-layout">
+          <Content>
+            <div className="site-layout-background">
+              <Input
+                value={search}
+                placeholder="Search by Job Title, Company Name"
+                size="large"
+                prefix={<SearchOutlined />}
+                onChange={handleSearch}
+              />
 
-                {roles.map(role => {
-                  const { job_id } = role;
-                  return <JobDetails key={job_id} roleDescription={role} />;
-                })}
-              </CompanyContainer>
-            );
-          })}
-        </>
-      )}
+              <JobList list={list} pageNumber={pageNumber} />
+
+              <PaginationContainer>
+                <Pagination
+                  listCount={list.length}
+                  activePage={pageNumber}
+                  updatePageNumber={updatePageNumber}
+                />
+              </PaginationContainer>
+            </div>
+          </Content>
+        </Layout>
+      </Layout>
     </Container>
   );
 };

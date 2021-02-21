@@ -3,10 +3,13 @@ import LISTING from './dummyJobs';
 
 export const API_TYPES = {
   SEARCH_CHANGE: 'search',
+  ON_TECH_STACK_CHANGE: 'on tech-stack change',
+  ON_LOCATION_CHANGE: 'on location change',
+  ON_SALARY_CHANGE: 'on salary change',
+  UPDATE_PAGE_NUMBER: 'update page number',
 };
 
 export const INITIAL_STATE = {
-  sortByFavourite: false,
   search: '',
   pageNumber: 1,
   list: [...LISTING],

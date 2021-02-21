@@ -88,6 +88,70 @@ const LISTING = [
         compensation_in_thousands: { min: 15, max: 25, currency: 'tree' },
         equity_in_percentage: { min: null, max: null },
         posted: '1 month ago',
+        has_applied: true,
+        description_html:
+          '\u003cp\u003e**Who are we?\u003c/p\u003e\n\n\u003cp\u003eWe Create no-coding tool to create space-ship. Recently we raised 2 million trees as a seed funding.**Requirements and skills:\u003c/p\u003e\n\n\u003cul\u003e\n\u003cli\u003e1+ years of experience working in software development\u003c/li\u003e\n\u003cli\u003eShould be able to communicate with alieans\u003e\n',
+        job_type: 'full-time',
+        years_experience_min: 3,
+        has_visa_sponsorship: false,
+        remote: true,
+        skills: ['Python', 'PostgreSQL', 'TypeScript', 'ReactJS'],
+      },
+    ],
+  },
+
+  /** */
+  {
+    id: 'random-uuid-3',
+    company: {
+      name: 'Pilot Universe',
+      info: 'We are group of multiverse pilots',
+      employees_count: {
+        min: 1,
+        max: 50,
+      },
+      logo: 'girl_1',
+    },
+    roles: [
+      {
+        job_id: '50062333',
+        primary_role: 'Pilot',
+        title: 'Pilot with 1000+ trips',
+        locations: ['Remote', 'Earth', 'Jupiter', 'Mars', 'Moon'],
+        compensation_in_thousands: { min: 5, max: 20, currency: 'tree' },
+        equity_in_percentage: { min: null, max: null },
+        posted: '1 month ago',
+        has_applied: true,
+        description_html:
+          '\u003cp\u003e**Who are we?\u003c/p\u003e\n\n\u003cp\u003eWe Create no-coding tool to create space-ship. Recently we raised 2 million trees as a seed funding.**Requirements and skills:\u003c/p\u003e\n\n\u003cul\u003e\n\u003cli\u003e1+ years of experience working in software development\u003c/li\u003e\n\u003cli\u003eShould be able to communicate with alieans\u003e\n',
+        job_type: 'full-time',
+        years_experience_min: 3,
+        has_visa_sponsorship: false,
+        remote: true,
+        skills: ['Aircraft', 'Space-Ship'],
+      },
+    ],
+  },
+  {
+    id: 'random-uuid-4',
+    company: {
+      name: 'Multi-universe university',
+      info: 'Unified university to every alieans',
+      employees_count: {
+        min: 1,
+        max: 50,
+      },
+      logo: 'girl_2',
+    },
+    roles: [
+      {
+        job_id: '50062333',
+        primary_role: 'Teacher',
+        title: 'Aliean Teacher',
+        locations: ['Remote', 'Earth'],
+        compensation_in_thousands: { min: 20, max: 57.5, currency: 'tree' },
+        equity_in_percentage: { min: null, max: null },
+        posted: '1 month ago',
         has_applied: false,
         description_html:
           '\u003cp\u003e**Who are we?\u003c/p\u003e\n\n\u003cp\u003eWe Create no-coding tool to create space-ship. Recently we raised 2 million trees as a seed funding.**Requirements and skills:\u003c/p\u003e\n\n\u003cul\u003e\n\u003cli\u003e1+ years of experience working in software development\u003c/li\u003e\n\u003cli\u003eShould be able to communicate with alieans\u003e\n',
@@ -95,24 +159,65 @@ const LISTING = [
         years_experience_min: 3,
         has_visa_sponsorship: false,
         remote: true,
-        skills: [
-          'Python',
-          'MongoDB',
-          'PostgreSQL',
-          'TypeScript',
-          'ReactJS',
-          'MongoDB',
-        ],
-        recruitingContact: {
-          user: {
-            id: '11227637',
-            name: 'Sasha Schriber',
-          },
-          role: 'FOUNDER',
-        },
+        skills: ['Communication', 'Teaching'],
+      },
+    ],
+  },
+  {
+    id: 'random-uuid-6',
+    company: {
+      name: 'Assembly Coder with Frontend',
+      info: 'We design space-ships',
+      employees_count: {
+        min: 1,
+        max: 50,
+      },
+      logo: 'yoga-1',
+    },
+    roles: [
+      {
+        job_id: '50062333',
+        primary_role: 'Frontend Engineer',
+        title: 'Software Engineer',
+        locations: ['Remote', 'Earth', 'Moon'],
+        compensation_in_thousands: { min: 55, max: 75, currency: 'tree' },
+        equity_in_percentage: { min: null, max: null },
+        posted: '1 month ago',
+        has_applied: false,
+        description_html:
+          '\u003cp\u003e**Who are we?\u003c/p\u003e\n\n\u003cp\u003eWe Create no-coding tool to create space-ship. Recently we raised 2 million trees as a seed funding.**Requirements and skills:\u003c/p\u003e\n\n\u003cul\u003e\n\u003cli\u003e1+ years of experience working in software development\u003c/li\u003e\n\u003cli\u003eShould be able to communicate with alieans\u003e\n',
+        job_type: 'full-time',
+        years_experience_min: 3,
+        has_visa_sponsorship: true,
+        remote: false,
+        skills: ['Assembly', 'ReactJS', 'NextJS', 'CSS'],
       },
     ],
   },
 ];
 
 export default LISTING;
+
+export const TECH_STACK = (() => {
+  const stacks = [];
+
+  LISTING.forEach(({ roles }) => roles.forEach(role => role.skills.forEach(skill => {
+    if (!stacks.includes(skill)) {
+      stacks.push(skill);
+    }
+  })));
+
+  return stacks;
+})();
+
+export const LOCATION = (() => {
+  const locations = [];
+
+  LISTING.forEach(({ roles }) => roles.forEach(role => role.locations.forEach(location => {
+    if (!locations.includes(location)) {
+      locations.push(location);
+    }
+  })));
+
+  return locations;
+})();

@@ -88,5 +88,3 @@ export const SubInfo = styled.div`
   margin-bottom: 1.5rem;
   text-transform: capitalize;
 `;
-
-// •

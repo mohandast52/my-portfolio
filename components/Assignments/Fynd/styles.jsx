@@ -1,20 +1,17 @@
 import styled from 'styled-components';
 
-const COLOR = {
-  GREY: '#e2e2e2',
-  WHITE: '#FFF',
-};
-
 export const ParentContainer = styled.div`
   font-family: "Helvetica Neue" !important;
-  height: 100vh;
+  display: flex;
+  justify-content: space-around;
   width: 100vw;
+  height: 100vh;
   padding: 5rem 8rem;
 
   /* scroll-bar */
   .custom-scroll-bar {
     /* specifically for mozilla */
-    scrollbar-color: ${COLOR.GREY} ${COLOR.WHITE};
+    scrollbar-color: #e2e2e2 #ffffff;
     scrollbar-width: thin;
 
     ::-webkit-scrollbar {
@@ -27,26 +24,11 @@ export const ParentContainer = styled.div`
     }
 
     ::-webkit-scrollbar-thumb {
-      background-color: ${COLOR.GREY};
+      background-color: #e2e2e2;
     }
   }
 `;
 
 export const Container = styled.div`
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-`;
-
-export const List = styled.div`
-  display: flex;
-  flex-direction: column;
-  height: 200px;
-  overflow: auto;
-
-  .ant-checkbox-wrapper {
-    margin: 0 !important;
-    padding: 8px 0px;
-    border-bottom: 1px solid #e2e2e2;
-  }
+  width: 220px;
 `;

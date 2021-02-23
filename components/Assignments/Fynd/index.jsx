@@ -6,7 +6,7 @@ import { optionsOne, optionsTwo } from './Helpers/dummyOptions';
 const Fynd = () => (
   <ParentContainer>
     <Dropdown options={optionsOne} />
-    <Dropdown options={optionsTwo} />
+    <Dropdown options={optionsTwo} searchable={false} />
   </ParentContainer>
 );
 

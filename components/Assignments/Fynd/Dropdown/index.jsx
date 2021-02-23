@@ -14,17 +14,19 @@ import {
   ListFooter,
 } from './styles';
 
-const Dropdown = ({ options }) => {
+const Dropdown = ({ searchable, options }) => {
   const [state, dispatch] = useReducer(Reducer, INITIAL_STATE(options));
   const {
     isActive, isAllChecked, checkedList, selectedList,
   } = state;
 
   const toggleSelect = () => {
-    dispatch({
-      type: API_TYPES.ON_DROPDOWN_CLICK,
-      payload: !isActive,
-    });
+    if (searchable) {
+      dispatch({
+        type: API_TYPES.ON_DROPDOWN_CLICK,
+        payload: !isActive,
+      });
+    }
   };
 
   const onInputChange = event => {
@@ -41,7 +43,7 @@ const Dropdown = ({ options }) => {
     });
   };
 
-  const onChange = (event, index) => {
+  const onEachSelect = (event, index) => {
     dispatch({
       type: API_TYPES.ON_CHECKBOX_CHANGE,
       payload: { index, isChecked: event.target.checked },
@@ -52,7 +54,12 @@ const Dropdown = ({ options }) => {
     <Container>
       <SelectContainer>
         {isActive ? (
-          <Input className="dropdown" autoFocus onChange={onInputChange} />
+          <Input
+            autoFocus
+            placeholder="Search"
+            className="dropdown"
+            onChange={onInputChange}
+          />
         ) : (
           <Select className="dropdown" onClick={toggleSelect}>
             <div>
@@ -88,7 +95,7 @@ const Dropdown = ({ options }) => {
                 key={id}
                 checked={checked}
                 value={title}
-                onChange={e => onChange(e, index)}
+                onChange={e => onEachSelect(e, index)}
               >
                 {title}
               </Checkbox>
@@ -106,11 +113,13 @@ const Dropdown = ({ options }) => {
 };
 
 Dropdown.propTypes = {
+  searchable: PropTypes.bool,
   // eslint-disable-next-line react/forbid-prop-types
   options: PropTypes.array,
 };
 
 Dropdown.defaultProps = {
+  searchable: true,
   options: [],
 };
 

@@ -25,6 +25,7 @@ export const Select = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  cursor: pointer;
 
   > div {
     &:nth-child(1) {
@@ -64,6 +65,9 @@ export const List = styled.div`
     padding: 0.5rem 1rem;
     &:not(:last-child) {
       border-bottom: 1px solid #e2e2e2;
+    }
+    &:hover {
+      background-color: #efefef;
     }
   }
 `;

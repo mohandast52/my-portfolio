@@ -1,19 +1,32 @@
-import { optionsOne } from '../Helpers/dummyOptions';
+const getInitalList = list => list.map((eachItem, index) => {
+  let title = eachItem;
+  let value = eachItem;
 
-const getInitalList = list => list.map((eachItem, index) => ({
-  id: `id-${index}`,
-  index,
-  title: eachItem,
-  checked: false,
-}));
+  if (typeof eachItem === 'object') {
+    title = eachItem.title;
+    value = eachItem.path;
+  }
 
-export const INITIAL_STATE = {
+  return {
+    id: `id-${index}`,
+    index,
+    value,
+    title,
+    checked: false,
+  };
+});
+
+export const INITIAL_STATE = options => ({
+  isActive: false,
   isAllChecked: false,
-  checkedList: getInitalList(optionsOne),
+  checkedList: getInitalList(options),
+  checkedListCopy: getInitalList(options),
   selectedList: [],
-};
+});
 
 export const API_TYPES = {
+  ON_SEARCH_FILTER: 'search list',
+  ON_DROPDOWN_CLICK: 'on drowdown click',
   ON_CHECKBOX_CHANGE: 'on checkbox change',
   ON_ALL_CHECK: 'on all checkbox change',
 };
@@ -21,6 +34,27 @@ export const API_TYPES = {
 const Reducer = (state, action) => {
   const { type, payload } = action;
   switch (type) {
+    case API_TYPES.ON_DROPDOWN_CLICK: {
+      return {
+        ...state,
+        isActive: payload,
+      };
+    }
+
+    case API_TYPES.ON_SEARCH_FILTER: {
+      const { checkedList, checkedListCopy } = state;
+      if (!payload) return { ...state, checkedList: checkedListCopy };
+
+      return {
+        ...state,
+        isActive: payload,
+        checkedList: checkedList.filter(ck => {
+          const { title } = ck;
+          return title.toLowerCase().includes(payload.toLowerCase());
+        }),
+      };
+    }
+
     case API_TYPES.ON_CHECKBOX_CHANGE: {
       const { checkedList, selectedList } = state;
       const { index, isChecked } = payload;

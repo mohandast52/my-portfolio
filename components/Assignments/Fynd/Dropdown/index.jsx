@@ -1,15 +1,38 @@
 import React, { useReducer } from 'react';
+import PropTypes from 'prop-types';
 import 'antd/dist/antd.css';
 import { Checkbox, Button } from 'antd';
 import { FaAngleDown } from 'react-icons/fa';
 import Reducer, { INITIAL_STATE, API_TYPES } from './Reducer';
 import {
-  Container, Select, ListContainer, List, ListFooter,
+  Container,
+  SelectContainer,
+  Input,
+  Select,
+  ListContainer,
+  List,
+  ListFooter,
 } from './styles';
 
-const Fynd = () => {
-  const [state, dispatch] = useReducer(Reducer, INITIAL_STATE);
-  const { isAllChecked, checkedList, selectedList } = state;
+const Dropdown = ({ options }) => {
+  const [state, dispatch] = useReducer(Reducer, INITIAL_STATE(options));
+  const {
+    isActive, isAllChecked, checkedList, selectedList,
+  } = state;
+
+  const toggleSelect = () => {
+    dispatch({
+      type: API_TYPES.ON_DROPDOWN_CLICK,
+      payload: !isActive,
+    });
+  };
+
+  const onInputChange = event => {
+    dispatch({
+      type: API_TYPES.ON_SEARCH_FILTER,
+      payload: event.target.value,
+    });
+  };
 
   const onAllCheck = event => {
     dispatch({
@@ -27,20 +50,29 @@ const Fynd = () => {
 
   return (
     <Container>
-      <Select>
-        <div>
-          Colours
-          {selectedList.length === 0 ? null : (
-            <>
-              <span className="hypen">-</span>
-              <span>{selectedList.map(({ title }) => title).join(', ')}</span>
-            </>
-          )}
-        </div>
-        <div>
-          <FaAngleDown />
-        </div>
-      </Select>
+      <SelectContainer>
+        {isActive ? (
+          <Input className="dropdown" autoFocus onChange={onInputChange} />
+        ) : (
+          <Select className="dropdown" onClick={toggleSelect}>
+            <div>
+              Colours
+              {selectedList.length === 0 ? null : (
+                <>
+                  <span className="hypen">-</span>
+                  <span>
+                    {selectedList.map(({ title }) => title).join(', ')}
+                  </span>
+                </>
+              )}
+            </div>
+
+            <div>
+              <FaAngleDown />
+            </div>
+          </Select>
+        )}
+      </SelectContainer>
 
       <ListContainer>
         <List className="custom-scroll-bar">
@@ -73,4 +105,13 @@ const Fynd = () => {
   );
 };
 
-export default Fynd;
+Dropdown.propTypes = {
+  // eslint-disable-next-line react/forbid-prop-types
+  options: PropTypes.array,
+};
+
+Dropdown.defaultProps = {
+  options: [],
+};
+
+export default Dropdown;

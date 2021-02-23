@@ -4,13 +4,27 @@ export const Container = styled.div`
   width: 220px;
 `;
 
+export const SelectContainer = styled.div`
+  .dropdown {
+    padding: 0.35rem 1rem;
+    border: 1px solid #e2e2e2;
+    border-radius: 4px;
+  }
+`;
+
+export const Input = styled.input`
+  width: 100%;
+  outline: none;
+
+  &:active {
+    outline: none;
+  }
+`;
+
 export const Select = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.35rem 1rem;
-  border: 1px solid #e2e2e2;
-  border-radius: 4px;
 
   > div {
     &:nth-child(1) {

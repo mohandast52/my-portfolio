@@ -1,54 +1,48 @@
-const checkArray = list => !!list.some(l => l === null);
-
-function all(list) {
-  /*
-  => []
-  => loop through the list
-  */
-
-  return new Promise(resolve => {
-    const array = [];
-
-    for (let i = 0; i < list.length; i += 1) {
-      const promise = list[i];
-      console.log(promise, i);
-
-      promise.then(result => {
-        array[i] = result;
-
-        console.log(result);
-        // if all promise have been resolved in the array!
-        if (checkArray(array)) {
-          resolve(array);
-        }
-      });
-    }
-  });
-}
-
-const p1 = new Promise(resolve => resolve('a'));
-const p2 = new Promise(resolve => {
-  setTimeout(() => {
-    resolve('b');
-  }, 1000);
-});
-const p3 = new Promise(resolve => {
-  setTimeout(() => {
-    resolve('c');
-  }, 2000);
-});
-
-console.log(all([p1, p2, p3]));
+const nested = {
+  A: '12',
+  B: 23,
+  C: {
+    P: 23,
+    O: {
+      L: 56,
+      Q: {
+        H: [40, 1, 2],
+      },
+    },
+  },
+};
 
 /*
-4 siblings
-
-function onChange({ event }) {
-  setValue(target.value);
-  if(target.value === "hello") {
-    return componentIndex;
-  }
+op:
+{
+  A: ‘12’,
+  B: 23,
+  C.P: 23,
+  C.O.L: 56
 }
 
+str="C"
+C
 
+
+str.
 */
+
+const finalObj = {};
+
+const fn = (keyTemp, obj) => {
+  Object.entries(obj).forEach(([key, value]) => {
+    if (typeof value === 'object' && !Array.isArray(value)) {
+      fn(keyTemp ? `${keyTemp}${key}.` : `${key}.`, value);
+    } else {
+      finalObj[`${keyTemp}${key}`] = value;
+    }
+  });
+
+  return finalObj;
+};
+
+console.log(fn('', nested));
+// console.log(typeof []);
+// console.log(Array.isArray([]));
+// console.log(Object.entries(['1', '2']));

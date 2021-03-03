@@ -1,44 +1,44 @@
 import React from 'react';
-import Dropdown from './Dropdown';
+import DataList from './DataList';
 import { ParentContainer } from './styles';
-import { optionsTwo } from './Dropdown/Helpers/dummyOptions';
+import { options } from './DataList/Helpers/dummyOptions';
 
 const Appbase = () => (
   <ParentContainer>
-    <Dropdown
+    <DataList
       searchable
-      multiSelect
       showCount
-      data={optionsTwo}
+      multiSelect
       selectTitle="Multi select, Search"
+      data={options}
       onChange={values => {
         window.console.log(values);
       }}
     />
 
-    <Dropdown
+    <DataList
       searchable
       showCount
       selectTitle="Single select, Search"
-      data={optionsTwo}
+      data={options}
       onChange={values => {
         window.console.log(values);
       }}
     />
 
-    <Dropdown
+    <DataList
       showCount={false}
       selectTitle="Without count"
-      data={optionsTwo}
+      data={options}
       onChange={values => {
         window.console.log(values);
       }}
     />
 
-    <Dropdown
+    <DataList
       searchable={false}
       selectTitle="Default selected keys"
-      data={optionsTwo}
+      data={options}
       defaultSelected={['blue']}
       onChange={values => {
         window.console.log(values);

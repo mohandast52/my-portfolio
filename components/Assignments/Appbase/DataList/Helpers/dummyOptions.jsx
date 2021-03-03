@@ -10,7 +10,7 @@ export const optionsOne = [
   'White',
 ];
 
-export const optionsTwo = [
+export const options = [
   {
     guid: 'fb74b77b-61ab-47dd-ab7e-b59e9dddec2e',
     index: 0,

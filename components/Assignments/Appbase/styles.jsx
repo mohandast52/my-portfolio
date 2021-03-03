@@ -11,7 +11,6 @@ export const ParentContainer = styled.div`
 
   /* scroll-bar */
   .custom-scroll-bar {
-    /* specifically for mozilla */
     scrollbar-color: #e2e2e2 #ffffff;
     scrollbar-width: thin;
 

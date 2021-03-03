@@ -52,10 +52,7 @@ const Reducer = (state, action) => {
   const { type, payload } = action;
   switch (type) {
     case API_TYPES.ON_DROPDOWN_CLICK: {
-      return {
-        ...state,
-        isActive: payload,
-      };
+      return { ...state, isActive: payload };
     }
 
     case API_TYPES.ON_SEARCH_FILTER: {

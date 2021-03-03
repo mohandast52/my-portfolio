@@ -17,7 +17,7 @@ import {
   NoDataFound,
 } from './styles';
 
-const Dropdown = ({
+const DataList = ({
   searchable,
   multiSelect,
   showCount,
@@ -141,7 +141,7 @@ const Dropdown = ({
   );
 };
 
-Dropdown.propTypes = {
+DataList.propTypes = {
   searchable: PropTypes.bool,
   multiSelect: PropTypes.bool,
   showCount: PropTypes.bool,
@@ -151,7 +151,7 @@ Dropdown.propTypes = {
   onChange: PropTypes.func,
 };
 
-Dropdown.defaultProps = {
+DataList.defaultProps = {
   searchable: true,
   multiSelect: false,
   showCount: false,
@@ -161,15 +161,4 @@ Dropdown.defaultProps = {
   onChange: () => {},
 };
 
-export default Dropdown;
-
-/*
-(DONE) Add support for multiple selection via checkboxes, controlled by boolean prop - multiSelect.
-(DONE) Expose an onChange method to get the previous and current selected values.
-(DONE) Show the count of the elements. showCount - (boolean) to show/hide the count.
-(DONE) Show a search field to filter the list elements.
-
-Support the following props:
-data - input data (array).
-defaultSelected - Select a list-item present in the list.
-*/
+export default DataList;

@@ -30,6 +30,25 @@ export const ParentContainer = styled.div`
 `;
 
 export const Container = styled.div`
-  width: 220px;
-  margin: 0 50px;
+  display: flex;
+  justify-content: space-around;
+  width: 400px;
+  margin: 120px auto;
+  border: 1px solid red;
+
+  .circle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    border: 1px solid;
+
+    span {
+      color: white;
+      font-size: 18px;
+      text-transform: uppercase;
+    }
+  }
 `;

@@ -23,10 +23,10 @@ const Circle = ({ colorName }) => (
 );
 
 /* ---------------- ONE ---------------- */
-const ApproachOne = () => {
+export const ApproachOne = () => {
   const [counter, setCounter] = useState(0);
-  const [lockOne, setColorOne] = useState(0);
-  const [lockTwo, setColorTwo] = useState(1);
+  const [lockOne, setLockOne] = useState(0);
+  const [lockTwo, setLockTwo] = useState(1);
 
   useEffect(() => {
     const timerOne = setInterval(() => setCounter(prev => prev + 1), 1000);
@@ -34,17 +34,22 @@ const ApproachOne = () => {
   }, []);
 
   useEffect(() => {
-    setColorOne(prev => {
-      const newLockOne = getNumber(prev, lockTwo);
+    /* in case of ODD => update only 1st circle */
+    if (counter % 2 === 1) {
+      setLockOne(prev => {
+        const newLockOne = getNumber(prev, lockTwo);
+        return newLockOne;
+      });
+    }
 
-      /* if counter is off even number, then change color for 2nd circle */
-      if (counter % 2 === 0) {
-        const newLockTwo = getNumber(lockTwo, newLockOne);
-        setColorTwo(newLockTwo);
-      }
-
-      return newLockOne;
-    });
+    /* in case of EVEN => update both circles */
+    if (counter && counter % 2 === 0) {
+      setLockTwo(prev => {
+        const newLockTwo = (prev + 1) % 3;
+        setLockOne(prev);
+        return newLockTwo;
+      });
+    }
   }, [counter]);
 
   return (
@@ -57,7 +62,6 @@ const ApproachOne = () => {
     </>
   );
 };
-
 
 const Problem = () => (
   <ProblemContainer>

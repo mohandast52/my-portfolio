@@ -29,12 +29,17 @@ export const ParentContainer = styled.div`
   }
 `;
 
+export const ProblemContainer = styled.div`
+  width: 400px;
+  margin: 120px auto;
+`;
+
 export const Container = styled.div`
   display: flex;
   justify-content: space-around;
-  width: 400px;
-  margin: 120px auto;
+  padding: 1rem;
   border: 1px solid red;
+  margin-bottom: 2rem;
 
   .circle {
     display: flex;
@@ -43,7 +48,6 @@ export const Container = styled.div`
     height: 100px;
     width: 100px;
     border-radius: 50%;
-    border: 1px solid;
 
     span {
       color: white;
@@ -51,4 +55,10 @@ export const Container = styled.div`
       text-transform: uppercase;
     }
   }
+`;
+
+export const Title = styled.div`
+  font-weight: bold;
+  font-size: 20p;
+  text-align: center;
 `;

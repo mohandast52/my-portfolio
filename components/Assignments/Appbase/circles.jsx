@@ -1,9 +1,10 @@
 /* eslint-disable react/prop-types */
 import React, { useState, useEffect } from 'react';
-import { Container } from './styles';
+import { ProblemContainer, Container, Title } from './styles';
 
 /* ---------------- HELPERS---------------- */
 const COLORS = ['red', 'blue', 'green'];
+
 const getNumber = (i, j) => {
   if (i === 0 && j === 1) return 2;
   if (i === 0 && j === 2) return 1;
@@ -16,67 +17,52 @@ const getNumber = (i, j) => {
 
 /* ---------------- Circle Component---------------- */
 const Circle = ({ colorName }) => (
-  <div
-    className="circle"
-    style={{ backgroundColor: colorName, borderColor: colorName }}
-  >
+  <div className="circle" style={{ backgroundColor: colorName }}>
     <span>{colorName}</span>
   </div>
 );
 
-/* ---------------- MAIN Component---------------- */
-const Component = () => {
+/* ---------------- ONE ---------------- */
+const ApproachOne = () => {
   const [counter, setCounter] = useState(0);
-  const [circleOneColor, setColorOne] = useState(0);
-  const [circleTwoColor, setColorTwo] = useState(1);
+  const [lockOne, setColorOne] = useState(0);
+  const [lockTwo, setColorTwo] = useState(1);
 
-  /*
   useEffect(() => {
-    const timerOne = setInterval(() => {
-      getColorOne(prevNum => {
-        const num = (prevNum + 1) % 3;
-        // console.log(num);
-        return num;
-      });
-    }, 1000);
-
-    return () => {
-      clearTimeout(timerOne);
-    };
+    const timerOne = setInterval(() => setCounter(prev => prev + 1), 1000);
+    return () => clearTimeout(timerOne);
   }, []);
-  */
 
   useEffect(() => {
     setColorOne(prev => {
-      // const num = prev + 1;
-      // if (num % 2 === 0) {
-      //   setColorTwo(circleTwoColor + 1);
-      //   console.log(num, circleTwoColor + 1);
-      // }
-      // return num;
-      const newLockOne = getNumber(prev, circleTwoColor);
+      const newLockOne = getNumber(prev, lockTwo);
+
+      /* if counter is off even number, then change color for 2nd circle */
       if (counter % 2 === 0) {
-        const lockTwo = getNumber(circleTwoColor, newLockOne);
-        setColorTwo(lockTwo);
+        const newLockTwo = getNumber(lockTwo, newLockOne);
+        setColorTwo(newLockTwo);
       }
 
       return newLockOne;
     });
   }, [counter]);
 
-
-  const btnClick = () => {
-    setCounter(prev => prev + 1);
-  };
-
-  // console.log(circleOneColor);
   return (
-    <Container>
-      <Circle colorName={COLORS[circleOneColor]} />
-      <Circle colorName={COLORS[circleTwoColor]} />
-      <button onClick={btnClick} type="button">Click</button>
-    </Container>
+    <>
+      <Title>Approach 1</Title>
+      <Container>
+        <Circle colorName={COLORS[lockOne]} />
+        <Circle colorName={COLORS[lockTwo]} />
+      </Container>
+    </>
   );
 };
 
-export default Component;
+
+const Problem = () => (
+  <ProblemContainer>
+    <ApproachOne />
+  </ProblemContainer>
+);
+
+export default Problem;

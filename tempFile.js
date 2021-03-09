@@ -2,7 +2,6 @@
 //   console.log(this.name);
 // }
 
-
 // const obj = { name: 'mohan' };
 // say();
 
@@ -68,26 +67,41 @@
 // function getValue(obj, path) {
 //   // obj[a]
 //   const helper = (objPassed, p) => {
-//     if(objPassed === '')
-//     if(objPassed[p])
+//     // if (objPassed === '') {
+//     //   if (objPassed[p]) {
+//     //   }
+//     // }
+//     console.log(objPassed);
 //   };
 
 //   const convertedPath = path.split('.');
-//   for (let i = 0; i < array.length; i += 1) {
-//     if(obj[array[i]]);
+//   let ok = obj;
+//   for (let i = 0; i < convertedPath.length; i += 1) {
+//     if (obj[convertedPath[i]]) {
+//       ok =
+//     }
 //   }
 //   console.log(convertedPath);
 // }
 
-// console.log(getValue({
-//   a: {
-//     b: {
-//       c: {
-//         d: 'test',
+// const getValue = () => {
+
+// };
+
+// console.log(
+//   getValue(
+//     {
+//       a: {
+//         b: {
+//           c: {
+//             d: 'test',
+//           },
+//         },
 //       },
 //     },
-//   },
-// }, 'a.b.c.d'));
+//     'a.b.c.d',
+//   ),
+// );
 // // test
 //
 // shouldcompnent
@@ -100,9 +114,11 @@
  */
 // React.memo(<componet />)
 
-// A react component which renders a circle that changes color each second from red -> green -> blue -> red and so on.
+// A react component which renders a circle that changes color
+// each second from red -> green -> blue -> red and so on.
 
-// Two circles with each changing colors at intervals of 1s, 2s but the colors should never be same for all.
+// Two circles with each changing colors at intervals of 1s, 2s
+// but the colors should never be same for all.
 
 // Interval(s) - 0 1 2 3 4 5 6 7 8 9 10 11
 
@@ -111,3 +127,21 @@
 // Circle2 (2s)- G G B B R R B B R R B B
 
 // no global state, no useReducer, can use <Parent /> <Child />
+
+/*
+
+analyizing
+
+1. language understanding (what is verb, noun)
+2. typos
+3. spartial query (all the suggestions)
+
+
+sanitization
+
+
+1. tokenizer
+2. token filters
+
+`
+*/

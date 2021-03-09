@@ -1,0 +1,69 @@
+
+
+PUT customer
+{
+  "settings": {
+    "analysis": {
+      "analyzer": {
+        "custom_product_analyzer": {
+          "type": "custom",
+          "tokenizer": "standard",
+          "filter": [
+            "lowercase",
+            "porter_stem"
+          ]
+        }
+      }
+    }
+  },
+  "mappings": {
+    "properties": {
+      "description": {
+        "type": "text",
+        "index": true,
+        "analyzer": "custom_product_analyzer"
+      },
+      "categories": {
+        "type": "text",
+        "index": true
+      },
+      "product_name": {
+        "type": "text",
+        "index": true
+      },
+      "overall_rating": {
+        "type": "text",
+        "index": false
+      },
+      "product_rating": {
+        "type": "text",
+        "index": false
+      }
+    }
+  }
+}
+
+--- analyzing test ---
+POST /customer/_analyze
+{
+  "text": "keyboards features warrenties",
+  "tokenizer": "standard",
+  "filter": [
+    "porter_stem"
+  ]
+}
+
+--- warrenties is plural and will be searched ---
+GET /customer/_search?q=Warranties
+{
+  "_source": ["product_name", "description", "categories"]
+}
+
+--- uppercase will be converted to lowercase using analyzer ---
+GET /customer/_search?q=KEYBOARD
+{
+  "_source": ["product_name", "description", "categories"]
+}
+
+-------- few other ideas --------
+1. can add `mobile below 5000` as `modile < 5000` using custom analyzer

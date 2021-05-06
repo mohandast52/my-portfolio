@@ -6,7 +6,7 @@ import Weather from './Weather';
 import Graph from "./Graph";
 import { Header, Footer } from './Weather/helpers'
 
-const API_URL = "http://api.openweathermap.org/data/2.5/forecast?q=Munich,de&APPID=75f972b80e26f14fe6c920aa6a85ad57&cnt=40";
+const API_URL = "https://api.openweathermap.org/data/2.5/forecast?q=Munich,de&APPID=75f972b80e26f14fe6c920aa6a85ad57&cnt=40";
 
 export default class WeatherApp extends Component {
   state = {

@@ -1,18 +1,33 @@
-import React, { Component } from "react";
-import { Card } from "antd";
-import { getCurrentFromTime } from "../JSON";
+import React from "react";
+import { Badge, Card } from "antd";
+import { getCurrentFromTime } from "../utils";
 import { Cards } from "../styles";
 
-const Weather = ({ isCelcius, active, updatedWeatherList }) => {
+/*
+export const CardWrapper = ({ isActive, children }) => {
+  if (!isActive) {
+    return <>{children}</>;
+  }
+
+  return (
+    <Badge.Ribbon text="啦啦啦啦" color="#2db7f5" placement="start">
+      {children}
+    </Badge.Ribbon>
+  );
+}
+*/
+const Weather = ({ isCelcius, active, list }) => {
   return (
     <Cards>
-      {updatedWeatherList.map(([key, value], index) => {
+      {list.map(([key, value], index) => {
         if (![active, active + 1, active + 2].includes(index)) {
           return null;
         }
 
         const currentTime = getCurrentFromTime();
-        const currentWeather = value.length >= currentTime ? value[currentTime] : value[value.length - 1];
+        const currentWeather = value.length >= currentTime ?
+          value[currentTime] : value[value.length - 1];
+
         const {
           date,
           temperature,

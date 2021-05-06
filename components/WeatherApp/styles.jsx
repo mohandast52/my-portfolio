@@ -2,24 +2,28 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   max-width: 1300px;
-  padding: 2rem 0;
+  padding: 1rem 0;
   margin: 0 auto;
-  @media screen and (max-width: 600px) {
-    max-width: 100%;
-    width: 100%;
+
+  .header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2rem;
+    h3 {
+      margin: 0 12px 0 0;
+      font-size: 24px;
+      text-decoration: underline;
+      text-underline-position: under;
+    }
   }
-`;
 
-export const Header = styled.div`
-  display: flex;
-  justify-content: center;
-  margin-bottom: 1rem;
-`;
-
-export const Footer = styled.div`
-  display: flex;
-  justify-content: space-around;
-  margin-top: 2rem;
+  .footer {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
 `;
 
 export const LoaderContainer = styled.div`
@@ -33,9 +37,7 @@ export const Cards = styled.div`
   display: flex;
   align-items: start;
   justify-content: space-around;
-  /* height: 500px; */
   width: calc(100% - 20rem);
-  /* overflow: auto; */
   margin: 0 auto;
 
   > .ant-card {

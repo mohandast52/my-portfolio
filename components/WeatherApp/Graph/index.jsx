@@ -1,6 +1,6 @@
 import React, { Component } from "react";
+import { Divider } from 'antd';
 import { ChartContainer } from '../styles'
-
 class Graph extends Component {
   componentDidMount() {
     this.chart();
@@ -37,7 +37,9 @@ class Graph extends Component {
     series.dataFields.categoryX = "time";
     series.name = "Visits";
     series.columns.template.tooltipText = "[bold]{valueY}[/]: {categoryX}";
-    series.columns.template.fillOpacity = .8;
+    series.fill = am4core.color("#1890ff");
+    series.stroke = am4core.color("#1890ff");
+    series.columns.template.fillOpacity = .5;
 
     const columnTemplate = series.columns.template;
     columnTemplate.strokeWidth = 2;
@@ -45,7 +47,12 @@ class Graph extends Component {
   }
 
   render() {
-    return <ChartContainer id="chartdiv"></ChartContainer>;
+    return (
+      <>
+        <Divider>Today's weather W.R.T time</Divider>
+        <ChartContainer id="chartdiv"></ChartContainer>
+      </>
+    );
   }
 }
 

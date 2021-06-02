@@ -17,6 +17,9 @@ export default class MyDocument extends Document {
     return (
       <html lang="en">
         <Head>
+          <title>Mohan Portfolio</title>
+        </Head>
+        <Head>
           <link rel="preconnect" href="https://fonts.gstatic.com" />
           <link
             href="https://fonts.googleapis.com/css?family=Josefin+Sans:400,600,700&display=swap"
@@ -26,9 +29,9 @@ export default class MyDocument extends Document {
             href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap"
             rel="stylesheet"
           />
-          <script src="//cdn.amcharts.com/lib/4/core.js"></script>
-          <script src="//cdn.amcharts.com/lib/4/charts.js"></script>
-          <script src="//cdn.amcharts.com/lib/4/maps.js"></script>
+          <script src="//cdn.amcharts.com/lib/4/core.js" />
+          <script src="//cdn.amcharts.com/lib/4/charts.js" />
+          <script src="//cdn.amcharts.com/lib/4/maps.js" />
           {styleTags}
         </Head>
 

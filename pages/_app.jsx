@@ -1,26 +1,35 @@
-import { Container } from 'next/app';
-import Head from 'next/head';
+import App, { Container } from 'next/app';
 import Router from 'next/router';
+import { createWrapper } from 'next-redux-wrapper';
 import PropTypes from 'prop-types';
 import * as Progress from 'util/progress';
 import Layout from 'components/Layout';
 import GlobalStyle from 'components/GlobalStyles';
+import initStore from '../store';
 import './styles.less';
 
-const MyApp = ({ Component, pageProps }) => (
-  <>
-    <Container>
-      <Head>
-        <title>Mohan Portfolio</title>
-      </Head>
+class MyApp extends App {
+  static async getInitialProps({ Component, ctx }) {
+    const pageProps = Component.getInitialProps ? await Component.getInitialProps(ctx) : {};
 
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
-    </Container>
-    <GlobalStyle />
-  </>
-);
+    return { pageProps };
+  }
+
+  render() {
+    const { Component, pageProps } = this.props;
+
+    return (
+      <>
+        <Container>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </Container>
+        <GlobalStyle />
+      </>
+    );
+  }
+}
 
 MyApp.propTypes = {
   Component: PropTypes.element.isRequired,
@@ -31,7 +40,6 @@ MyApp.propTypes = {
   resetOnModalCloseFn: () => {},
 }; */
 
-export default MyApp;
 
 Router.onRouteChangeStart = () => {
   Progress.start();
@@ -40,5 +48,8 @@ Router.onRouteChangeStart = () => {
 Router.onRouteChangeComplete = () => {
   Progress.stop();
 };
+
+const wrapper = createWrapper(initStore);
+export default wrapper.withRedux(MyApp);
 
 // https://github.com/vercel/next.js/issues/7945

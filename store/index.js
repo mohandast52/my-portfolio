@@ -2,8 +2,9 @@ import {
   combineReducers, createStore, applyMiddleware, compose,
 } from 'redux';
 import thunk from 'redux-thunk';
+import qiibee from './qiibee';
 
-const rootReducer = combineReducers({});
+const rootReducer = combineReducers({ qiibee });
 
 const enhancers = [];
 const middleware = [thunk];

@@ -5,16 +5,15 @@ import {
   incrementCounter as incrementCounterFn,
   decrementCounter as decrementCounterFn,
 } from 'store/qiibee/actions';
+import Login from './Login';
 
 export const Qiibee = props => {
   console.log(props);
   const { incrementCounter } = props;
   return (
-    <div>
-      <div onClick={incrementCounter}>
-        Mohan
-      </div>
-    </div>
+    <>
+      <Login />
+    </>
   );
 };
 

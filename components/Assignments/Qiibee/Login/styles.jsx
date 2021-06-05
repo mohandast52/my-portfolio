@@ -23,7 +23,7 @@ export const Container = styled.div`
   .ant-col-rtl .login-form-forgot {
     float: left;
   }
-  .login-form-button {
+  .login-form-button, .ant-input-number {
     width: 100%;
   }
 `;

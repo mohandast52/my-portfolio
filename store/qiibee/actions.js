@@ -1,17 +1,31 @@
 import { syncTypes } from './_types';
 
-export const incrementCounter = () => ({
-  type: syncTypes.INCREMENT_COUNTER,
-  data: 1,
+export const handleSignIn = (type, currentUser) => ({
+  type: syncTypes.SIGN_IN,
+  data: { type, currentUser },
 });
 
-export const decrementCounter = () => ({
-  type: syncTypes.DECREMENT_COUNTER,
-  data: -1,
+export const handleSignUp = values => ({
+  type: syncTypes.SIGN_UP,
+  data: values,
 });
 
-// export const isUserPresent = params => (dispatch, getState) => {
-//   const { customers } = getState();
-//   console.log(params);
-//   console.log(customers);
-// };
+export const handleLogout = () => ({
+  type: syncTypes.LOGOUT,
+  data: null,
+});
+
+export const reedeemPoints = brandId => ({
+  type: syncTypes.REDEEM_POINTS,
+  data: brandId,
+});
+
+export const followBrand = brandId => ({
+  type: syncTypes.FOLLOW_BRAND,
+  data: brandId,
+});
+
+export const handleAwardPoints = values => ({
+  type: syncTypes.AWARDS_POINTS,
+  data: values,
+});

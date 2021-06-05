@@ -1,15 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import {
-  incrementCounter as incrementCounterFn,
-  decrementCounter as decrementCounterFn,
-} from 'store/qiibee/actions';
-import Login from './Login';
+
+import Login from './Login/SignIn';
 
 export const Qiibee = props => {
   console.log(props);
-  const { incrementCounter } = props;
   return (
     <>
       <Login />
@@ -29,8 +25,6 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = {
-  incrementCounter: incrementCounterFn,
-  decrementCounter: decrementCounterFn,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Qiibee);

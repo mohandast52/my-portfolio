@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { COLORS, BOX_SHADOW } from '../styles';
 
 export const Container = styled.div`
   .ant-menu-root {
@@ -19,7 +20,20 @@ export const Container = styled.div`
     min-height: 100vh;
     margin-left: 200px;
     .site-layout-background {
-      display: none; // TODO: remove
+      position: sticky;
+      width: calc(100% - 40px);
+      top: 0;
+      right: 0;
+      margin: 0 20px;
+      z-index: 200;
+      box-shadow: ${BOX_SHADOW.NONE};
+      background: ${COLORS.WHITE};
+      > div { 
+        text-align: right;
+        text-decoration: underline;
+        font-size: 16px;
+        letter-spacing: 1px;
+      }
     }
   }
   .ant-layout-content {

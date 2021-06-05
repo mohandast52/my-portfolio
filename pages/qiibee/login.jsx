@@ -1,3 +1,3 @@
-import Login from 'components/Assignments/Qiibee/Login';
+import SignIn from 'components/Assignments/Qiibee/Login/SignIn';
 
-export default Login;
+export default SignIn;

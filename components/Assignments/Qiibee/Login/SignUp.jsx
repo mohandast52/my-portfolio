@@ -1,15 +1,26 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import {
-  Form, Input, Button, Typography,
-} from 'antd';
+import { useState } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
+import {
+  Form, Input, Button, Typography, Radio, InputNumber,
+} from 'antd';
+import {
+  handleSignUp as handleSignUpFn,
+} from 'store/qiibee/actions';
 import { Container, Header } from './styles';
 
 const { Title, Paragraph } = Typography;
 
-const SignUp = () => {
+const SignUp = ({ handleSignUp }) => {
+  const [whichType, setType] = useState('customer');
+  const router = useRouter();
+
   const onFinish = values => {
-    console.log('Success:', values);
+    handleSignUp(values);
+    router.push(`/qiibee/${values.user_type}-dashboard`);
   };
 
   return (
@@ -22,25 +33,62 @@ const SignUp = () => {
       <Form
         name="normal_login"
         className="login-form"
-        initialValues={{ remember: true }}
+        initialValues={{ remember: true, user_type: 'customer' }}
         layout="vertical"
         onFinish={onFinish}
       >
-        <Form.Item
-          label="First Name"
-          name="firstname"
-          rules={[{ required: true, message: 'Please input your First Name!' }]}
-        >
-          <Input placeholder="Enter your first name" />
+        <Form.Item name="user_type" label="Type">
+          <Radio.Group onChange={e => setType(e.target.value)}>
+            <Radio value="customer">Customer</Radio>
+            <Radio value="brand">Brand</Radio>
+          </Radio.Group>
         </Form.Item>
 
-        <Form.Item
-          label="Last Name"
-          name="lastname"
-          rules={[{ required: true, message: 'Please input your Last Name!' }]}
-        >
-          <Input placeholder="Enter your last name" />
-        </Form.Item>
+        {whichType === 'customer' ? (
+          <>
+            <Form.Item
+              label="First Name"
+              name="firstname"
+              rules={[{ required: true, message: 'Please input your First Name!' }]}
+            >
+              <Input placeholder="Enter your first name" />
+            </Form.Item>
+
+            <Form.Item
+              label="Last Name"
+              name="lastname"
+              rules={[{ required: true, message: 'Please input your Last Name!' }]}
+            >
+              <Input placeholder="Enter your last name" />
+            </Form.Item>
+          </>
+        ) : (
+          <>
+            <Form.Item
+              label="Brand Name"
+              name="title"
+              rules={[{ required: true, message: 'Please input your brand Name!' }]}
+            >
+              <Input placeholder="Enter your brand name" />
+            </Form.Item>
+
+            <Form.Item
+              label="Max Loyalty Points"
+              name="total_loyalty_points"
+              rules={[{ required: true, message: 'Please input your Last Name!' }]}
+            >
+              <InputNumber placeholder="Enter your last name" />
+            </Form.Item>
+
+            <Form.Item
+              label="Logo URL"
+              name="icon"
+              rules={[{ required: false }]}
+            >
+              <Input placeholder="Enter your logo URL" />
+            </Form.Item>
+          </>
+        )}
 
         <Form.Item
           label="Email"
@@ -78,4 +126,18 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+SignUp.propTypes = {
+  handleSignUp: PropTypes.func,
+};
+
+SignUp.defaultProps = {
+  handleSignUp: () => { },
+};
+
+const mapStateToProps = () => ({});
+
+const mapDispatchToProps = {
+  handleSignUp: handleSignUpFn,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp);

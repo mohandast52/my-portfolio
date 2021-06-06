@@ -3,9 +3,7 @@ import { useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
-import {
-  Layout, Menu, Button,
-} from 'antd';
+import { Layout, Menu, Button } from 'antd';
 import {
   BarChartOutlined,
   DashboardOutlined,
@@ -26,7 +24,6 @@ const {
 const Dashboard = ({
   currentUserType, handleLogout, componentNavbar, componentContent,
 }) => {
-  console.log(currentUserType);
   const [isCollapsed, setCollapse] = useState(false);
   const [activeKey, setActiveKey] = useState([currentUserType === 'brand' ? 'admin' : 'dashboard']);
   const router = useRouter();
@@ -101,7 +98,13 @@ const Dashboard = ({
             </div>
           </Content>
 
-          <Footer style={{ textAlign: 'center' }}>Dashboard 2021 Created by `Mohan Das`</Footer>
+          <Footer style={{ textAlign: 'center' }}>
+            Dashboard
+            {' '}
+            {new Date().getFullYear()}
+            {' '}
+            Created by `Mohan Das`
+          </Footer>
         </Layout>
       </Layout>
     </Container>

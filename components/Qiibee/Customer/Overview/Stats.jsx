@@ -1,6 +1,4 @@
-import {
-  Statistic, Card, Col,
-} from 'antd';
+import { Statistic, Card, Col } from 'antd';
 import { ArrowUpOutlined, ArrowDownOutlined } from '@ant-design/icons';
 import { COLORS } from '../../styles';
 

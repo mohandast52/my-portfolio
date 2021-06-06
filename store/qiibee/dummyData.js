@@ -60,7 +60,6 @@ export const BRANDS = [
     created_at: '29/05/2020',
     total_loyalty_points: 500,
     icon: 'https://i.ibb.co/zhjNFTv/2.png',
-    // tags: ['App', 'AI', 'Innovation'],
   },
   {
     id: 'brand-id-3',
@@ -69,7 +68,6 @@ export const BRANDS = [
     created_at: '29/05/2020',
     total_loyalty_points: 0,
     icon: 'https://i.ibb.co/VjFrY8C/3.png',
-    // tags: ['AI', 'Bot'],
   },
   {
     id: 'brand-id-4',
@@ -79,7 +77,6 @@ export const BRANDS = [
     created_at: '29/05/2020',
     total_loyalty_points: 0,
     icon: 'https://i.ibb.co/F8RZXJ5/4.png',
-    // tags: ['Innovation', 'App', 'AI'],
   },
   {
     id: 'brand-id-5',
@@ -89,7 +86,6 @@ export const BRANDS = [
     created_at: '29/05/2020',
     total_loyalty_points: 0,
     icon: 'https://i.ibb.co/YX8XLgJ/10.png',
-    // tags: ['Innovation'],
   },
   {
     id: 'brand-id-6',
@@ -99,6 +95,5 @@ export const BRANDS = [
     icon: 'https://i.ibb.co/gwt9fHk/6.png',
     created_at: '29/05/2020',
     total_loyalty_points: 0,
-    // tags: ['Innovation'],
   },
 ];

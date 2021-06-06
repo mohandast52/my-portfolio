@@ -20,7 +20,6 @@ const Brands = props => {
   if (!currentUser) return <h3>Please log in!</h3>;
 
   const { brands_following } = currentUser;
-
   return (
     <Row gutter={[20, 20]}>
       {(brands || []).map(idea => {

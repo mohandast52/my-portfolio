@@ -32,11 +32,4 @@ export const BrandCard = styled(Card)`
     -webkit-box-orient: vertical;
     margin-bottom: 12px;
   }
-  .ant-card-actions {
-    li {
-      /* width: 100%; */
-      /* text-align: left; */
-      /* padding: 0 20px; */
-    }
-  }
 `;

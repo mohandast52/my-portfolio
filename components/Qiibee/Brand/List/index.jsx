@@ -91,13 +91,6 @@ const mapStateToProps = state => {
   const { total_loyalty_points, followers } = currentUser || {};
   const temp = customers.filter(customer => {
     const { username } = customer;
-    // const isPresent = brands_following.some(item => {
-    //   const id = item.brand_id;
-    //   console.log(followers, id);
-    //   return (followers || []).includes(id);
-    // });
-    // console.log(followers, id);
-    // return isPresent;
     return (followers || []).includes(username);
   });
 

@@ -1,9 +1,7 @@
 /* eslint-disable camelcase */
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import {
-  Typography,
-} from 'antd';
+import { Typography } from 'antd';
 import MenuComponent from '../helpers/Menu';
 import Customer from './List';
 import Overview from './Overview';

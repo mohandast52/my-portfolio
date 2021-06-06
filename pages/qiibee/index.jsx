@@ -1,3 +1,3 @@
-import QiibeeAssignment from 'components/Assignments/Qiibee';
+import QiibeeAssignment from 'components/Qiibee';
 
 export default QiibeeAssignment;

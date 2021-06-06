@@ -40,6 +40,7 @@ const Login = ({ customers, brands, handleSignIn }) => {
         <Title level={2}>Welcome back</Title>
         <Paragraph>Please login to your account!</Paragraph>
       </Header>
+
       <Form
         name="normal_login"
         className="login-form"

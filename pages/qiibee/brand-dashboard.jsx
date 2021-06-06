@@ -1,3 +1,3 @@
-import BrandDashboard from 'components/Assignments/Qiibee/Brand';
+import BrandDashboard from 'components/Qiibee/Brand';
 
 export default BrandDashboard;

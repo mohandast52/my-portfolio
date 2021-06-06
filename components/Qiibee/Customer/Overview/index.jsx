@@ -1,6 +1,4 @@
-import {
-  Row, Col,
-} from 'antd';
+import { Row, Col } from 'antd';
 import Stats from './Stats';
 import GraphSales from './SalesArea';
 import ComparisonSales from './ComparisonBar';

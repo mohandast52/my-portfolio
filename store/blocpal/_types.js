@@ -9,5 +9,6 @@ export const syncTypes = {
 };
 
 /**
- * message from m1
+ * 1st message from m1
+ * 2nd message from m1
  */

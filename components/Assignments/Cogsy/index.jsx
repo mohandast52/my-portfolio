@@ -64,6 +64,7 @@ const CARD_LIST = [
 
 const Cogsy = () => (
   <Container>
+    <p style={{ 'background-color': 'red' }}>hello</p>
     {CARD_LIST.map(
       ({
         id,

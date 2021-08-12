@@ -7,3 +7,7 @@ export const apiTypes = {
 export const syncTypes = {
   SET_STORE_STATE: `${reducerName}/Set Store State`,
 };
+
+/**
+ * message from m1
+ */

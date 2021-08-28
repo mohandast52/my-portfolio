@@ -11,4 +11,5 @@ export const syncTypes = {
 /**
  * 1st message from m1
  * 2nd message from m1 - Mohan
+ * 3nd message from m1 - 29/08/2021
  */

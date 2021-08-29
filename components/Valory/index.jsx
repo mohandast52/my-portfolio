@@ -11,9 +11,7 @@ import {
 } from './styles';
 
 const Valory = () => {
-  /**
-   * can use useReducer hook if the state tree increases further.
-   */
+  /* can use useReducer hook if the state tree increases further */
   const [isLoading, setLoading] = useState(true);
   const [errorMessage, setError] = useState(null);
   const [bitcoinValue, setBitcoinValue] = useState(0);
@@ -61,9 +59,9 @@ const Valory = () => {
   }, []);
 
   /**
-   * on every update fetch new prices for bitcoin
+   * on every update fetch new price
    */
-  const updatePrice = () => {
+  const handleUpdate = () => {
     const tempFrom = new Date(fromValue).getTime() / 1000;
     const tempTo = new Date(toValue).getTime() / 1000;
     fetchData(tempFrom, tempTo);
@@ -110,7 +108,7 @@ const Valory = () => {
         />
       </InputRow>
 
-      <UpdateButton disabled={!fromValue || !toValue} onClick={updatePrice}>
+      <UpdateButton disabled={!fromValue || !toValue} onClick={handleUpdate}>
         Update
       </UpdateButton>
     </Container>

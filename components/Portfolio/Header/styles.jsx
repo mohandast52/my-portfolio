@@ -27,6 +27,7 @@ export const HeaderContainer = styled.div`
       }
 
       .nav-toggle {
+        display: none !important;
         position: relative;
         cursor: pointer;
         display: flex;

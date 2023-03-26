@@ -8,7 +8,9 @@
         "alias": {
           "util": "./util",
           "common-util": "./common-util",
-          "components": "./components"
+          "components": "./components",
+          "images": "./public/images",
+          "store": "./store"
         }
       }
     ],
@@ -20,6 +22,10 @@
         "preprocess": false
       }
     ],
-    ["inline-react-svg"]
+    ["inline-react-svg"],
+    [
+      "import",
+      { "libraryName": "antd", "libraryDirectory": "lib", "style": true }
+    ]
   ]
 }

@@ -22,6 +22,18 @@ const CASE_STUDIES = [
     title: 'Working on it..',
     img: 'lumin-min',
   },
+  {
+    id: 'case-4',
+    subtitle: '4',
+    title: 'Working on it..',
+    img: 'lumin-min',
+  },
+  {
+    id: 'case-5',
+    subtitle: '5',
+    title: 'Working on it..',
+    img: 'lumin-min',
+  },
 ];
 
 const Cases = () => (

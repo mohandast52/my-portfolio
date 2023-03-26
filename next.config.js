@@ -1,31 +1,14 @@
-const withSass = require('@zeit/next-sass');
-const withLess = require('@zeit/next-less');
-const withCSS = require('@zeit/next-css');
-
-const isProd = process.env.NODE_ENV === 'production';
-
-// fix: prevents error when .less files are required by node
-if (typeof require !== 'undefined') {
-  require.extensions['.less'] = file => {};
-}
+const withAntdLess = require('next-plugin-antd-less');
 
 module.exports = {
-  optimizeFonts: false,
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
-  ...withCSS({
-    cssModules: true,
-    cssLoaderOptions: {
-      importLoaders: 1,
-      localIdentName: '[local]___[hash:base64:5]',
+  ...withAntdLess({
+    lessVarsFilePathAppendToEndOfContent: false,
+    cssLoaderOptions: { importLoaders: 1 },
+    lessLoaderOptions: { javascriptEnabled: true },
+    productionBrowserSourceMaps: true,
+    webpack(config) {
+      return config;
     },
-    ...withLess(
-      withSass({
-        lessLoaderOptions: {
-          javascriptEnabled: true,
-        },
-      }),
-    ),
   }),
+  publicRuntimeConfig: {},
 };

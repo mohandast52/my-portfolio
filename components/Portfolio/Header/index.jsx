@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import Link from 'next/link';
 import gsap from 'gsap';
-// import { ReactComponent as Arrow } from 'static/Images/up-arrow-circle.svg';
+// import { ReactComponent as Arrow } from 'images/up-arrow-circle.svg';
 import { HeaderContainer } from './styles';
 
 const timeline = gsap.timeline();
@@ -124,8 +125,6 @@ const Header = ({ history, dimensions }) => {
     }
   }, [dimensions.width, history, menuState.isMenuOpened]);
 
-  console.log(menuState.isMenuOpened);
-
   return (
     <HeaderContainer>
       <div className="container">
@@ -137,7 +136,10 @@ const Header = ({ history, dimensions }) => {
           <div className="nav-toggle">
             <div
               className="hamburger-menu"
+              tabIndex={0}
+              role="button"
               onClick={() => setMenuState({ isMenuOpened: true })}
+              onKeyDown={() => setMenuState({ isMenuOpened: true })}
             >
               <span />
               <span />
@@ -145,7 +147,10 @@ const Header = ({ history, dimensions }) => {
 
             <div
               className="hamburger-menu-close"
+              tabIndex={0}
+              role="button"
               onClick={() => setMenuState({ isMenuOpened: false })}
+              onKeyDown={() => setMenuState({ isMenuOpened: false })}
             >
               {/* <Arrow /> */}
             </div>
@@ -154,6 +159,15 @@ const Header = ({ history, dimensions }) => {
       </div>
     </HeaderContainer>
   );
+};
+
+Header.propTypes = {
+  history: PropTypes.shape({
+    listen: PropTypes.func,
+  }).isRequired,
+  dimensions: PropTypes.shape({
+    width: PropTypes.number,
+  }).isRequired,
 };
 
 export default Header;

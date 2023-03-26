@@ -46,7 +46,7 @@ class Graph extends Component {
     const columnTemplate = series.columns.template;
     columnTemplate.strokeWidth = 2;
     columnTemplate.strokeOpacity = 1;
-  }
+  };
 
   render() {
     return (

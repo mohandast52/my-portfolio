@@ -1,20 +1,24 @@
-import React, { Component } from "react";
-import { Spin } from "antd";
-import { transformedWeather } from "./utils";
-import { Container, LoaderContainer } from "./styles";
+import React, { Component } from 'react';
+import { Spin } from 'antd';
+import { transformedWeather } from './utils';
+import { Container, LoaderContainer } from './styles';
 import Weather from './Weather';
-import Graph from "./Graph";
-import { Header, Footer } from './Weather/helpers'
+import Graph from './Graph';
+import { Header, Footer } from './Weather/helpers';
 
-const API_URL = "https://api.openweathermap.org/data/2.5/forecast?q=Munich,de&APPID=75f972b80e26f14fe6c920aa6a85ad57&cnt=40";
+const API_URL = 'https://api.openweathermap.org/data/2.5/forecast?q=Munich,de&APPID=75f972b80e26f14fe6c920aa6a85ad57&cnt=40';
 
 export default class WeatherApp extends Component {
-  state = {
-    isLoading: true,
-    isCelcius: false,
-    active: 0,
-    weatherList: {},
-  };
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      isLoading: true,
+      isCelcius: false,
+      active: 0,
+      weatherList: {},
+    };
+  }
 
   componentDidMount() {
     fetch(API_URL)
@@ -26,17 +30,17 @@ export default class WeatherApp extends Component {
         });
       })
       .catch(error => {
-        console.log('Request Failed', error);
+        window.console.log('Request Failed', error);
         this.setState({ isLoading: false });
       });
   }
 
-  onTempChange = (e) => {
-    this.setState((prev) => ({ isCelcius: !prev.isCelcius }));
+  onTempChange = () => {
+    this.setState(prev => ({ isCelcius: !prev.isCelcius }));
   };
 
   leftClick = () => {
-    this.setState((prev) => {
+    this.setState(prev => {
       const temp = prev.active - 1;
       return {
         ...prev,
@@ -46,9 +50,9 @@ export default class WeatherApp extends Component {
   };
 
   rightClick = () => {
-    this.setState((prev) => {
+    this.setState(prev => {
       const temp = prev.active + 1;
-      const length = Object.keys(prev.weatherList).length;
+      const { length } = Object.keys(prev.weatherList);
       return {
         ...prev,
         active: temp > length - 1 ? prev.active : temp,
@@ -57,25 +61,26 @@ export default class WeatherApp extends Component {
   };
 
   render() {
-    const { isLoading, isCelcius, active, weatherList } = this.state;
+    const {
+      isLoading, isCelcius, active, weatherList,
+    } = this.state;
     const updatedWeatherList = Object.entries(weatherList);
-    const currentWeather = updatedWeatherList.find((_weather, index) => index === active);
-    const [_, todaysWeather] = currentWeather || [];
+    const currentWeather = updatedWeatherList.find(
+      (_weather, index) => index === active,
+    );
+    const [, todaysWeather] = currentWeather || [];
 
     if (isLoading) {
       return (
         <LoaderContainer>
-          <Spin tip="Loading..."></Spin>
+          <Spin tip="Loading..." />
         </LoaderContainer>
       );
     }
 
     return (
       <Container>
-        <Header
-          isCelcius={isCelcius}
-          onTempChange={this.onTempChange}
-        />
+        <Header isCelcius={isCelcius} onTempChange={this.onTempChange} />
 
         <Weather
           isCelcius={isCelcius}

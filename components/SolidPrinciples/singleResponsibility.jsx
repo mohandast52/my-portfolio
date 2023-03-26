@@ -21,7 +21,7 @@ class Tracker {
    */
   logMessage = () => {
     console.log('Exceeded');
-  }
+  };
 }
 
 export default Tracker;

@@ -6,19 +6,19 @@ import { CasesContainer } from './styles';
 const CASE_STUDIES = [
   {
     id: 'case-1',
-    subtitle: 'Mohan',
+    subtitle: '1',
     title: 'Working on it..',
     img: 'curology-min',
   },
   {
     id: 'case-2',
-    subtitle: 'Mohan',
+    subtitle: '2',
     title: 'Working on it..',
     img: 'yourspace-min',
   },
   {
     id: 'case-3',
-    subtitle: 'Mohan',
+    subtitle: '3',
     title: 'Working on it..',
     img: 'lumin-min',
   },

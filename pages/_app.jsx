@@ -1,12 +1,15 @@
-import App, { Container } from 'next/app';
-import Router from 'next/router';
+import App from 'next/app';
+import Head from 'next/head';
+// import Router from 'next/router';
 import { createWrapper } from 'next-redux-wrapper';
 import PropTypes from 'prop-types';
-import * as Progress from 'util/progress';
+// import * as Progress from 'util/progress';
+
 import Layout from 'components/Layout';
 import GlobalStyle from 'components/GlobalStyles';
 import initStore from '../store';
-import './styles.less';
+
+require('./styles.less');
 
 class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {
@@ -20,12 +23,14 @@ class MyApp extends App {
 
     return (
       <>
-        <Container>
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
-        </Container>
         <GlobalStyle />
+        <Head>
+          <title>Mohan Portfolio</title>
+          <meta name="title" content="Manage your veOLAS and buOLAS" />
+        </Head>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
       </>
     );
   }
@@ -41,13 +46,13 @@ MyApp.propTypes = {
 }; */
 
 
-Router.onRouteChangeStart = () => {
-  Progress.start();
-};
+// Router.onRouteChangeStart = () => {
+//   Progress.start();
+// };
 
-Router.onRouteChangeComplete = () => {
-  Progress.stop();
-};
+// Router.onRouteChangeComplete = () => {
+//   Progress.stop();
+// };
 
 const wrapper = createWrapper(initStore);
 export default wrapper.withRedux(MyApp);

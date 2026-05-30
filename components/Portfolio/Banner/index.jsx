@@ -8,7 +8,7 @@ const Banner = () => (
       <div className="row">
         <h2>
           <div className="line">
-            <span>Hi, I'm Mohan from Mumbai, India</span>
+            <span>Hi, I&apos;m Mohan from Mumbai, India</span>
           </div>
 
           <div className="line">

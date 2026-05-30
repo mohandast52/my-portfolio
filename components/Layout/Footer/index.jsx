@@ -17,7 +17,13 @@ const Footer = () => (
         </Col>
 
         <Col>
-          <Rotate>&lt; 💅 &gt;</Rotate>
+          <Rotate>
+            &lt;&nbsp;
+            <span role="img" aria-label="loader">
+              💅
+            </span>
+            &nbsp;&gt;
+          </Rotate>
           <Input placeholder="A bigger text input" size="1rem" />
           <div>Got a project? Let’s chat…</div>
           <div>+91 8898162324</div>

@@ -1,12 +1,14 @@
-export const transformedWeather = (weather_json) => {
+export const transformedWeather = weatherJson => {
   const weatherList = {};
 
-  (weather_json.list || []).forEach((e) => {
-    const { dt_txt, main, weather, wind } = e;
-    const [date, time] = dt_txt.split(" ");
+  (weatherJson.list || []).forEach(e => {
+    const {
+      dt_txt: dtText, main, weather, wind,
+    } = e;
+    const [date, time] = dtText.split(' ');
 
     const tempWeather = {
-      date: date,
+      date,
       time: time.slice(0, -3),
       weather_main: weather[0].main,
       weather_description: weather[0].description,

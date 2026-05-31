@@ -80,12 +80,12 @@ describe('<FriendsList />', () => {
     const firstName = friendsList.querySelector('div:nth-child(1) > div > h3');
     expect(firstName.textContent).toBe('Rakesh Gupta');
 
-    /* checking only one pagination to be present */
+    /* 6 seeded friends at 4 per page => 2 pages present from the start */
     expect(pagination.querySelector('button:nth-child(1)')).toBeEnabled();
 
     expect(
       pagination.querySelector('button:nth-child(2)'),
-    ).not.toBeInTheDocument();
+    ).toBeInTheDocument();
 
     /* adding new friend Test */
     fireEvent.change(addInput, { target: { value: newFriendName } });

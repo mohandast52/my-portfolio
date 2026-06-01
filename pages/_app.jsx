@@ -1,50 +1,42 @@
-import App from 'next/app';
 import Head from 'next/head';
-// import Router from 'next/router';
-import { createWrapper } from 'next-redux-wrapper';
+import { Provider } from 'react-redux';
 import PropTypes from 'prop-types';
 // import * as Progress from 'util/progress';
 
 import Layout from 'components/Layout';
 import GlobalStyle from 'components/GlobalStyles';
-import initStore from '../store';
+import { wrapper } from '../store';
 
 require('./styles.less');
 
-class MyApp extends App {
-  static async getInitialProps({ Component, ctx }) {
-    const pageProps = Component.getInitialProps ? await Component.getInitialProps(ctx) : {};
+const MyApp = ({ Component, ...rest }) => {
+  const { store, props } = wrapper.useWrappedStore(rest);
+  const { pageProps } = props;
 
-    return { pageProps };
-  }
-
-  render() {
-    const { Component, pageProps } = this.props;
-
-    return (
-      <>
-        <GlobalStyle />
-        <Head>
-          <title>Mohan Portfolio</title>
-          <meta name="title" content="Manage your veOLAS and buOLAS" />
-        </Head>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
-      </>
-    );
-  }
-}
-
-MyApp.propTypes = {
-  Component: PropTypes.element.isRequired,
-  pageProps: PropTypes.shape({}).isRequired,
+  return (
+    <Provider store={store}>
+      <GlobalStyle />
+      <Head>
+        <title>Mohan Portfolio</title>
+        <meta name="title" content="Manage your veOLAS and buOLAS" />
+      </Head>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    </Provider>
+  );
 };
 
-/* MyApp.defaultProps = {
-  resetOnModalCloseFn: () => {},
-}; */
+MyApp.propTypes = {
+  Component: PropTypes.elementType.isRequired,
+  pageProps: PropTypes.shape({}),
+};
 
+MyApp.defaultProps = {
+  pageProps: {},
+};
+
+export default MyApp;
 
 // Router.onRouteChangeStart = () => {
 //   Progress.start();
@@ -53,8 +45,5 @@ MyApp.propTypes = {
 // Router.onRouteChangeComplete = () => {
 //   Progress.stop();
 // };
-
-const wrapper = createWrapper(initStore);
-export default wrapper.withRedux(MyApp);
 
 // https://github.com/vercel/next.js/issues/7945

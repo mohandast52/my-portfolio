@@ -1,24 +1,23 @@
-import {
-  combineReducers, createStore, applyMiddleware, compose,
-} from 'redux';
-import thunk from 'redux-thunk';
+import { configureStore } from '@reduxjs/toolkit';
+import { createWrapper } from 'next-redux-wrapper';
 import qiibee from './qiibee';
 
-const rootReducer = combineReducers({ qiibee });
+export const makeStore = () => configureStore({
+  reducer: { qiibee },
+  /*
+   * The legacy qiibee reducer mutates nested state in place (e.g. FOLLOW_BRAND
+   * pushes into state.currentUser.brands_following, REDEEM_POINTS reassigns a
+   * shared nested object). RTK's dev/test-only immutability & serializability
+   * checks would throw on those dispatches, so they are disabled here to
+   * preserve the pre-RTK (plain createStore) behavior. Re-enable once the
+   * reducer is refactored to be immutable (createSlice/Immer).
+   */
+  middleware: getDefaultMiddleware => getDefaultMiddleware({
+    immutableCheck: false,
+    serializableCheck: false,
+  }),
+});
 
-const enhancers = [];
-const middleware = [thunk];
+export const wrapper = createWrapper(makeStore);
 
-const composeWithDevTools = typeof window === 'object'
-  && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
-  && (process.env.NODE_ENV === 'development'
-    || process.env.NODE_ENV === 'integration')
-  ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({})
-  : compose;
-
-const composedEnhancers = composeWithDevTools(
-  applyMiddleware(...middleware),
-  ...enhancers,
-);
-
-export default (initialState = {}) => createStore(rootReducer, initialState, composedEnhancers);
+export default makeStore;

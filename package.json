@@ -42,5 +42,8 @@
     "eslint-plugin-react-hooks": "^3.0.0",
     "jest": "29.7.0",
     "jest-environment-jsdom": "29.7.0"
+  },
+  "engines": {
+    "node": "20.x"
   }
 }

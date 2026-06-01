@@ -90,9 +90,7 @@ const Login = ({ customers, brands, handleSignIn }) => {
 
       <p className="footer">
         Don&apos;t have an account?&nbsp;
-        <Link href="/qiibee/signup">
-          <a>Sign Up</a>
-        </Link>
+        <Link href="/qiibee/signup">Sign Up</Link>
       </p>
 
       {hasError && (

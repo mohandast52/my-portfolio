@@ -118,9 +118,7 @@ const SignUp = ({ handleSignUp }) => {
 
       <p className="footer">
         Already have an account?&nbsp;
-        <Link href="/qiibee/login">
-          <a>Login</a>
-        </Link>
+        <Link href="/qiibee/login">Login</Link>
       </p>
     </Container>
   );

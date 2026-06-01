@@ -1,23 +1,34 @@
+/* eslint-disable react/no-danger */
 import Document from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
+import { createCache, extractStyle, StyleProvider } from '@ant-design/cssinjs';
 
 export default class MyDocument extends Document {
   static async getInitialProps(ctx) {
     const sheet = new ServerStyleSheet();
+    const cache = createCache();
     const originalRenderPage = ctx.renderPage;
 
     try {
       ctx.renderPage = () => originalRenderPage({
-        enhanceApp: App => props => sheet.collectStyles(<App {...props} />),
+        enhanceApp: App => props => sheet.collectStyles(
+          <StyleProvider cache={cache}>
+            <App {...props} />
+          </StyleProvider>,
+        ),
       });
 
       const initialProps = await Document.getInitialProps(ctx);
+      // antd 5 is CSS-in-JS; extract its styles on the server to avoid FOUC.
+      const antdStyle = extractStyle(cache, true);
+
       return {
         ...initialProps,
         styles: (
           <>
             {initialProps.styles}
             {sheet.getStyleElement()}
+            <style id="antd-cssinjs" dangerouslySetInnerHTML={{ __html: antdStyle }} />
           </>
         ),
         head: [

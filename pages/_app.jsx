@@ -9,8 +9,6 @@ import Layout from 'components/Layout';
 import GlobalStyle from 'components/GlobalStyles';
 import { wrapper } from '../store';
 
-require('./styles.less');
-
 /*
  * styled-components v6 forwards unknown props to the DOM (React warns about
  * e.g. `bgColor`, `isCelcius`, `hasError`). Filter props for host elements

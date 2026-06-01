@@ -3,7 +3,6 @@
 /* eslint-disable camelcase */
 
 import React, { useState } from 'react';
-import 'antd/dist/antd.css';
 import { Button, Tag } from 'antd';
 import { Compensation, Equity } from '../Helpers';
 import {

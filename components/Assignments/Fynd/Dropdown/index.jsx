@@ -1,6 +1,5 @@
 import React, { useReducer } from 'react';
 import PropTypes from 'prop-types';
-import 'antd/dist/antd.css';
 import { Checkbox, Button } from 'antd';
 import { FaAngleDown } from 'react-icons/fa';
 import Reducer, { INITIAL_STATE, API_TYPES } from './Reducer';

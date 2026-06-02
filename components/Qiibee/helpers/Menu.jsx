@@ -22,7 +22,7 @@ const {
 } = Layout;
 
 const Dashboard = ({
-  currentUserType, handleLogout, componentNavbar, componentContent,
+  currentUserType = null, handleLogout, componentNavbar = null, componentContent = () => {},
 }) => {
   const [isCollapsed, setCollapse] = useState(false);
   const [activeKey, setActiveKey] = useState([currentUserType === 'brand' ? 'admin' : 'dashboard']);
@@ -114,12 +114,6 @@ Dashboard.propTypes = {
   componentNavbar: PropTypes.element,
   componentContent: PropTypes.func,
 
-};
-
-Dashboard.defaultProps = {
-  currentUserType: null,
-  componentNavbar: null,
-  componentContent: () => {},
 };
 
 const mapStateToProps = state => {

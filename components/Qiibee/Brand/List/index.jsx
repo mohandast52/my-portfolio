@@ -9,7 +9,7 @@ import {
 import { Container } from './styles';
 
 
-const List = ({ isDisabled, tableData, handleAwardPoints }) => {
+const List = ({ isDisabled, tableData = null, handleAwardPoints }) => {
   const columns = [
     {
       title: 'First Name',
@@ -80,10 +80,6 @@ List.propTypes = {
   isDisabled: PropTypes.bool.isRequired,
   tableData: PropTypes.arrayOf(PropTypes.shape({})),
   handleAwardPoints: PropTypes.func.isRequired,
-};
-
-List.defaultProps = {
-  tableData: null,
 };
 
 const mapStateToProps = state => {

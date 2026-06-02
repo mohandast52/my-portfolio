@@ -14,7 +14,7 @@ const { Meta } = Card;
 
 const Brands = props => {
   const {
-    currentUser, brands, followBrand, reedeemPoints,
+    currentUser = null, brands = [], followBrand = () => { }, reedeemPoints = () => { },
   } = props;
 
   if (!currentUser) return <h3>Please log in!</h3>;
@@ -100,13 +100,6 @@ Brands.propTypes = {
   brands: PropTypes.arrayOf(PropTypes.shape({})),
   followBrand: PropTypes.func,
   reedeemPoints: PropTypes.func,
-};
-
-Brands.defaultProps = {
-  currentUser: null,
-  brands: [],
-  followBrand: () => { },
-  reedeemPoints: () => { },
 };
 
 const mapStateToProps = state => {

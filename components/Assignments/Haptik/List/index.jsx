@@ -11,10 +11,10 @@ import {
 } from './styles';
 
 export const List = ({
-  pageNumber,
-  friends,
-  handleMarkFavourite,
-  handleDelete,
+  pageNumber = 1,
+  friends = [],
+  handleMarkFavourite = () => {},
+  handleDelete = () => {},
 }) => {
   if ((friends || []).length === 0) {
     return (
@@ -76,13 +76,6 @@ List.propTypes = {
   friends: PropTypes.array,
   handleMarkFavourite: PropTypes.func,
   handleDelete: PropTypes.func,
-};
-
-List.defaultProps = {
-  pageNumber: 1,
-  friends: [],
-  handleMarkFavourite: () => {},
-  handleDelete: () => {},
 };
 
 export default List;

@@ -14,7 +14,7 @@ import { Container, Header } from './styles';
 
 const { Title, Paragraph } = Typography;
 
-const SignUp = ({ handleSignUp }) => {
+const SignUp = ({ handleSignUp = () => { } }) => {
   const [whichType, setType] = useState('customer');
   const router = useRouter();
 
@@ -126,10 +126,6 @@ const SignUp = ({ handleSignUp }) => {
 
 SignUp.propTypes = {
   handleSignUp: PropTypes.func,
-};
-
-SignUp.defaultProps = {
-  handleSignUp: () => { },
 };
 
 const mapStateToProps = () => ({});

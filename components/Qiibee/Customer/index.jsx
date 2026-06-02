@@ -8,7 +8,7 @@ import Overview from './Overview';
 
 const { Text } = Typography;
 
-const Dashboard = ({ reedeemed_points }) => (
+const Dashboard = ({ reedeemed_points = 0 }) => (
   <>
     <MenuComponent
       componentNavbar={(
@@ -29,10 +29,6 @@ const Dashboard = ({ reedeemed_points }) => (
 
 Dashboard.propTypes = {
   reedeemed_points: PropTypes.number,
-};
-
-Dashboard.defaultProps = {
-  reedeemed_points: 0,
 };
 
 const mapStateToProps = state => {

@@ -7,7 +7,7 @@ import Brand from './List';
 
 const { Text } = Typography;
 
-const Dashboard = ({ total_loyalty_points }) => (
+const Dashboard = ({ total_loyalty_points = 0 }) => (
   <>
     <MenuComponent
       componentNavbar={(
@@ -27,10 +27,6 @@ const Dashboard = ({ total_loyalty_points }) => (
 
 Dashboard.propTypes = {
   total_loyalty_points: PropTypes.number,
-};
-
-Dashboard.defaultProps = {
-  total_loyalty_points: 0,
 };
 
 const mapStateToProps = state => {

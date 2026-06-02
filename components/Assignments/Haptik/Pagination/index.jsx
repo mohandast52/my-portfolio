@@ -4,7 +4,7 @@ import { PaginationButton, Dots } from '../styles';
 
 const DOTS = '...';
 
-const Pagination = ({ friendsCount, activePage, updatePageNumber }) => {
+const Pagination = ({ friendsCount, activePage, updatePageNumber = () => {} }) => {
   const pages = Math.ceil(friendsCount / 4, 10);
 
   const onClick = event => {
@@ -70,10 +70,6 @@ Pagination.propTypes = {
   friendsCount: PropTypes.number.isRequired,
   activePage: PropTypes.number.isRequired,
   updatePageNumber: PropTypes.func,
-};
-
-Pagination.defaultProps = {
-  updatePageNumber: () => {},
 };
 
 export default Pagination;

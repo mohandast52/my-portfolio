@@ -17,13 +17,13 @@ import {
 } from './styles';
 
 const DataList = ({
-  searchable,
-  multiSelect,
-  showCount,
-  selectTitle,
-  data,
-  defaultSelected,
-  onChange,
+  searchable = true,
+  multiSelect = false,
+  showCount = false,
+  selectTitle = null,
+  data = [],
+  defaultSelected = [],
+  onChange = () => {},
 }) => {
   const [state, dispatch] = useReducer(
     Reducer,
@@ -148,16 +148,6 @@ DataList.propTypes = {
   data: PropTypes.array,
   defaultSelected: PropTypes.array,
   onChange: PropTypes.func,
-};
-
-DataList.defaultProps = {
-  searchable: true,
-  multiSelect: false,
-  showCount: false,
-  selectTitle: null,
-  data: [],
-  defaultSelected: [],
-  onChange: () => {},
 };
 
 export default DataList;

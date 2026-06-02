@@ -14,13 +14,13 @@ import {
  */
 
 const Card = ({
-  source,
-  sourceType,
+  source = null /* if null ? don't show thumbnail */,
+  sourceType = null,
   heading,
   subheading,
-  description,
-  isFavourite,
-  isMenuRequired,
+  description = null,
+  isFavourite = null /* if null ? don't show icon */,
+  isMenuRequired = false /* if false ? don't show menu */,
 }) => (
   <CardContainer>
     <Header source={source} sourceType={sourceType} />
@@ -43,14 +43,6 @@ Card.propTypes = {
   description: PropTypes.string,
   isFavourite: PropTypes.bool,
   isMenuRequired: PropTypes.bool,
-};
-
-Card.defaultProps = {
-  source: null /* if null ? don't show thumbnail */,
-  sourceType: null,
-  description: null,
-  isFavourite: null /* if null ? don't show icon */,
-  isMenuRequired: false, /* if false ? don't show menu */
 };
 
 export default Card;

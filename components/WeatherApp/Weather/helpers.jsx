@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { Switch, Button } from 'antd';
 import { ArrowLeftOutlined, ArrowRightOutlined } from '@ant-design/icons';
 
-export const Header = ({ isCelcius, onTempChange }) => (
+export const Header = ({ isCelcius = false, onTempChange = () => {} }) => (
   <div className="header">
     <h3>Weather App</h3>
     <Switch
@@ -19,19 +19,14 @@ Header.propTypes = {
   onTempChange: PropTypes.func,
 };
 
-Header.defaultProps = {
-  isCelcius: false,
-  onTempChange: () => {},
-};
-
 /**
  * Footer component
  */
 export const Footer = ({
-  isLeftDisabled,
-  onLeftClick,
-  isRightDisabled,
-  onRightClick,
+  isLeftDisabled = false,
+  onLeftClick = () => {},
+  isRightDisabled = false,
+  onRightClick = () => {},
 }) => (
   <div className="footer">
     <Button
@@ -59,11 +54,4 @@ Footer.propTypes = {
   onLeftClick: PropTypes.func,
   isRightDisabled: PropTypes.bool,
   onRightClick: PropTypes.func,
-};
-
-Footer.defaultProps = {
-  isLeftDisabled: false,
-  onLeftClick: () => {},
-  isRightDisabled: false,
-  onRightClick: () => {},
 };

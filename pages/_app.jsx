@@ -19,7 +19,7 @@ const shouldForwardProp = (propName, target) => (typeof target === 'string' ? is
 
 const MyApp = ({ Component, ...rest }) => {
   const { store, props } = wrapper.useWrappedStore(rest);
-  const { pageProps } = props;
+  const { pageProps = {} } = props;
 
   return (
     <StyleSheetManager shouldForwardProp={shouldForwardProp}>
@@ -40,10 +40,6 @@ const MyApp = ({ Component, ...rest }) => {
 MyApp.propTypes = {
   Component: PropTypes.elementType.isRequired,
   pageProps: PropTypes.shape({}),
-};
-
-MyApp.defaultProps = {
-  pageProps: {},
 };
 
 export default MyApp;

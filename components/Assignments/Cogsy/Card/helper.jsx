@@ -11,7 +11,7 @@ import {
 } from './styles';
 
 /* ------------- HeaderContainer ------------- */
-export const Header = ({ source, sourceType }) => {
+export const Header = ({ source = null, sourceType = null }) => {
   /* if source is empty, header will not be shown  */
   if (!source) return null;
 
@@ -36,11 +36,6 @@ Header.propTypes = {
   sourceType: PropTypes.oneOf(['img', 'video', 'svg']),
 };
 
-Header.defaultProps = {
-  source: null,
-  sourceType: null,
-};
-
 /* ------------- Menu ------------- */
 const LIST = ['Save', 'Edit', 'Preview'];
 
@@ -55,7 +50,7 @@ export const Menu = () => (
 );
 
 /* -------------- Footer ------------- */
-export const Footer = ({ isFavourite, isMenuRequired }) => {
+export const Footer = ({ isFavourite = null, isMenuRequired = false }) => {
   /* if (favourite & menu is not required) ? footer will not be shown  */
   if (!(isFavourite !== null || isMenuRequired)) return null;
 
@@ -87,9 +82,4 @@ export const Footer = ({ isFavourite, isMenuRequired }) => {
 Footer.propTypes = {
   isFavourite: PropTypes.bool,
   isMenuRequired: PropTypes.bool,
-};
-
-Footer.defaultProps = {
-  isFavourite: null,
-  isMenuRequired: false,
 };

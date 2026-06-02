@@ -15,7 +15,7 @@ import { Container, Header } from './styles';
 
 const { Title, Paragraph } = Typography;
 
-const Login = ({ customers, brands, handleSignIn }) => {
+const Login = ({ customers = [], brands = [], handleSignIn }) => {
   const [hasError, setError] = useState(false);
   const router = useRouter();
 
@@ -105,11 +105,6 @@ Login.propTypes = {
   brands: PropTypes.arrayOf(PropTypes.shape({})),
   customers: PropTypes.arrayOf(PropTypes.shape({})),
   handleSignIn: PropTypes.func.isRequired,
-};
-
-Login.defaultProps = {
-  brands: [],
-  customers: [],
 };
 
 const mapStateToProps = state => {

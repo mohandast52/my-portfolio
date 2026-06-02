@@ -16,7 +16,7 @@ const EachCard = ({
   date,
   title,
   info,
-  percentage,
+  percentage = 0,
   timeLeft,
   bgColor,
   progressColor,
@@ -69,10 +69,6 @@ EachCard.propTypes = {
   timeLeft: PropTypes.string.isRequired,
   bgColor: PropTypes.string.isRequired,
   progressColor: PropTypes.string.isRequired,
-};
-
-EachCard.defaultProps = {
-  percentage: 0,
 };
 
 export default EachCard;

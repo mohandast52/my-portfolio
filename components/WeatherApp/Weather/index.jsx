@@ -16,7 +16,7 @@ export const CardWrapper = ({ isActive, children }) => {
   );
 }
 */
-const Weather = ({ isCelcius, active, list }) => (
+const Weather = ({ isCelcius = false, active = 0, list = [] }) => (
   <Cards>
     {list.map(([key, value], index) => {
       if (![active, active + 1, active + 2].includes(index)) {
@@ -73,12 +73,6 @@ Weather.propTypes = {
   isCelcius: PropTypes.bool,
   active: PropTypes.number,
   list: PropTypes.shape([]),
-};
-
-Weather.defaultProps = {
-  isCelcius: false,
-  active: 0,
-  list: [],
 };
 
 export default Weather;

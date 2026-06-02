@@ -12,7 +12,7 @@ import {
   Title,
 } from '../styles';
 
-export const List = ({ pageNumber, list }) => {
+export const List = ({ pageNumber = 1, list = [] }) => {
   if ((list || []).length === 0) {
     return (
       <NoDataFound data-testid="no-data-found">
@@ -61,11 +61,6 @@ List.propTypes = {
   pageNumber: PropTypes.number,
   // eslint-disable-next-line react/forbid-prop-types
   list: PropTypes.array,
-};
-
-List.defaultProps = {
-  pageNumber: 1,
-  list: [],
 };
 
 export default List;

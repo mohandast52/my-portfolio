@@ -13,7 +13,7 @@ import {
   ListFooter,
 } from './styles';
 
-const Dropdown = ({ searchable, options }) => {
+const Dropdown = ({ searchable = true, options = [] }) => {
   const [state, dispatch] = useReducer(Reducer, INITIAL_STATE(options));
   const {
     isActive, isAllChecked, checkedList, selectedList,
@@ -115,11 +115,6 @@ Dropdown.propTypes = {
   searchable: PropTypes.bool,
   // eslint-disable-next-line react/forbid-prop-types
   options: PropTypes.array,
-};
-
-Dropdown.defaultProps = {
-  searchable: true,
-  options: [],
 };
 
 export default Dropdown;

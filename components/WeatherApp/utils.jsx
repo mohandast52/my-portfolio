@@ -14,8 +14,8 @@ export const transformedWeather = weatherJson => {
       weather_description: weather[0].description,
       weather_icon: weather[0].icon,
       wind_speed: wind.speed,
-      temperature: main.temp,
-      fahrenheit: ((parseFloat(main.temp) - 32) / 1.8).toFixed(2),
+      temperature: Number(parseFloat(main.temp).toFixed(2)),
+      fahrenheit: Number(((parseFloat(main.temp) * 9) / 5 + 32).toFixed(2)),
       humidity: main.humidity,
     };
 

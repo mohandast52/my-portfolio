@@ -1,4 +1,11 @@
+import { MessageChannel } from 'worker_threads';
 import '@testing-library/jest-dom';
+
+// jsdom does not provide MessageChannel, which antd 6 / React's scheduler use.
+// Borrow Node's implementation so antd components can render under Jest.
+if (typeof global.MessageChannel === 'undefined') {
+  global.MessageChannel = MessageChannel;
+}
 
 // Next 13's useRouter() throws "NextRouter was not mounted" outside a router
 // context (Next 12 returned a stub). Provide a stub router for component tests.

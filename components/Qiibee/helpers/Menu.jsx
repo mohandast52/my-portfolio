@@ -42,32 +42,29 @@ const Dashboard = ({
     router.push('/qiibee/login');
   };
 
+  /* antd 6 removed the <Menu.Item> children API in favour of the items prop. */
+  const menuItems = currentUserType === 'brand'
+    ? [{ key: 'admin', icon: <SettingOutlined />, label: 'Admin' }]
+    : [
+      { key: 'dashboard', icon: <BarChartOutlined />, label: 'Dashboard' },
+      { key: 'overview', icon: <DashboardOutlined />, label: 'Overview' },
+      {
+        key: 'help-center', icon: <QuestionCircleOutlined />, label: 'Help Center', disabled: true,
+      },
+    ];
+
   return (
     <Container>
       <Layout>
         <Sider collapsible collapsed={isCollapsed} onCollapse={onCollapse} theme="light">
           <div className="logo" />
-          <Menu theme="light" mode="inline" selectedKeys={activeKey} onClick={onMenuClick}>
-            {currentUserType === 'brand' ? (
-              <>
-                <Menu.Item key="admin" icon={<SettingOutlined />}>
-                  Admin
-                </Menu.Item>
-              </>
-            ) : (
-              <>
-                <Menu.Item key="dashboard" icon={<BarChartOutlined />}>
-                  Dashboard
-                </Menu.Item>
-                <Menu.Item key="overview" icon={<DashboardOutlined />}>
-                  Overview
-                </Menu.Item>
-                <Menu.Item key="help-center" icon={<QuestionCircleOutlined />} disabled>
-                  Help Center
-                </Menu.Item>
-              </>
-            )}
-          </Menu>
+          <Menu
+            theme="light"
+            mode="inline"
+            selectedKeys={activeKey}
+            onClick={onMenuClick}
+            items={menuItems}
+          />
 
           <NavFooter>
             <Button
@@ -79,7 +76,7 @@ const Dashboard = ({
             >
               {!isCollapsed && 'Profile'}
             </Button>
-            <Button type="danger" ghost size="small" icon={<LogoutOutlined />} onClick={logout}>
+            <Button danger ghost size="small" icon={<LogoutOutlined />} onClick={logout}>
               {!isCollapsed && 'Logout'}
             </Button>
           </NavFooter>

@@ -2,7 +2,7 @@ import { apiTypes, syncTypes } from './_types';
 
 const initialState = {};
 
-export default (state = initialState, action) => {
+const blocpalReducer = (state = initialState, action) => {
   const { data } = action;
 
   switch (action.type) {
@@ -21,3 +21,5 @@ export default (state = initialState, action) => {
       return state;
   }
 };
+
+export default blocpalReducer;

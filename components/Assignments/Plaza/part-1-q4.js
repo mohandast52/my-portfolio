@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 const list = [3, 6, 10, -15, 1];
 const k = 35;
 

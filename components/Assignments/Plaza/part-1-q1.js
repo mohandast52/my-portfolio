@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 /*
 const f = (firstName, callback) => {
   setTimeout(() => {

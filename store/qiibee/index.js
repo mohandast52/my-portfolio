@@ -1,4 +1,3 @@
-/* eslint-disable camelcase */
 import { notification } from 'antd';
 import { syncTypes } from './_types';
 import { CUSTOMERS, BRANDS } from './dummyData';

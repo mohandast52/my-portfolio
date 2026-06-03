@@ -4,22 +4,26 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Commands
 
-```bash
-yarn dev          # Start Next.js dev server (http://localhost:3000)
-yarn build        # Production build
-yarn start        # Serve the production build
-yarn lint         # ESLint over the whole repo (airbnb + jest/all rulesets)
-yarn testc        # Run Jest with coverage + verbose
-```
-
-There is no plain `test` script — use `yarn testc`. To run a single test file:
+Uses **pnpm** (via corepack) on **Node 24** — see `.nvmrc` and the `engines` field. One-time: `corepack enable pnpm` and `nvm use`.
 
 ```bash
-yarn jest tests/components/FriendsList/List/index.test.jsx
-yarn jest -t "search filter works"   # run a single test by name
+pnpm dev          # Start Next.js dev server (http://localhost:3000)
+pnpm build        # Production build
+pnpm start        # Serve the production build
+pnpm lint         # ESLint 9, flat config (eslint-config-next + recommended)
+pnpm testc        # Run Jest with coverage + verbose
 ```
 
-Note: only one test file exists ([tests/components/FriendsList/List/index.test.jsx](tests/components/FriendsList/List/index.test.jsx), which tests `components/Assignments/Haptik`). The `collectCoverageFrom` glob in [jest.config.js](jest.config.js) points at `components/FriendList/*`, a path that does not exist — coverage numbers will be empty until that glob is fixed.
+There is no plain `test` script — use `pnpm testc`. To run a single test file:
+
+```bash
+pnpm jest tests/components/FriendsList/List/index.test.jsx
+pnpm jest -t "search filter works"   # run a single test by name
+```
+
+Tests live under [tests/](tests/): the FriendsList/Haptik suite, a `smoke` suite (Dashboard/Timer), and a redux-connected Qiibee suite. [jest.setup.js](jest.setup.js) polyfills `matchMedia` + `MessageChannel` and mocks `next/router` for jsdom; [jest.config.js](jest.config.js) stubs `.less/.css` and scopes coverage to the Haptik component.
+
+> Note: the **Architecture** section below predates the dependency upgrade and still describes the old stack (Next 12 / React 17 / antd 4 LESS / airbnb / `.babelrc` / yarn). The toolchain is now Next 15 / React 19 / antd 6 (CSS-in-JS) / Redux Toolkit / SWC / ESLint flat config / pnpm. Treat the architecture notes as historical until refreshed.
 
 ## Architecture
 

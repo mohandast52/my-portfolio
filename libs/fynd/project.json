@@ -8,6 +8,10 @@
     "lint": {
       "command": "eslint libs/fynd",
       "cache": true
+    },
+    "typecheck": {
+      "command": "tsc --noEmit -p libs/fynd/tsconfig.json",
+      "cache": true
     }
   }
 }

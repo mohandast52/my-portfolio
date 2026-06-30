@@ -8,6 +8,10 @@
     "lint": {
       "command": "eslint libs/qiibee",
       "cache": true
+    },
+    "typecheck": {
+      "command": "tsc --noEmit -p libs/qiibee/tsconfig.json",
+      "cache": true
     }
   }
 }

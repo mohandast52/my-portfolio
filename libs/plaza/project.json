@@ -8,6 +8,10 @@
     "lint": {
       "command": "eslint libs/plaza",
       "cache": true
+    },
+    "typecheck": {
+      "command": "tsc --noEmit -p libs/plaza/tsconfig.json",
+      "cache": true
     }
   }
 }

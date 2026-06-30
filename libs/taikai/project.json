@@ -8,6 +8,10 @@
     "lint": {
       "command": "eslint libs/taikai",
       "cache": true
+    },
+    "typecheck": {
+      "command": "tsc --noEmit -p libs/taikai/tsconfig.json",
+      "cache": true
     }
   }
 }

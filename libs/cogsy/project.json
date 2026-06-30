@@ -8,6 +8,10 @@
     "lint": {
       "command": "eslint libs/cogsy",
       "cache": true
+    },
+    "typecheck": {
+      "command": "tsc --noEmit -p libs/cogsy/tsconfig.json",
+      "cache": true
     }
   }
 }

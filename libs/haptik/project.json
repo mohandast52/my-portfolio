@@ -8,6 +8,10 @@
     "lint": {
       "command": "eslint libs/haptik",
       "cache": true
+    },
+    "typecheck": {
+      "command": "tsc --noEmit -p libs/haptik/tsconfig.json",
+      "cache": true
     }
   }
 }

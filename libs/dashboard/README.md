@@ -1,10 +1,10 @@
 # dashboard
 
 A static admin/dashboard UI (left/top nav, project-detail cards with charts,
-client messages). Self-contained and API-less. Extracted into an Nx library;
-still authored in JSX (a TypeScript conversion is a follow-up).
+client messages). Self-contained and API-less. Extracted into an Nx library and
+authored in TypeScript (`.tsx` components, `.ts` styles/helpers).
 
-```jsx
+```tsx
 import Dashboard from '@my-portfolio/dashboard';
 ```
 
@@ -12,4 +12,5 @@ Rendered by [pages/dashboard.jsx](../../pages/dashboard.jsx); also a smoke-test 
 
 ```bash
 pnpm nx lint dashboard
+pnpm nx typecheck dashboard
 ```

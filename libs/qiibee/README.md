@@ -1,14 +1,16 @@
 # qiibee
 
 A loyalty-points mini-app (customer + brand dashboards, sign in / sign up) — the
-only feature wired into the global Redux store. Extracted into an Nx library;
-still authored in JSX (a TypeScript conversion is a follow-up).
+only feature wired into the global Redux store. Extracted into an Nx library and
+now authored in TypeScript. The redux **slice** stays app-level (see the Redux
+note below); the lib's connected components are pragmatically typed (component
+props get an `interface`; the redux `state`/`dispatch` are typed as `any`).
 
 ## Usage
 
 The lib exposes one connected component per Next page:
 
-```jsx
+```tsx
 import {
   QiibeeAssignment, // pages/qiibee
   QiibeeBrand,      // pages/qiibee/brand-dashboard
@@ -29,4 +31,5 @@ boundary. This lib's connected components dispatch action creators imported from
 
 ```bash
 pnpm nx lint qiibee
+pnpm nx typecheck qiibee
 ```

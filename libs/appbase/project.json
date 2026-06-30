@@ -8,6 +8,10 @@
     "lint": {
       "command": "eslint libs/appbase",
       "cache": true
+    },
+    "typecheck": {
+      "command": "tsc --noEmit -p libs/appbase/tsconfig.json",
+      "cache": true
     }
   }
 }

@@ -55,6 +55,7 @@ const Valory = () => {
   useEffect(() => {
     const today = new Date().setDate(new Date().getDate()) / 1000;
     const last7days = new Date().setDate(new Date().getDate() - 7) / 1000;
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- intentional data fetch on mount
     fetchData(last7days, today);
   }, []);
 

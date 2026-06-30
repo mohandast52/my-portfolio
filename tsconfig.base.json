@@ -1,0 +1,9 @@
+{
+  "//": "Workspace path mappings for Nx, read by @nx/enforce-module-boundaries to resolve SCOPED lib imports (@my-portfolio/*) to their project so depConstraints can be enforced. Only lib entry points belong here. The app's legacy convenience aliases (components/*, util/*, store/*, images/*) intentionally live ONLY in jsconfig.json — they are in-app imports, not project boundaries, and must not be mapped here or the rule would flag every one of them. When libs migrate to TS (A3), per-project tsconfig.json files will extend this.",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@my-portfolio/weather-app": ["libs/weather-app/src/index.js"]
+    }
+  }
+}

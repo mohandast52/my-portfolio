@@ -1,4 +1,3 @@
-/* eslint-disable react/forbid-prop-types */
 import React, { useReducer } from 'react';
 import PropTypes from 'prop-types';
 import { Checkbox } from 'antd';

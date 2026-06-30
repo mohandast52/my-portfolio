@@ -1,4 +1,3 @@
-/* eslint-disable camelcase */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FaSearchengin } from 'react-icons/fa';
@@ -59,7 +58,6 @@ export const List = ({ pageNumber = 1, list = [] }) => {
 
 List.propTypes = {
   pageNumber: PropTypes.number,
-  // eslint-disable-next-line react/forbid-prop-types
   list: PropTypes.array,
 };
 

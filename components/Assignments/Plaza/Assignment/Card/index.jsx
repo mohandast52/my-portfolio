@@ -1,7 +1,4 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable jsx-a11y/anchor-is-valid */
-/* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useState, useCallback } from 'react';
+import React, { useState, useMemo } from 'react';
 import { ImOmega } from 'react-icons/im';
 import { StepZero, StepOne, StepTwo } from './Helper';
 import { CardContainer, CardHeader, CardFooter } from '../styles';
@@ -38,8 +35,8 @@ const Card = ({ step, handleClick }) => {
   const [emails, setemails] = useState(LIST);
 
   /* returns same function on every re-render! */
-  const debounceLoadData = useCallback(
-    debounce(emailTyped => {
+  const debounceLoadData = useMemo(
+    () => debounce(emailTyped => {
       const emailList = LIST.filter(e => e.includes(emailTyped));
       setemails(emailList);
     }),

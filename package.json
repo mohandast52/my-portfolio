@@ -29,6 +29,7 @@
   "devDependencies": {
     "@eslint/eslintrc": "3",
     "@eslint/js": "9",
+    "@nx/eslint-plugin": "23.0.1",
     "@testing-library/dom": "10.4.0",
     "@testing-library/jest-dom": "6.9.1",
     "@testing-library/react": "16.3.2",
@@ -42,12 +43,14 @@
     "eslint-plugin-react-hooks": "^7.1.1",
     "jest": "30",
     "jest-environment-jsdom": "30",
-    "typescript": "5",
-    "nx": "23.0.1"
+    "nx": "23.0.1",
+    "typescript": "5"
   },
   "engines": {
     "node": "24.x"
   },
   "packageManager": "pnpm@11.5.1",
-  "nx": {}
+  "nx": {
+    "tags": ["type:app"]
+  }
 }

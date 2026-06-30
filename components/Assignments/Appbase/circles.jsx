@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import React, { useState, useEffect } from 'react';
 import { ProblemContainer, Container, Title } from './styles';
 
@@ -33,6 +32,9 @@ export const ApproachOne = () => {
     return () => clearTimeout(timerOne);
   }, []);
 
+  /* Timer-driven state machine: lock positions are derived from `counter` on
+     each tick, so these setState-in-effect calls are intentional. */
+  /* eslint-disable react-hooks/set-state-in-effect */
   useEffect(() => {
     /* in case of ODD => update only 1st circle */
     if (counter % 2 === 1) {
@@ -51,6 +53,7 @@ export const ApproachOne = () => {
       });
     }
   }, [counter]);
+  /* eslint-enable react-hooks/set-state-in-effect */
 
   return (
     <>

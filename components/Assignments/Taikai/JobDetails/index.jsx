@@ -1,7 +1,3 @@
-/* eslint-disable react/no-danger */
-/* eslint-disable react/prop-types */
-/* eslint-disable camelcase */
-
 import React, { useState } from 'react';
 import { Button, Tag } from 'antd';
 import { Compensation, Equity } from '../Helpers';
@@ -105,7 +101,7 @@ const JobDetails = ({ roleDescription }) => {
               <SubTitle>Skills</SubTitle>
               <SubInfo>
                 {skills.map(skill => (
-                  <Tag color="default">{skill}</Tag>
+                  <Tag color="default" key={skill}>{skill}</Tag>
                 ))}
               </SubInfo>
             </ColumnInfoList>

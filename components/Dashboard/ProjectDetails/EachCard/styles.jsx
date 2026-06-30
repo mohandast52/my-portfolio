@@ -70,7 +70,7 @@ export const Completed = styled.span`
   left: 0;
   height: inherit;
   border-radius: inherit;
-  width: ${props => `${props.percentage}%` || 0};
+  width: ${props => `${props.percentage || 0}%`};
 `;
 
 export const Footer = styled.div`

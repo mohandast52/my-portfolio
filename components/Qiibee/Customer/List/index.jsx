@@ -1,4 +1,3 @@
-/* eslint-disable camelcase */
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import {
@@ -12,10 +11,9 @@ import { Actions, BrandCard } from './styles';
 
 const { Meta } = Card;
 
-const Brands = props => {
-  const {
-    currentUser = null, brands = [], followBrand = () => { }, reedeemPoints = () => { },
-  } = props;
+const Brands = ({
+  currentUser = null, brands = [], followBrand = () => { }, reedeemPoints = () => { },
+}) => {
 
   if (!currentUser) return <h3>Please log in!</h3>;
 
@@ -73,7 +71,7 @@ const Brands = props => {
                 />
               )}
               actions={[
-                <Actions>
+                <Actions key="actions">
                   <Button type="danger" ghost disabled={brandFollowed} onClick={() => followBrand(id)}>
                     {brandFollowed ? 'Following' : 'Follow'}
                   </Button>

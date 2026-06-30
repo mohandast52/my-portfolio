@@ -1,7 +1,3 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable jsx-a11y/anchor-is-valid */
-/* eslint-disable jsx-a11y/label-has-associated-control */
-
 import React from 'react';
 import {
   WelcomeMessage,
@@ -35,7 +31,7 @@ export const StepZero = ({
         {emails.length !== 0 && (
           <div className="autocomplete-container">
             {emails.map(e => (
-              <div>{e}</div>
+              <div key={e}>{e}</div>
             ))}
           </div>
         )}

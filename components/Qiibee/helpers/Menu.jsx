@@ -1,4 +1,3 @@
-/* eslint-disable camelcase */
 import { useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';

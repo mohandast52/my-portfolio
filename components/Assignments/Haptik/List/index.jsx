@@ -72,7 +72,6 @@ export const List = ({
 
 List.propTypes = {
   pageNumber: PropTypes.number,
-  // eslint-disable-next-line react/forbid-prop-types
   friends: PropTypes.array,
   handleMarkFavourite: PropTypes.func,
   handleDelete: PropTypes.func,

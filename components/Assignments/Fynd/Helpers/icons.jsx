@@ -1,4 +1,3 @@
-/* eslint-disable react/style-prop-object */
 export const ActiveStarIcon = () => (
   <svg
     width="405px"

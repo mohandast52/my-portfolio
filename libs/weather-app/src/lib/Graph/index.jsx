@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 /* global am4charts am4core */
 import React, { Component } from 'react';
 import { Divider } from 'antd';

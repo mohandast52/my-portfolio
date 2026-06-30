@@ -113,7 +113,6 @@ const Dropdown = ({ searchable = true, options = [] }) => {
 
 Dropdown.propTypes = {
   searchable: PropTypes.bool,
-  // eslint-disable-next-line react/forbid-prop-types
   options: PropTypes.array,
 };
 

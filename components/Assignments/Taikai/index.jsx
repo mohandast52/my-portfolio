@@ -1,5 +1,3 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable camelcase */
 import React, { useReducer } from 'react';
 import {
   Input, Select, Layout, Slider,

@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import LISTING from './dummyJobs';
 
 export const API_TYPES = {

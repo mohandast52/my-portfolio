@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/media-has-caption */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { InactiveStarIcon, ActiveStarIcon, KebabIcon } from '../Helpers/icons';
@@ -51,11 +50,11 @@ export const Menu = () => (
 
 /* -------------- Footer ------------- */
 export const Footer = ({ isFavourite = null, isMenuRequired = false }) => {
-  /* if (favourite & menu is not required) ? footer will not be shown  */
-  if (!(isFavourite !== null || isMenuRequired)) return null;
-
   const [isActive, setFavourite] = useState(isFavourite);
   const [isMenuActive, setMenuActive] = useState(false);
+
+  /* if (favourite & menu is not required) ? footer will not be shown  */
+  if (!(isFavourite !== null || isMenuRequired)) return null;
 
   return (
     <FooterContainer>

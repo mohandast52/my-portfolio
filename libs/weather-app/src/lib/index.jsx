@@ -6,7 +6,8 @@ import Weather from './Weather';
 import Graph from './Graph';
 import { Header, Footer } from './Weather/helpers';
 
-const API_URL = 'https://api.openweathermap.org/data/2.5/forecast?q=Munich,de&units=metric&APPID=75f972b80e26f14fe6c920aa6a85ad57&cnt=40';
+const OWM_API_KEY = process.env.NEXT_PUBLIC_OPENWEATHERMAP_API_KEY;
+const API_URL = `https://api.openweathermap.org/data/2.5/forecast?q=Munich,de&units=metric&APPID=${OWM_API_KEY}&cnt=40`;
 
 export default class WeatherApp extends Component {
   constructor(props) {

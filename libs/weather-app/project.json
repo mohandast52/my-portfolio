@@ -1,0 +1,13 @@
+{
+  "name": "weather-app",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/weather-app/src",
+  "tags": ["scope:weather-app", "type:feature"],
+  "targets": {
+    "lint": {
+      "command": "eslint libs/weather-app",
+      "cache": true
+    }
+  }
+}

@@ -3,6 +3,9 @@ coverage
 .next/
 .DS_Store
 
+# local env files (keep .env.example committed)
+.env*.local
+
 # AI
 /.plans
 

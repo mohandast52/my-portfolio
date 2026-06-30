@@ -1,6 +1,5 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "//": "Vercel pins pnpm@9 by project age, but this repo's pnpm-workspace.yaml is a pnpm 10+ settings file (no `packages:` field), which pnpm 9 rejects with 'packages field missing or empty'. Run both steps through Corepack so they use the pnpm version from package.json#packageManager (11.x), matching local + GitHub CI. DOWNLOAD_PROMPT=0 keeps Corepack non-interactive in the build sandbox.",
   "installCommand": "COREPACK_ENABLE_DOWNLOAD_PROMPT=0 corepack pnpm install --frozen-lockfile",
   "buildCommand": "COREPACK_ENABLE_DOWNLOAD_PROMPT=0 corepack pnpm run build"
 }

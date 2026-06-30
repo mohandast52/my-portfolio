@@ -19,6 +19,7 @@ module.exports = {
     // Nx libs use a scoped alias; keep this in sync with jsconfig.json.
     '^@my-portfolio/weather-app$': '<rootDir>/libs/weather-app/src/index.ts',
     '^@my-portfolio/valory$': '<rootDir>/libs/valory/src/index.ts',
+    '^@my-portfolio/qiibee$': '<rootDir>/libs/qiibee/src/index.js',
     '^components/(.*)$': '<rootDir>/components/$1',
     '^util/(.*)$': '<rootDir>/util/$1',
     '^store$': '<rootDir>/store',

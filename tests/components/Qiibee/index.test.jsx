@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { makeStore } from 'store';
-import Qiibee from 'components/Qiibee';
+import { QiibeeAssignment as Qiibee } from '@my-portfolio/qiibee';
 
 /**
  * Redux tripwire: renders the connect()-wrapped Qiibee sign-in through a real

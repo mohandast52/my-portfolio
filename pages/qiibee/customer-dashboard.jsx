@@ -1,3 +1,3 @@
-import QiibeeDashboard from 'components/Qiibee/Customer';
+import { QiibeeCustomer as QiibeeDashboard } from '@my-portfolio/qiibee';
 
 export default QiibeeDashboard;

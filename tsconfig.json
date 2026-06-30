@@ -19,6 +19,7 @@
     "baseUrl": ".",
     "paths": {
       "@my-portfolio/weather-app": ["libs/weather-app/src/index.ts"],
+      "@my-portfolio/valory": ["libs/valory/src/index.ts"],
       "components/*": ["components/*"],
       "util/*": ["util/*"],
       "store": ["store"],

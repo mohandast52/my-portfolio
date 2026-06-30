@@ -2,6 +2,8 @@ import js from '@eslint/js';
 import { FlatCompat } from '@eslint/eslintrc';
 import jest from 'eslint-plugin-jest';
 import nx from '@nx/eslint-plugin';
+import tsParser from '@typescript-eslint/parser';
+import tsPlugin from '@typescript-eslint/eslint-plugin';
 
 const compat = new FlatCompat({ baseDirectory: import.meta.dirname });
 
@@ -46,6 +48,18 @@ const config = [
           { sourceTag: 'type:util', onlyDependOnLibsWithTags: ['type:util'] },
         ],
       }],
+    },
+  },
+  // TypeScript: the base no-unused-vars misreads type-level parameter names
+  // (e.g. `fn: (acc, item) => number`) as unused vars. Use the TS-aware rule
+  // for .ts/.tsx (eslint-config-next only scopes its TS overrides to root *.ts).
+  {
+    files: ['**/*.{ts,tsx}'],
+    languageOptions: { parser: tsParser },
+    plugins: { '@typescript-eslint': tsPlugin },
+    rules: {
+      'no-unused-vars': 'off',
+      '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }],
     },
   },
   // jest rules only apply to test files + the jest setup.

@@ -3,7 +3,8 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@my-portfolio/weather-app": ["libs/weather-app/src/index.ts"]
+      "@my-portfolio/weather-app": ["libs/weather-app/src/index.ts"],
+      "@my-portfolio/valory": ["libs/valory/src/index.ts"]
     }
   }
 }

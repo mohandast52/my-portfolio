@@ -3,12 +3,15 @@ export const URL = 'https://api.coingecko.com/api/v3/coins/bitcoin/market_chart/
 /* to disable future date selections */
 export const maxDate = new Date().toISOString().slice(0, 10);
 
+// CoinGecko market_chart response (only the field we read).
+export interface MarketChart {
+  prices: Array<[number, number]>;
+}
+
 /**
- * @param {Number} from - date in UNIX timestamp
- * @param {Number} to - date in UNIX timestamp
- * @returns {Promise}
+ * Fetch the bitcoin price series between two UNIX timestamps.
  */
-export const fetchBitconPrice = async (from, to) => {
+export const fetchBitconPrice = async (from: number, to: number): Promise<MarketChart> => {
   const response = await fetch(
     `${URL}from=${Math.floor(from)}&to=${Math.floor(to)}`,
   );
@@ -20,12 +23,13 @@ export const fetchBitconPrice = async (from, to) => {
 };
 
 /**
- * @param {Array} array: array to perform operation
- * @param {Function} fn: callback function
- * @param {Number} acc: inital accumulator value
- * @returns {Number} - reduced value
+ * Reduce `array` to a single number using `fn`, starting from `acc`.
  */
-export const customReduce = (array, fn, acc = 0) => {
+export const customReduce = <T>(
+  array: T[],
+  fn: (acc: number, item: T) => number,
+  acc = 0,
+): number => {
   let temp = acc;
   array.forEach(item => {
     temp = fn(temp, item);

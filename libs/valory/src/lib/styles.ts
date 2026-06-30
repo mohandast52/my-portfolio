@@ -23,7 +23,7 @@ export const Header = styled.h2`
   margin: 0;
 `;
 
-export const Price = styled.div`
+export const Price = styled.div<{ hasError: boolean }>`
   font-size: 60px;
   font-weight: 800;
   color: ${props => (props.hasError ? RED : TEXT_COLOR)};

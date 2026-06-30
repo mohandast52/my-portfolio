@@ -13,17 +13,12 @@ import {
 const Valory = () => {
   /* can use useReducer hook if the state tree increases further */
   const [isLoading, setLoading] = useState(true);
-  const [errorMessage, setError] = useState(null);
+  const [errorMessage, setError] = useState<string | null>(null);
   const [bitcoinValue, setBitcoinValue] = useState(0);
-  const [fromValue, setFrom] = useState(null);
-  const [toValue, setTo] = useState(null);
+  const [fromValue, setFrom] = useState<string | null>(null);
+  const [toValue, setTo] = useState<string | null>(null);
 
-  /**
-   *
-   * @param {Number} fromDate - date in UNIX timestamp
-   * @param {Number} toDate - date in UNIX timestamp
-   */
-  const fetchData = async (fromDate, toDate) => {
+  const fetchData = async (fromDate: number, toDate: number) => {
     setLoading(true);
 
     /* 'from' date has to be less than 'to' date */
@@ -48,10 +43,7 @@ const Valory = () => {
       });
   };
 
-  /**
-   * on 1st render, fetch prices for 7 days.
-   * acts as componentDidMount
-   */
+  /* on 1st render, fetch prices for 7 days (acts as componentDidMount) */
   useEffect(() => {
     const today = new Date().setDate(new Date().getDate()) / 1000;
     const last7days = new Date().setDate(new Date().getDate() - 7) / 1000;
@@ -59,18 +51,13 @@ const Valory = () => {
     fetchData(last7days, today);
   }, []);
 
-  /**
-   * on every update fetch new price
-   */
+  /* on every update fetch new price */
   const handleUpdate = () => {
-    const tempFrom = new Date(fromValue).getTime() / 1000;
-    const tempTo = new Date(toValue).getTime() / 1000;
+    const tempFrom = new Date(fromValue!).getTime() / 1000;
+    const tempTo = new Date(toValue!).getTime() / 1000;
     fetchData(tempFrom, tempTo);
   };
 
-  /**
-   * @returns price to display or loading/error message
-   */
   const getDisplayPrice = () => {
     if (isLoading) return <>Loading...</>;
     if (errorMessage) return <>{errorMessage}</>;

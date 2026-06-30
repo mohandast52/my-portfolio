@@ -1,12 +1,16 @@
-const messageLogger = message => console.log(message);
+const messageLogger = (message: string) => console.log(message);
 
 class Tracker {
-  constructor(maxCalories) {
+  currentCalories: number;
+
+  maxCalories: number;
+
+  constructor(maxCalories: number) {
     this.currentCalories = 0;
     this.maxCalories = maxCalories;
   }
 
-  trackCalories = count => {
+  trackCalories = (count: number) => {
     this.currentCalories += count;
     if (this.currentCalories > this.maxCalories) {
       /* this.logMessage(); // example of what we should not do */
@@ -15,9 +19,9 @@ class Tracker {
   };
 
   /**
-   * Here, we are defeating the purpose. If we want to change the implemention of logMessage,
-   * we are basically touching the whole file, instead it should be a external function passing the
-   * message.
+   * Here, we are defeating the purpose. If we want to change the implemention of
+   * logMessage, we are basically touching the whole file, instead it should be a
+   * external function passing the message.
    */
   logMessage = () => {
     console.log('Exceeded');

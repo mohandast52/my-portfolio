@@ -1,10 +1,15 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { ParentContainer } from './styles';
 
-const StopWatch = ({ initial = '0', interval = '1' }) => {
+interface StopWatchProps {
+  initial?: string;
+  interval?: string;
+}
+
+const StopWatch = ({ initial = '0', interval = '1' }: StopWatchProps) => {
   const [isTimerOn, setTimerOn] = useState(false);
   const [duration, setDuration] = useState(parseInt(initial, 10));
-  const timerRef = useRef(null);
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const handleStartPause = () => {
     setTimerOn(!isTimerOn);
@@ -26,7 +31,7 @@ const StopWatch = ({ initial = '0', interval = '1' }) => {
           return newTime;
         });
       }, 1000);
-    } else if (timerRef) {
+    } else if (timerRef.current) {
       clearInterval(timerRef.current);
     }
   }, [isTimerOn]);

@@ -20,6 +20,8 @@ module.exports = {
     '^@my-portfolio/weather-app$': '<rootDir>/libs/weather-app/src/index.ts',
     '^@my-portfolio/valory$': '<rootDir>/libs/valory/src/index.ts',
     '^@my-portfolio/qiibee$': '<rootDir>/libs/qiibee/src/index.js',
+    '^@my-portfolio/timer$': '<rootDir>/libs/timer/src/index.ts',
+    '^@my-portfolio/solid-principles$': '<rootDir>/libs/solid-principles/src/index.ts',
     '^components/(.*)$': '<rootDir>/components/$1',
     '^util/(.*)$': '<rootDir>/util/$1',
     '^store$': '<rootDir>/store',

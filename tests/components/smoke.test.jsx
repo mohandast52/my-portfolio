@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import Dashboard from 'components/Dashboard';
-import Timer from 'components/Timer';
+import Timer from '@my-portfolio/timer';
 
 /**
  * Smoke tests: a minimal tripwire that the API-less screens still mount.

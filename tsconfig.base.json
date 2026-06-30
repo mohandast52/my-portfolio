@@ -5,7 +5,9 @@
     "paths": {
       "@my-portfolio/weather-app": ["libs/weather-app/src/index.ts"],
       "@my-portfolio/valory": ["libs/valory/src/index.ts"],
-      "@my-portfolio/qiibee": ["libs/qiibee/src/index.js"]
+      "@my-portfolio/qiibee": ["libs/qiibee/src/index.js"],
+      "@my-portfolio/timer": ["libs/timer/src/index.ts"],
+      "@my-portfolio/solid-principles": ["libs/solid-principles/src/index.ts"]
     }
   }
 }

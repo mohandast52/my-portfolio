@@ -1,3 +1,3 @@
-import Timer from 'components/Timer';
+import Timer from '@my-portfolio/timer';
 
 export default Timer;

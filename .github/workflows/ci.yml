@@ -1,0 +1,36 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+
+# Cancel superseded runs on the same ref.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  main:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # nx affected needs history to diff against the base branch.
+          fetch-depth: 0
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      # Derive the base/head SHAs nx affected diffs against.
+      - uses: nrwl/nx-set-shas@v4
+
+      # Only lint/typecheck/test/build the projects a change actually touches.
+      # Targets that a given project doesn't define are skipped automatically.
+      - run: pnpm nx affected -t lint typecheck testc build

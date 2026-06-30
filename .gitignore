@@ -5,3 +5,8 @@ coverage
 
 # AI
 /.plans
+
+# Nx
+.nx/cache
+.nx/workspace-data
+.nx/migrate-runs

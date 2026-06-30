@@ -1,0 +1,17 @@
+{
+  "$schema": "./node_modules/nx/schemas/nx-schema.json",
+  "targetDefaults": {
+    "build": {
+      "cache": true,
+      "outputs": ["{projectRoot}/.next", "!{projectRoot}/.next/cache"]
+    },
+    "lint": {
+      "cache": true
+    },
+    "testc": {
+      "cache": true,
+      "outputs": ["{projectRoot}/coverage"]
+    }
+  },
+  "defaultBase": "master"
+}

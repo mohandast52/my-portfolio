@@ -14,7 +14,7 @@ Rendered by [pages/weather-app.jsx](../../pages/weather-app.jsx).
 
 ## Public API
 
-Only `src/index.js` is the public surface. Everything under `src/lib/` is
+Only `src/index.ts` is the public surface. Everything under `src/lib/` is
 internal — import the package, don't reach into `lib/`.
 
 ## Config

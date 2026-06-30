@@ -5,12 +5,20 @@ import { Container, LoaderContainer } from './styles';
 import Weather from './Weather';
 import Graph from './Graph';
 import { Header, Footer } from './Weather/helpers';
+import type { ForecastResponse, WeatherList } from './types';
 
 const OWM_API_KEY = process.env.NEXT_PUBLIC_OPENWEATHERMAP_API_KEY;
 const API_URL = `https://api.openweathermap.org/data/2.5/forecast?q=Munich,de&units=metric&APPID=${OWM_API_KEY}&cnt=40`;
 
-export default class WeatherApp extends Component {
-  constructor(props) {
+interface WeatherAppState {
+  isLoading: boolean;
+  isCelcius: boolean;
+  active: number;
+  weatherList: WeatherList;
+}
+
+export default class WeatherApp extends Component<unknown, WeatherAppState> {
+  constructor(props: unknown) {
     super(props);
 
     this.state = {
@@ -24,7 +32,7 @@ export default class WeatherApp extends Component {
   componentDidMount() {
     fetch(API_URL)
       .then(response => response.json())
-      .then(json => {
+      .then((json: ForecastResponse) => {
         this.setState({
           isLoading: false,
           weatherList: transformedWeather(json),
@@ -96,7 +104,7 @@ export default class WeatherApp extends Component {
           onRightClick={this.rightClick}
         />
 
-        <Graph data={todaysWeather} isCelcius={isCelcius} />
+        <Graph data={todaysWeather || []} isCelcius={isCelcius} />
       </Container>
     );
   }

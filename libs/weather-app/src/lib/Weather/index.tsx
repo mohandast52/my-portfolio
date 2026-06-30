@@ -1,22 +1,15 @@
-import PropTypes from 'prop-types';
 import { Card } from 'antd';
 import { getCurrentFromTime } from '../utils';
 import { Cards } from '../styles';
+import type { WeatherEntry } from '../types';
 
-/*
-export const CardWrapper = ({ isActive, children }) => {
-  if (!isActive) {
-    return <>{children}</>;
-  }
-
-  return (
-    <Badge.Ribbon text="啦啦啦啦" color="#2db7f5" placement="start">
-      {children}
-    </Badge.Ribbon>
-  );
+interface WeatherProps {
+  isCelcius?: boolean;
+  active?: number;
+  list?: Array<[string, WeatherEntry[]]>;
 }
-*/
-const Weather = ({ isCelcius = false, active = 0, list = [] }) => (
+
+const Weather = ({ isCelcius = false, active = 0, list = [] }: WeatherProps) => (
   <Cards>
     {list.map(([key, value], index) => {
       if (![active, active + 1, active + 2].includes(index)) {
@@ -35,7 +28,7 @@ const Weather = ({ isCelcius = false, active = 0, list = [] }) => (
         weather_main: weatherMain,
         weather_icon: weatherIcon,
         wind_speed: windSpeed,
-      } = currentWeather || {};
+      } = currentWeather || ({} as WeatherEntry);
 
       return (
         <Card
@@ -47,14 +40,13 @@ const Weather = ({ isCelcius = false, active = 0, list = [] }) => (
             />
           )}
           className={index === active ? 'active' : ''}
-          actions={null}
         >
           <div className="weather-info">
             <div className="main">{weatherMain}</div>
             <div className="temperature">
               {isCelcius ? temperature : fahrenheit}
               <span className="symbol">
-                {isCelcius ? '\u00B0C' : '\u00B0F'}
+                {isCelcius ? '°C' : '°F'}
               </span>
             </div>
             <div className="speed-drop">
@@ -68,11 +60,5 @@ const Weather = ({ isCelcius = false, active = 0, list = [] }) => (
     })}
   </Cards>
 );
-
-Weather.propTypes = {
-  isCelcius: PropTypes.bool,
-  active: PropTypes.number,
-  list: PropTypes.shape([]),
-};
 
 export default Weather;

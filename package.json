@@ -34,6 +34,9 @@
     "@testing-library/jest-dom": "6.9.1",
     "@testing-library/react": "16.3.2",
     "@testing-library/user-event": "14.6.1",
+    "@types/node": "^26.0.1",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
     "eslint": "9",
     "eslint-config-next": "15",
     "eslint-plugin-import": "^2.32.0",
@@ -51,6 +54,8 @@
   },
   "packageManager": "pnpm@11.5.1",
   "nx": {
-    "tags": ["type:app"]
+    "tags": [
+      "type:app"
+    ]
   }
 }

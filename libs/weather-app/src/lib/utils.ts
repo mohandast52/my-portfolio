@@ -1,5 +1,7 @@
-export const transformedWeather = weatherJson => {
-  const weatherList = {};
+import type { ForecastResponse, WeatherEntry, WeatherList } from './types';
+
+export const transformedWeather = (weatherJson: ForecastResponse): WeatherList => {
+  const weatherList: WeatherList = {};
 
   (weatherJson.list || []).forEach(e => {
     const {
@@ -7,15 +9,15 @@ export const transformedWeather = weatherJson => {
     } = e;
     const [date, time] = dtText.split(' ');
 
-    const tempWeather = {
+    const tempWeather: WeatherEntry = {
       date,
       time: time.slice(0, -3),
       weather_main: weather[0].main,
       weather_description: weather[0].description,
       weather_icon: weather[0].icon,
       wind_speed: wind.speed,
-      temperature: Number(parseFloat(main.temp).toFixed(2)),
-      fahrenheit: Number(((parseFloat(main.temp) * 9) / 5 + 32).toFixed(2)),
+      temperature: Number(main.temp.toFixed(2)),
+      fahrenheit: Number(((main.temp * 9) / 5 + 32).toFixed(2)),
       humidity: main.humidity,
     };
 
@@ -29,7 +31,7 @@ export const transformedWeather = weatherJson => {
   return weatherList;
 };
 
-export const getCurrentFromTime = () => {
+export const getCurrentFromTime = (): number => {
   const date = new Date();
   const currentHour = date.getHours();
 

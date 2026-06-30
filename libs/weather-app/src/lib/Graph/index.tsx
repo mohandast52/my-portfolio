@@ -1,14 +1,23 @@
-/* global am4charts am4core */
 import React, { Component } from 'react';
 import { Divider } from 'antd';
 import { ChartContainer } from '../styles';
+import type { WeatherEntry } from '../types';
 
-class Graph extends Component {
+// amCharts v4 is loaded as global CDN scripts in _document (no npm types).
+declare const am4core: any;
+declare const am4charts: any;
+
+interface GraphProps {
+  data: WeatherEntry[];
+  isCelcius: boolean;
+}
+
+class Graph extends Component<GraphProps> {
   componentDidMount() {
     this.chart();
   }
 
-  componentDidUpdate(prevProp) {
+  componentDidUpdate(prevProp: GraphProps) {
     const { isCelcius, data } = this.props;
     if (prevProp.data !== data || prevProp.isCelcius !== isCelcius) {
       this.chart();

@@ -8,6 +8,10 @@
     "lint": {
       "command": "eslint libs/weather-app",
       "cache": true
+    },
+    "typecheck": {
+      "command": "tsc --noEmit -p libs/weather-app/tsconfig.json",
+      "cache": true
     }
   }
 }

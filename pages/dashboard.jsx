@@ -1,3 +1,3 @@
-import Dashboard from 'components/Dashboard';
+import Dashboard from '@my-portfolio/dashboard';
 
 export default Dashboard;

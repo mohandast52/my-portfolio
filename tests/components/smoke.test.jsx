@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import Dashboard from 'components/Dashboard';
+import Dashboard from '@my-portfolio/dashboard';
 import Timer from '@my-portfolio/timer';
 
 /**

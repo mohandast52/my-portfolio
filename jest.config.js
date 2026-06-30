@@ -22,6 +22,7 @@ module.exports = {
     '^@my-portfolio/qiibee$': '<rootDir>/libs/qiibee/src/index.js',
     '^@my-portfolio/timer$': '<rootDir>/libs/timer/src/index.ts',
     '^@my-portfolio/solid-principles$': '<rootDir>/libs/solid-principles/src/index.ts',
+    '^@my-portfolio/dashboard$': '<rootDir>/libs/dashboard/src/index.js',
     '^components/(.*)$': '<rootDir>/components/$1',
     '^util/(.*)$': '<rootDir>/util/$1',
     '^store$': '<rootDir>/store',

@@ -23,6 +23,7 @@
       "@my-portfolio/qiibee": ["libs/qiibee/src/index.js"],
       "@my-portfolio/timer": ["libs/timer/src/index.ts"],
       "@my-portfolio/solid-principles": ["libs/solid-principles/src/index.ts"],
+      "@my-portfolio/dashboard": ["libs/dashboard/src/index.js"],
       "components/*": ["components/*"],
       "util/*": ["util/*"],
       "store": ["store"],

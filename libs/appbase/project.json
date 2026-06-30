@@ -1,0 +1,13 @@
+{
+  "name": "appbase",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/appbase/src",
+  "tags": ["scope:appbase", "type:feature"],
+  "targets": {
+    "lint": {
+      "command": "eslint libs/appbase",
+      "cache": true
+    }
+  }
+}

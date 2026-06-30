@@ -1,3 +1,3 @@
-import Taikai from 'components/Assignments/Taikai';
+import Taikai from '@my-portfolio/taikai';
 
 export default Taikai;

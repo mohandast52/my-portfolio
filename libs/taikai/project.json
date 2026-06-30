@@ -1,0 +1,13 @@
+{
+  "name": "taikai",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/taikai/src",
+  "tags": ["scope:taikai", "type:feature"],
+  "targets": {
+    "lint": {
+      "command": "eslint libs/taikai",
+      "cache": true
+    }
+  }
+}

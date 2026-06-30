@@ -1,3 +1,3 @@
-import Appbase from 'components/Assignments/Appbase';
+import { Appbase } from '@my-portfolio/appbase';
 
 export default Appbase;

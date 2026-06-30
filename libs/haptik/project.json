@@ -1,0 +1,13 @@
+{
+  "name": "haptik",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/haptik/src",
+  "tags": ["scope:haptik", "type:feature"],
+  "targets": {
+    "lint": {
+      "command": "eslint libs/haptik",
+      "cache": true
+    }
+  }
+}

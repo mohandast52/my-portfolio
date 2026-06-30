@@ -8,7 +8,13 @@
       "@my-portfolio/qiibee": ["libs/qiibee/src/index.js"],
       "@my-portfolio/timer": ["libs/timer/src/index.ts"],
       "@my-portfolio/solid-principles": ["libs/solid-principles/src/index.ts"],
-      "@my-portfolio/dashboard": ["libs/dashboard/src/index.js"]
+      "@my-portfolio/dashboard": ["libs/dashboard/src/index.js"],
+      "@my-portfolio/cogsy": ["libs/cogsy/src/index.js"],
+      "@my-portfolio/taikai": ["libs/taikai/src/index.js"],
+      "@my-portfolio/fynd": ["libs/fynd/src/index.js"],
+      "@my-portfolio/haptik": ["libs/haptik/src/index.js"],
+      "@my-portfolio/plaza": ["libs/plaza/src/index.js"],
+      "@my-portfolio/appbase": ["libs/appbase/src/index.js"]
     }
   }
 }

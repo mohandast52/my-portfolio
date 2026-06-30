@@ -4,8 +4,8 @@ module.exports = {
   testEnvironment: 'jsdom',
   verbose: true,
   collectCoverageFrom: [
-    'components/Assignments/Haptik/**/*.{js,jsx}',
-    '!components/Assignments/Haptik/**/styles.{js,jsx}',
+    'libs/haptik/src/lib/**/*.{js,jsx}',
+    '!libs/haptik/src/lib/**/styles.{js,jsx}',
   ],
   setupFilesAfterEnv: ['./jest.setup.js'],
   // .babelrc was removed so Next can use SWC; give Jest its own babel transform.
@@ -23,6 +23,12 @@ module.exports = {
     '^@my-portfolio/timer$': '<rootDir>/libs/timer/src/index.ts',
     '^@my-portfolio/solid-principles$': '<rootDir>/libs/solid-principles/src/index.ts',
     '^@my-portfolio/dashboard$': '<rootDir>/libs/dashboard/src/index.js',
+    '^@my-portfolio/cogsy$': '<rootDir>/libs/cogsy/src/index.js',
+    '^@my-portfolio/taikai$': '<rootDir>/libs/taikai/src/index.js',
+    '^@my-portfolio/fynd$': '<rootDir>/libs/fynd/src/index.js',
+    '^@my-portfolio/haptik$': '<rootDir>/libs/haptik/src/index.js',
+    '^@my-portfolio/plaza$': '<rootDir>/libs/plaza/src/index.js',
+    '^@my-portfolio/appbase$': '<rootDir>/libs/appbase/src/index.js',
     '^components/(.*)$': '<rootDir>/components/$1',
     '^util/(.*)$': '<rootDir>/util/$1',
     '^store$': '<rootDir>/store',

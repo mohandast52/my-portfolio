@@ -1,3 +1,3 @@
-import Cogsy from 'components/Assignments/Cogsy';
+import Cogsy from '@my-portfolio/cogsy';
 
 export default Cogsy;

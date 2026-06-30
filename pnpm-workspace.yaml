@@ -3,7 +3,7 @@
 #   nx            - native file-hashing + daemon bindings (Nx task runner)
 #   sharp         - Next.js image optimization (native libvips)
 #   unrs-resolver - native resolver used by eslint-plugin-import / eslint-config-next
-allowBuilds:
-  nx: true
-  sharp: true
-  unrs-resolver: true
+onlyBuiltDependencies:
+  - nx
+  - sharp
+  - unrs-resolver

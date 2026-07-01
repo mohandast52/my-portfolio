@@ -1,20 +1,28 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import { Provider } from 'react-redux';
-import { makeStore } from 'store';
-import { QiibeeAssignment as Qiibee } from '@my-portfolio/qiibee';
+import { configureStore } from '@reduxjs/toolkit';
+import { QiibeeAssignment as Qiibee, qiibeeReducer } from '@my-portfolio/qiibee';
 
 /**
  * Redux tripwire: renders the connect()-wrapped Qiibee sign-in through a real
- * Redux Toolkit store + react-redux <Provider>. Guards the Phase 5 migration
- * (react-redux 9, RTK configureStore, next-redux-wrapper 8) and anything that
- * later touches the redux wiring.
+ * Redux Toolkit store + react-redux <Provider>. Guards the redux wiring
+ * (react-redux 9, RTK configureStore, the connected components).
  */
 describe('<Qiibee /> (redux-connected)', () => {
   it('mounts the sign-in screen wired to the RTK store', () => {
     expect.hasAssertions();
+    // The legacy qiibee reducer mutates in place, so disable RTK's checks —
+    // mirrors the app store composed in pages/_app.tsx.
+    const store = configureStore({
+      reducer: { qiibee: qiibeeReducer },
+      middleware: getDefaultMiddleware => getDefaultMiddleware({
+        immutableCheck: false,
+        serializableCheck: false,
+      }),
+    });
     const { container } = render(
-      <Provider store={makeStore()}>
+      <Provider store={store}>
         <Qiibee />
       </Provider>,
     );

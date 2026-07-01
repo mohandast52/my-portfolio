@@ -16,3 +16,6 @@ coverage
 
 # TypeScript
 *.tsbuildinfo
+
+# Personal TypeScript learning sandbox — keep untracked
+components/TypescriptLearning/

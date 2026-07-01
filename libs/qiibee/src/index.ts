@@ -6,5 +6,5 @@ export { default as QiibeeCustomer } from './lib/Customer';
 export { default as QiibeeSignIn } from './lib/Login/SignIn';
 export { default as QiibeeSignUp } from './lib/Login/SignUp';
 
-// The redux slice this feature owns; the app composes it in store/index.ts.
+// The redux slice this feature owns; the app composes it in pages/_app.tsx.
 export { default as qiibeeReducer } from './lib/state';

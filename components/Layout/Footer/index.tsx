@@ -24,7 +24,7 @@ const Footer = () => (
             </span>
             &nbsp;&gt;
           </Rotate>
-          <Input placeholder="A bigger text input" size="1rem" />
+          <Input placeholder="A bigger text input" size={'1rem' as any} />
           <div>Got a project? Let’s chat…</div>
           <div>+91 8898162324</div>
         </Col>

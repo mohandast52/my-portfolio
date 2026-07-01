@@ -20,20 +20,20 @@ export const Row = styled.div`
   }
 `;
 
-export const Input = styled.input.attrs(props => ({
+export const Input = styled.input.attrs((props: any) => ({
   type: 'password',
   size: props.size || '1em',
   mohanColor: 'violet',
   placeholder: 'tera mera',
 }))`
-  color: ${props => props.mohanColor};
+  color: ${(props: any) => props.mohanColor};
   font-size: 1em;
   border: 2px solid palevioletred;
   border-radius: 3px;
 
   /* here we use the dynamically computed prop */
-  margin: ${props => props.size};
-  padding: ${props => props.size};
+  margin: ${(props: any) => props.size};
+  padding: ${(props: any) => props.size};
 `;
 const rotate = keyframes`
   from {

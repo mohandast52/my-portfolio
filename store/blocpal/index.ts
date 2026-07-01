@@ -2,7 +2,10 @@ import { apiTypes, syncTypes } from './_types';
 
 const initialState = {};
 
-const blocpalReducer = (state = initialState, action) => {
+const blocpalReducer = (
+  state: Record<string, unknown> = initialState,
+  action: { type: string; data?: any },
+) => {
   const { data } = action;
 
   switch (action.type) {

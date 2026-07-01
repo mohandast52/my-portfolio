@@ -4,9 +4,9 @@ import IntroOverlay from '../IntroOverlay';
 import Banner from '../Banner';
 import Cases from '../Cases';
 
-const timeline = gsap.timeline();
+const timeline: gsap.core.Timeline = gsap.timeline();
 
-const fetchAnimation = onAnimationComplete => {
+const fetchAnimation = (onAnimationComplete: () => void) => {
   timeline
     .from('.line span', 1.8, {
       opacity: 0,

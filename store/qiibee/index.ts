@@ -2,14 +2,29 @@ import { notification } from 'antd';
 import { syncTypes } from './_types';
 import { CUSTOMERS, BRANDS } from './dummyData';
 
-const INIT_STATE = {
+export interface QiibeeState {
+  currentUserType: string | null;
+  currentUser: any;
+  customers: any[];
+  brands: any[];
+}
+
+interface QiibeeAction {
+  type: string;
+  data?: any;
+}
+
+const INIT_STATE: QiibeeState = {
   currentUserType: null,
   currentUser: null,
   customers: CUSTOMERS,
   brands: BRANDS,
 };
 
-const counterReducer = (state = INIT_STATE, action) => {
+const counterReducer = (
+  state: QiibeeState = INIT_STATE,
+  action: QiibeeAction,
+): QiibeeState => {
   const { type, data } = action;
   switch (type) {
     case syncTypes.SIGN_IN: {
@@ -69,11 +84,11 @@ const counterReducer = (state = INIT_STATE, action) => {
       // update currentUser
       const copy = { ...state.currentUser };
       const brand = copy.brands_following.find(
-        ({ brand_id }) => data === brand_id,
+        ({ brand_id }: any) => data === brand_id,
       );
       copy.reedeemed_points += brand.reedeem_points_provided;
       brand.reedeem_points_provided = 0;
-      copy.brands_following = copy.brands_following.map(item => {
+      copy.brands_following = copy.brands_following.map((item: any) => {
         const { brand_id } = item;
         if (data !== brand_id) return item;
         return brand;
@@ -149,7 +164,7 @@ const counterReducer = (state = INIT_STATE, action) => {
       const copy = state.customers.map(customer => {
         if (!data.includes(customer.id)) return customer;
 
-        const brandCopy = customer.brands_following.map(item => {
+        const brandCopy = customer.brands_following.map((item: any) => {
           const { brand_id, reedeem_points_provided } = item;
           if (brand_id !== state.currentUser.id) return item;
 

@@ -1,3 +1,3 @@
-import Assignment from 'components/Assignments/Plaza/Assignment';
+import Assignment from '@my-portfolio/plaza';
 
 export default Assignment;

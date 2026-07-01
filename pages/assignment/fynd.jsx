@@ -1,3 +1,3 @@
-import Fynd from 'components/Assignments/Fynd';
+import Fynd from '@my-portfolio/fynd';
 
 export default Fynd;

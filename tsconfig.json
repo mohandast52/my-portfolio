@@ -1,0 +1,42 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "target": "ES2017",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "checkJs": false,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "plugins": [{ "name": "next" }],
+    "baseUrl": ".",
+    "paths": {
+      "@my-portfolio/weather-app": ["libs/weather-app/src/index.ts"],
+      "@my-portfolio/valory": ["libs/valory/src/index.ts"],
+      "@my-portfolio/qiibee": ["libs/qiibee/src/index.ts"],
+      "@my-portfolio/timer": ["libs/timer/src/index.ts"],
+      "@my-portfolio/solid-principles": ["libs/solid-principles/src/index.ts"],
+      "@my-portfolio/dashboard": ["libs/dashboard/src/index.ts"],
+      "@my-portfolio/cogsy": ["libs/cogsy/src/index.ts"],
+      "@my-portfolio/taikai": ["libs/taikai/src/index.ts"],
+      "@my-portfolio/fynd": ["libs/fynd/src/index.ts"],
+      "@my-portfolio/haptik": ["libs/haptik/src/index.ts"],
+      "@my-portfolio/plaza": ["libs/plaza/src/index.ts"],
+      "@my-portfolio/appbase": ["libs/appbase/src/index.ts"],
+      "components/*": ["components/*"],
+      "util/*": ["util/*"],
+      "store": ["store"],
+      "store/*": ["store/*"],
+      "images/*": ["public/images/*"]
+    }
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "exclude": ["node_modules"]
+}

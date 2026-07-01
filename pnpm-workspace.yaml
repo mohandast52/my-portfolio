@@ -1,7 +1,9 @@
 # pnpm 11 settings home (the package.json "pnpm" field is no longer read).
 # Allow these native deps to run their install/build scripts:
+#   nx            - native file-hashing + daemon bindings (Nx task runner)
 #   sharp         - Next.js image optimization (native libvips)
 #   unrs-resolver - native resolver used by eslint-plugin-import / eslint-config-next
 allowBuilds:
+  nx: true
   sharp: true
   unrs-resolver: true

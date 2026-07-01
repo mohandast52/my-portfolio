@@ -1,0 +1,111 @@
+import React, { Component } from 'react';
+import { Spin } from 'antd';
+import { transformedWeather } from './utils';
+import { Container, LoaderContainer } from './styles';
+import Weather from './Weather';
+import Graph from './Graph';
+import { Header, Footer } from './Weather/helpers';
+import type { ForecastResponse, WeatherList } from './types';
+
+const OWM_API_KEY = process.env.NEXT_PUBLIC_OPENWEATHERMAP_API_KEY;
+const API_URL = `https://api.openweathermap.org/data/2.5/forecast?q=Munich,de&units=metric&APPID=${OWM_API_KEY}&cnt=40`;
+
+interface WeatherAppState {
+  isLoading: boolean;
+  isCelcius: boolean;
+  active: number;
+  weatherList: WeatherList;
+}
+
+export default class WeatherApp extends Component<unknown, WeatherAppState> {
+  constructor(props: unknown) {
+    super(props);
+
+    this.state = {
+      isLoading: true,
+      isCelcius: false,
+      active: 0,
+      weatherList: {},
+    };
+  }
+
+  componentDidMount() {
+    fetch(API_URL)
+      .then(response => response.json())
+      .then((json: ForecastResponse) => {
+        this.setState({
+          isLoading: false,
+          weatherList: transformedWeather(json),
+        });
+      })
+      .catch(error => {
+        window.console.log('Request Failed', error);
+        this.setState({ isLoading: false });
+      });
+  }
+
+  onTempChange = () => {
+    this.setState(prev => ({ isCelcius: !prev.isCelcius }));
+  };
+
+  leftClick = () => {
+    this.setState(prev => {
+      const temp = prev.active - 1;
+      return {
+        ...prev,
+        active: temp >= 0 ? temp : 0,
+      };
+    });
+  };
+
+  rightClick = () => {
+    this.setState(prev => {
+      const temp = prev.active + 1;
+      const { length } = Object.keys(prev.weatherList);
+      return {
+        ...prev,
+        active: temp > length - 1 ? prev.active : temp,
+      };
+    });
+  };
+
+  render() {
+    const {
+      isLoading, isCelcius, active, weatherList,
+    } = this.state;
+    const updatedWeatherList = Object.entries(weatherList);
+    const currentWeather = updatedWeatherList.find(
+      (_weather, index) => index === active,
+    );
+    const [, todaysWeather] = currentWeather || [];
+
+    if (isLoading) {
+      return (
+        <LoaderContainer>
+          <Spin tip="Loading..." />
+        </LoaderContainer>
+      );
+    }
+
+    return (
+      <Container>
+        <Header isCelcius={isCelcius} onTempChange={this.onTempChange} />
+
+        <Weather
+          isCelcius={isCelcius}
+          active={active}
+          list={updatedWeatherList}
+        />
+
+        <Footer
+          isLeftDisabled={active === 0}
+          onLeftClick={this.leftClick}
+          isRightDisabled={active === updatedWeatherList.length - 1}
+          onRightClick={this.rightClick}
+        />
+
+        <Graph data={todaysWeather || []} isCelcius={isCelcius} />
+      </Container>
+    );
+  }
+}

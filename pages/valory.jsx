@@ -1,3 +1,3 @@
-import Valory from 'components/Valory';
+import Valory from '@my-portfolio/valory';
 
 export default Valory;

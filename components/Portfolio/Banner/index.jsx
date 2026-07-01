@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 // import { ReactComponent as RightArrow } from '../assets/arrow-right.svg';
 import { Main } from './styles';
 
@@ -17,10 +18,10 @@ const Banner = () => (
         </h2>
 
         <div className="btn-row">
-          <a href="/">
+          <Link href="/">
             More about me
             {/* <RightArrow /> */}
-          </a>
+          </Link>
         </div>
       </div>
     </div>

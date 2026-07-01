@@ -1,0 +1,17 @@
+{
+  "name": "solid-principles",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/solid-principles/src",
+  "tags": ["scope:solid-principles", "type:feature"],
+  "targets": {
+    "lint": {
+      "command": "eslint libs/solid-principles",
+      "cache": true
+    },
+    "typecheck": {
+      "command": "tsc --noEmit -p libs/solid-principles/tsconfig.json",
+      "cache": true
+    }
+  }
+}

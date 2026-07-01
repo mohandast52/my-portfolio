@@ -1,0 +1,17 @@
+{
+  "name": "fynd",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/fynd/src",
+  "tags": ["scope:fynd", "type:feature"],
+  "targets": {
+    "lint": {
+      "command": "eslint libs/fynd",
+      "cache": true
+    },
+    "typecheck": {
+      "command": "tsc --noEmit -p libs/fynd/tsconfig.json",
+      "cache": true
+    }
+  }
+}

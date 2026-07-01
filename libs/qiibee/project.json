@@ -1,0 +1,17 @@
+{
+  "name": "qiibee",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/qiibee/src",
+  "tags": ["scope:qiibee", "type:feature"],
+  "targets": {
+    "lint": {
+      "command": "eslint libs/qiibee",
+      "cache": true
+    },
+    "typecheck": {
+      "command": "tsc --noEmit -p libs/qiibee/tsconfig.json",
+      "cache": true
+    }
+  }
+}

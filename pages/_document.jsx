@@ -1,4 +1,3 @@
-/* eslint-disable react/no-danger */
 import Document from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
 import { createCache, extractStyle, StyleProvider } from '@ant-design/cssinjs';
@@ -43,9 +42,13 @@ export default class MyDocument extends Document {
             href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap"
             rel="stylesheet"
           />,
+          /* eslint-disable @next/next/no-sync-scripts --
+             amCharts v4 loads from its CDN as synchronous scripts in the
+             document head; next/script is not usable in _document here. */
           <script key="4" src="//cdn.amcharts.com/lib/4/core.js" />,
           <script key="5" src="//cdn.amcharts.com/lib/4/charts.js" />,
           <script key="6" src="//cdn.amcharts.com/lib/4/maps.js" />,
+          /* eslint-enable @next/next/no-sync-scripts */
         ],
       };
     } finally {

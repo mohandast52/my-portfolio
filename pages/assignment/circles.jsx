@@ -1,3 +1,3 @@
-import Circles from 'components/Assignments/Appbase/circles';
+import { Circles } from '@my-portfolio/appbase';
 
 export default Circles;

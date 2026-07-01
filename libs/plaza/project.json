@@ -1,0 +1,17 @@
+{
+  "name": "plaza",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/plaza/src",
+  "tags": ["scope:plaza", "type:feature"],
+  "targets": {
+    "lint": {
+      "command": "eslint libs/plaza",
+      "cache": true
+    },
+    "typecheck": {
+      "command": "tsc --noEmit -p libs/plaza/tsconfig.json",
+      "cache": true
+    }
+  }
+}

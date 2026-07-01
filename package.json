@@ -1,4 +1,6 @@
 {
+  "name": "my-portfolio",
+  "version": "0.1.0",
   "scripts": {
     "dev": "next",
     "build": "next build",
@@ -27,10 +29,16 @@
   "devDependencies": {
     "@eslint/eslintrc": "3",
     "@eslint/js": "9",
+    "@nx/eslint-plugin": "23.0.1",
     "@testing-library/dom": "10.4.0",
     "@testing-library/jest-dom": "6.9.1",
     "@testing-library/react": "16.3.2",
     "@testing-library/user-event": "14.6.1",
+    "@types/node": "^26.0.1",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "@typescript-eslint/eslint-plugin": "^8.60.1",
+    "@typescript-eslint/parser": "^8.60.1",
     "eslint": "9",
     "eslint-config-next": "15",
     "eslint-plugin-import": "^2.32.0",
@@ -40,10 +48,16 @@
     "eslint-plugin-react-hooks": "^7.1.1",
     "jest": "30",
     "jest-environment-jsdom": "30",
+    "nx": "23.0.1",
     "typescript": "5"
   },
   "engines": {
     "node": "24.x"
   },
-  "packageManager": "pnpm@11.5.1"
+  "packageManager": "pnpm@11.5.1",
+  "nx": {
+    "tags": [
+      "type:app"
+    ]
+  }
 }

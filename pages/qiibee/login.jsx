@@ -1,3 +1,3 @@
-import SignIn from 'components/Qiibee/Login/SignIn';
+import { QiibeeSignIn as SignIn } from '@my-portfolio/qiibee';
 
 export default SignIn;

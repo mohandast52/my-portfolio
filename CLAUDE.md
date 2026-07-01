@@ -70,7 +70,7 @@ The app's legacy convenience aliases (`components/*`, `store/*`, `util/*`, `imag
 - **App aliases** (`components/*`, `store`, `store/*`, `util/*`, `images/*`) live in **`tsconfig.json` only** — do **not** add them to `tsconfig.base.json` or the boundary rule would flag every in-app import.
 
 ### State management
-- **Redux (qiibee only):** the **qiibee lib owns its slice** — reducer, actions, and the domain types live in [libs/qiibee/src/lib/state/](libs/qiibee/src/lib/state/) and the lib's barrel exports `qiibeeReducer`. The app **composes** it in [store/index.ts](store/index.ts) via RTK `configureStore` + `next-redux-wrapper` — an app→feature dependency, the correct direction (immutability & serializability checks are **off** because the legacy reducer mutates in place). A vestigial `blocpal` slice still sits in `store/` but is **not** wired in — ignore it.
+- **Redux (qiibee only):** the **qiibee lib owns its slice** — reducer, actions, and the domain types live in [libs/qiibee/src/lib/state/](libs/qiibee/src/lib/state/) and the lib's barrel exports `qiibeeReducer`. The app **composes** it in [store/index.ts](store/index.ts) via RTK `configureStore` + `next-redux-wrapper` — an app→feature dependency, the correct direction (immutability & serializability checks are **off** because the legacy reducer mutates in place). `store/` now holds only this composition.
 - **Local:** every other lib uses `useReducer`/`useState`. The assignment reducers (Haptik, Taikai, Fynd, Appbase) keep an untouched `...Copy` of the original list and derive filtered/sorted views from it, so search/sort/reset never lose data.
 
 ### Styling

@@ -1,5 +1,5 @@
 import styled, { keyframes } from 'styled-components';
-import { COLOR } from 'util/theme';
+import { COLOR } from '@my-portfolio/ui-theme';
 
 export const Container = styled.div`
   padding: 10rem 5rem;

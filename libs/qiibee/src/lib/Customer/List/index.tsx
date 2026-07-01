@@ -5,7 +5,7 @@ import {
 import {
   followBrand as followBrandFn,
   reedeemPoints as reedeemPointsFn,
-} from 'store/qiibee/actions';
+} from '../../state/actions';
 import { Actions, BrandCard } from './styles';
 
 const { Meta } = Card;

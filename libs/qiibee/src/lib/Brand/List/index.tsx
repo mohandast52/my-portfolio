@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Table, Button } from 'antd';
 import {
   handleAwardPoints as handleAwardPointsFn,
-} from 'store/qiibee/actions';
+} from '../../state/actions';
 import { Container } from './styles';
 
 interface ListProps {

@@ -1,10 +1,9 @@
 # qiibee
 
 A loyalty-points mini-app (customer + brand dashboards, sign in / sign up) — the
-only feature wired into the global Redux store. Extracted into an Nx library and
-now authored in TypeScript. The redux **slice** stays app-level (see the Redux
-note below); the lib's connected components are pragmatically typed (component
-props get an `interface`; the redux `state`/`dispatch` are typed as `any`).
+only feature wired into the global Redux store. Extracted into an Nx library
+(TypeScript) that **owns its redux slice** (`src/lib/state/`) and exports the
+`qiibeeReducer` for the app to compose (see the Redux note below).
 
 ## Usage
 
@@ -22,10 +21,12 @@ import {
 
 ## Redux note
 
-The redux **slice** (`store/qiibee`) and store composition (`store/index.js`,
-`next-redux-wrapper`) intentionally stay app-level — that is the integration
-boundary. This lib's connected components dispatch action creators imported from
-`store/qiibee/actions`, which is allow-listed in the module-boundary rule.
+This lib **owns its redux slice** — the reducer, action creators, and domain
+types (`Customer` / `Brand`) live in [src/lib/state/](src/lib/state/), and the
+barrel exports `qiibeeReducer`. The app **composes** it in `store/index.ts` (RTK
+`configureStore` + `next-redux-wrapper`) — an app→feature dependency, the correct
+direction. Immutability / serializability checks are disabled there because the
+legacy reducer mutates state in place.
 
 ## Targets
 

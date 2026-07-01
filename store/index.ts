@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { createWrapper } from 'next-redux-wrapper';
-import qiibee from './qiibee';
+import { qiibeeReducer as qiibee } from '@my-portfolio/qiibee';
 
 export const makeStore = () => configureStore({
   reducer: { qiibee },

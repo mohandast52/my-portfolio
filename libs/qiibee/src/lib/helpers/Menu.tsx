@@ -12,7 +12,7 @@ import {
 } from '@ant-design/icons';
 import {
   handleLogout as handleLogoutFn,
-} from 'store/qiibee/actions';
+} from '../state/actions';
 import { Container, NavFooter } from './styles';
 
 const {

@@ -96,9 +96,18 @@ The Portfolio landing page ([components/Portfolio/Pages/Home.tsx](components/Por
 6. Redirect the page(s) to `import … from '@my-portfolio/<name>'`.
 7. Verify: `pnpm nx lint <name>`, `pnpm nx typecheck <name>`, `pnpm build`, `pnpm testc`.
 
+## Principles
+
+Durable rules for working in this repo — follow them by default.
+
+- **No `any` — model the real types.** Define interfaces for domain data (e.g. the qiibee `Customer` / `Brand` model in [store/qiibee/types.ts](store/qiibee/types.ts)). For a genuinely dynamic value use `unknown` **plus a narrow typed assertion** (`x as SomeType`) — never `any`. A hand-written redux reducer stays RTK-compatible by typing its action as `{ type: string; data?: unknown }` and casting `data` per case; narrow `currentUser` with `as Customer` / `as Brand` where the action implies the variant. (`unknown` + assertion is fine; `any` is not.)
+- **Verify before calling it done.** Run the relevant checks and confirm green — `pnpm lint`, `pnpm nx typecheck <lib>` (or `nx run-many -t typecheck`), `pnpm build`, `pnpm testc` — never report "done" on a guess.
+- **Preserve behavior when refactoring.** Type-tightening, renames, and extractions must not change runtime behavior. If a "correct" type would force a behavior change, prefer a documented assertion over changing the logic.
+- **Match the surrounding code.** Keep the existing conventions (the `...Copy` reducer pattern, the `reedeem` misspellings, `arrow-parens: as-needed`, the lib/barrel layout) rather than introducing new styles.
+
 ## Conventions & gotchas
 - **pnpm config home is [pnpm-workspace.yaml](pnpm-workspace.yaml)** — pnpm 11 **ignores** the `package.json` `pnpm` field (it warns). Both `allowBuilds` (native build-script allowlist: `nx`, `sharp`, `unrs-resolver`) and `overrides` (security bumps) live there. Applying new overrides needs `pnpm install --no-frozen-lockfile`.
 - **ESLint 9 flat config** ([eslint.config.mjs](eslint.config.mjs)): `eslint-config-next` + `js.recommended`, `@typescript-eslint` for `.ts/.tsx`, jest rules for tests, and the boundary rule. `arrow-parens: as-needed`. Run `pnpm lint` before considering work done.
 - The **OpenWeatherMap key** is `NEXT_PUBLIC_OPENWEATHERMAP_API_KEY` in `.env.local` (see [.env.example](.env.example)) — no longer hardcoded.
 - The qiibee slice uses the consistent misspellings **`reedeemed_points` / `reedeem_points`** — match them so lookups keep working.
-- Redux state and some dynamic/chart data are intentionally typed `any` (pragmatic — the legacy reducer mutates); don't over-invest in typing them.
+- Test files are still `.jsx` (jest transforms `ts/tsx` via `next/babel`); coverage is scoped to Haptik.

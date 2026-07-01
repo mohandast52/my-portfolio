@@ -1,5 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
-import { COLOR } from 'util/theme';
+import { COLOR } from '@my-portfolio/ui-theme';
 
 // const GlobalStyles = styled.div`
 const GlobalStyle = createGlobalStyle`

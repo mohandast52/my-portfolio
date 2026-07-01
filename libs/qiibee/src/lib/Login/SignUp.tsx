@@ -7,7 +7,7 @@ import {
 } from 'antd';
 import {
   handleSignUp as handleSignUpFn,
-} from 'store/qiibee/actions';
+} from '../state/actions';
 import { Container, Header } from './styles';
 
 const { Title, Paragraph } = Typography;

@@ -8,7 +8,7 @@ import {
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import {
   handleSignIn as handleSignInFn,
-} from 'store/qiibee/actions';
+} from '../state/actions';
 import { Container, Header } from './styles';
 
 const { Title, Paragraph } = Typography;

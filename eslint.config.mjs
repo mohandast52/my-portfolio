@@ -41,7 +41,7 @@ const config = [
         // The app's legacy root aliases are in-app imports, not project
         // boundaries; exempt them from the "use relative within a project" nag.
         // Nx allow uses /** for any-depth prefix matching (/* is one segment).
-        allow: ['components/**', 'store', 'store/**', 'images/**'],
+        allow: ['components/**', 'images/**'],
         depConstraints: [
           { sourceTag: 'type:app', onlyDependOnLibsWithTags: ['type:feature', 'type:util'] },
           { sourceTag: 'type:feature', onlyDependOnLibsWithTags: ['type:util'] },

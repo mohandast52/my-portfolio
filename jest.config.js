@@ -31,8 +31,6 @@ module.exports = {
     '^@my-portfolio/appbase$': '<rootDir>/libs/appbase/src/index.ts',
     '^@my-portfolio/ui-theme$': '<rootDir>/libs/ui-theme/src/index.ts',
     '^components/(.*)$': '<rootDir>/components/$1',
-    '^store$': '<rootDir>/store',
-    '^store/(.*)$': '<rootDir>/store/$1',
     '^images/(.*)$': '<rootDir>/public/images/$1',
   },
 };

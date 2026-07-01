@@ -1,7 +1,6 @@
 import Document, { DocumentContext, DocumentInitialProps } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
 import { createCache, extractStyle, StyleProvider } from '@ant-design/cssinjs';
-import type { ComponentType } from 'react';
 
 export default class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext): Promise<DocumentInitialProps> {
@@ -11,7 +10,7 @@ export default class MyDocument extends Document {
 
     try {
       ctx.renderPage = () => originalRenderPage({
-        enhanceApp: (App: ComponentType<any>) => (props: any) => sheet.collectStyles(
+        enhanceApp: App => props => sheet.collectStyles(
           <StyleProvider cache={cache}>
             <App {...props} />
           </StyleProvider>,

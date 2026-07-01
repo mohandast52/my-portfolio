@@ -15,7 +15,7 @@ import { wrapper } from '../store';
  * with the standard @emotion/is-prop-valid recipe; custom components still
  * receive every prop.
  */
-const shouldForwardProp = (propName: string, target: any) => (typeof target === 'string' ? isPropValid(propName) : true);
+const shouldForwardProp = (propName: string, target: unknown) => (typeof target === 'string' ? isPropValid(propName) : true);
 
 const MyApp = ({ Component, ...rest }: AppProps) => {
   const { store, props } = wrapper.useWrappedStore(rest);

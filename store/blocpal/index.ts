@@ -4,7 +4,7 @@ const initialState = {};
 
 const blocpalReducer = (
   state: Record<string, unknown> = initialState,
-  action: { type: string; data?: any },
+  action: { type: string; data?: Record<string, unknown> },
 ) => {
   const { data } = action;
 

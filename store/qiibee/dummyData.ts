@@ -1,7 +1,9 @@
+import type { Brand, Customer } from './types';
+
 /**
  * USERS
  */
-export const CUSTOMERS = [
+export const CUSTOMERS: Customer[] = [
   {
     id: 'customer-id-1',
     firstname: 'Mohan',
@@ -39,7 +41,7 @@ export const CUSTOMERS = [
 /**
  * BRANDS
  */
-export const BRANDS = [
+export const BRANDS: Brand[] = [
   {
     id: 'brand-id-1',
     title: 'Reflection bot',

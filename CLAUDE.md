@@ -4,65 +4,101 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Commands
 
-Uses **pnpm** (via corepack) on **Node 24** — see `.nvmrc` and the `engines` field. One-time: `corepack enable pnpm` and `nvm use`.
+Uses **pnpm** (via corepack) on **Node 24** — see `.nvmrc` and the `engines` field. One-time: `corepack enable pnpm` and `nvm use`. **⚠️ Always `nvm use` first** — Nx needs Node 20+, and the default shell may be on an older Node.
 
 ```bash
-pnpm dev          # Start Next.js dev server (http://localhost:3000)
+pnpm dev          # Next.js dev server (http://localhost:3000)
 pnpm build        # Production build
 pnpm start        # Serve the production build
-pnpm lint         # ESLint 9, flat config (eslint-config-next + recommended)
-pnpm testc        # Run Jest with coverage + verbose
+pnpm lint         # ESLint 9 (flat config) over the whole repo
+pnpm testc        # Jest with coverage + verbose (there is no plain `test` script)
 ```
 
-There is no plain `test` script — use `pnpm testc`. To run a single test file:
+This is an **Nx workspace**, so also:
+
+```bash
+pnpm nx lint <project>          # e.g. pnpm nx lint qiibee
+pnpm nx typecheck <lib>         # per-lib strict tsc (TS libs only)
+pnpm nx run-many -t typecheck   # all projects
+pnpm nx affected -t lint typecheck testc build   # only what a change touched (this is what CI runs)
+pnpm nx show projects
+```
+
+Single test file / by name:
 
 ```bash
 pnpm jest tests/components/FriendsList/List/index.test.jsx
-pnpm jest -t "search filter works"   # run a single test by name
+pnpm jest -t "search filter works"
 ```
 
-Tests live under [tests/](tests/): the FriendsList/Haptik suite, a `smoke` suite (Dashboard/Timer), and a redux-connected Qiibee suite. [jest.setup.js](jest.setup.js) polyfills `matchMedia` + `MessageChannel` and mocks `next/router` for jsdom; [jest.config.js](jest.config.js) stubs `.less/.css` and scopes coverage to the Haptik component.
-
-> Note: the **Architecture** section below predates the dependency upgrade and still describes the old stack (Next 12 / React 17 / antd 4 LESS / airbnb / `.babelrc` / yarn). The toolchain is now Next 15 / React 19 / antd 6 (CSS-in-JS) / Redux Toolkit / SWC / ESLint flat config / pnpm. Treat the architecture notes as historical until refreshed.
+Tests live under [tests/](tests/): the FriendsList/Haptik suite, a `smoke` suite (Dashboard/Timer), and a redux-connected Qiibee tripwire. [jest.setup.js](jest.setup.js) polyfills `matchMedia` + `MessageChannel` and mocks `next/router`; [jest.config.js](jest.config.js) stubs `.less/.css`, maps the `@my-portfolio/*` aliases, transforms `ts/tsx` via `next/babel`, and scopes coverage to Haptik. Test files are still `.jsx` (converting them needs `@jest/globals` + jest-dom matcher types).
 
 ## Architecture
 
-This is a **Next.js 12 (Pages Router) portfolio + learning sandbox** — React 17, mostly `.jsx` with one stray `.ts` file. It is a collection of largely independent mini-apps (recruiter take-home assignments and UI/concept practice) stitched under one site. There is almost no shared domain logic between routes; treat each top-level feature as its own self-contained app.
+A **portfolio + learning-sandbox site** — a collection of largely independent mini-apps (recruiter take-home assignments and UI/concept practice) stitched under one Next.js site. It has been migrated to an **Nx workspace** and is **TypeScript throughout**.
 
-### Routing and the pages → components convention
-Files in [pages/](pages/) are thin and contain almost no logic — most just re-export a component (e.g. [pages/index.jsx](pages/index.jsx) is `export default Portfolio`). **All real code lives in [components/](components/).** Each feature is a folder following the convention:
+- **One Next.js app** (Nx project `my-portfolio`, tag `type:app`) — Pages Router. `pages/` are thin, `store/` holds the redux wiring, and `components/` now holds only the **app shell**: `GlobalStyles`, `Layout`, and the `Portfolio` landing page.
+- **12 feature libs** under [libs/](libs/), each its own Nx project (tag `type:feature`), each a self-contained mini-app:
+  `weather-app` · `valory` · `timer` · `solid-principles` · `qiibee` · `dashboard` · `cogsy` · `taikai` · `fynd` · `appbase` · `plaza` · `haptik`.
 
+There is almost no shared domain logic between features — treat each lib as its own app.
+
+### Routing: pages → libs
+[pages/](pages/) files are thin re-exports, e.g. `import Timer from '@my-portfolio/timer'; export default Timer;`. **All real code lives in the lib.** When adding behavior, edit the lib, not the page.
+
+### Lib layout
 ```
-ComponentName/
-  index.jsx     # the component
-  styles.jsx    # its styled-components
-  Reducer.jsx   # optional, when the component uses useReducer
-  Helpers/      # optional dummy data, icons, theme
+libs/<name>/
+  src/index.ts     # public API barrel — the ONLY import surface (import '@my-portfolio/<name>')
+  src/lib/         # implementation: index.tsx, styles.ts, Reducer.ts, Helpers/, ...
+  project.json     # Nx project: tags + lint (+ typecheck for TS) targets
+  tsconfig.json    # per-lib strict typecheck (extends ../../tsconfig.base.json)
+  package.json     # only when { "sideEffects": false } is needed (see below)
+  README.md
 ```
 
-When adding behavior, edit the component folder, not the page.
+### Module boundaries (enforced — this is the point of the Nx split)
+`@nx/enforce-module-boundaries` in [eslint.config.mjs](eslint.config.mjs) uses the `type:*` tags in each `project.json`:
+- `type:app` → may import `type:feature` / `type:util`
+- `type:feature` → may import `type:util` **only — never another feature**
+- so **one mini-app cannot import another**; a cross-lib import is a lint error.
 
-### Two-tier state management
-- **Global (Redux):** wired once in [pages/_app.jsx](pages/_app.jsx) via `next-redux-wrapper` → [store/index.js](store/index.js). Only the **`qiibee`** slice is combined into the root reducer and actually used (loyalty-points app with customer/brand user types, acting on in-memory `dummyData`). A `blocpal` slice exists in [store/](store/) but is **not** wired into `combineReducers` — ignore it unless asked.
-- **Local (per-feature):** every other interactive app uses `useReducer`/`useState` locally — there is no global store involvement. The assignment reducers (Haptik, Taikai, Fynd, Appbase) share a recurring pattern: keep an untouched copy of the original list (`...Copy`) and derive the filtered/sorted view from it, so search/sort/reset never lose data.
+The app's legacy convenience aliases (`components/*`, `store/*`, `util/*`, `images/*`) are **allow-listed** in the rule — they're in-app imports, not project boundaries.
 
-### Styling (three layers, all active)
-- **styled-components** is the primary system — colocated `styles.jsx` per component. SSR is handled in [pages/_document.jsx](pages/_document.jsx) via `ServerStyleSheet`, with `babel-plugin-styled-components` (`ssr: true`) in [.babelrc](.babelrc).
-- **Ant Design** is loaded on-demand via `babel-plugin-import` + `next-plugin-antd-less` ([next.config.js](next.config.js)); LESS with `javascriptEnabled` is configured for antd theming.
-- **Global CSS** comes from [components/GlobalStyles/](components/GlobalStyles/) and [pages/styles.less](pages/styles.less). Google Fonts and **amCharts v4 CDN `<script>` tags** are injected from `_document.jsx` head.
+### Path aliases (in THREE places — keep in sync)
+- **Scoped lib aliases** `@my-portfolio/<name>` → `libs/<name>/src/index.ts`, declared in **all three** of: [tsconfig.json](tsconfig.json) (Next + `tsc`), [tsconfig.base.json](tsconfig.base.json) (read by the boundary rule), and [jest.config.js](jest.config.js) `moduleNameMapper`.
+- **App aliases** (`components/*`, `store`, `store/*`, `util/*`, `images/*`) live in **`tsconfig.json` only** — do **not** add them to `tsconfig.base.json` or the boundary rule would flag every in-app import.
 
-### Module path aliases (defined in TWO places — keep them in sync)
-Imports like `components/...`, `store/...`, `util/...`, `images/...` are not relative paths. They are resolved by:
-- [.babelrc](.babelrc) → `babel-plugin-module-resolver` (this is what actually resolves at build/runtime): `util`, `common-util`, `components`, `images` (→ `public/images`), `store`.
-- [jsconfig.json](jsconfig.json) → editor IntelliSense only: `common-util`, `components`, `util`, `static`, `images`.
+### State management
+- **Redux (qiibee only):** the redux **slice stays app-level** — [store/qiibee/](store/qiibee/) (reducer/actions/dummyData) is composed in [store/index.ts](store/index.ts) via RTK `configureStore` + `next-redux-wrapper` (immutability & serializability checks are **off** because the legacy reducer mutates in place). The `qiibee` **lib**'s `connect()`ed components import `store/qiibee/actions` (allow-listed, so no boundary violation). Redux state is pragmatically typed (`any`). A `blocpal` slice exists but is **not** wired into the store — ignore it.
+- **Local:** every other lib uses `useReducer`/`useState`. The assignment reducers (Haptik, Taikai, Fynd, Appbase) keep an untouched `...Copy` of the original list and derive filtered/sorted views from it, so search/sort/reset never lose data.
 
-The two lists differ (`.babelrc` has `store`; `jsconfig.json` has `static`). When adding a new alias, update `.babelrc` for it to work and `jsconfig.json` for the editor. ESLint's `import/no-unresolved` is configured in [.eslintrc.json](.eslintrc.json) to ignore these aliases.
+### Styling
+- **styled-components** — colocated `styles.ts` per lib. SSR via `ServerStyleSheet` in [pages/_document.tsx](pages/_document.tsx); SWC handles it (`compiler.styledComponents` in [next.config.js](next.config.js) — there is **no `.babelrc`**).
+- **antd 6** (CSS-in-JS) — its styles are extracted server-side in `_document.tsx` via `@ant-design/cssinjs`.
+- Global CSS from [components/GlobalStyles/](components/GlobalStyles/); **amCharts v4** loads from its CDN via `<script>` tags injected in the `_document` head (so chart pages depend on that CDN at runtime, and headless tooling tends to block on it).
+
+### Barrels & tree-shaking
+Multi-entry libs — **qiibee** (5 page components) and **appbase** (2) — carry a `package.json` with `{ "sideEffects": false }` so each Next page bundles only the component it imports (without it, every page pulls the whole barrel).
+
+### CI
+[.github/workflows/ci.yml](.github/workflows/ci.yml) runs `pnpm nx affected -t lint typecheck testc build` on PRs — only projects a change touches get checked (uses `nrwl/nx-set-shas`).
 
 ### Animation
-The landing page ([components/Portfolio/Pages/Home.jsx](components/Portfolio/Pages/Home.jsx)) uses a **GSAP timeline** for the intro overlay; the overlay component is unmounted via React state once the animation completes so it stops blocking interaction.
+The Portfolio landing page ([components/Portfolio/Pages/Home.tsx](components/Portfolio/Pages/Home.tsx)) uses a **GSAP timeline** for the intro overlay; the overlay unmounts via React state once the animation completes so it stops blocking interaction.
 
-## Conventions and gotchas
-- ESLint extends `airbnb` + `plugin:jest/all`. Notable overrides: `arrow-parens: as-needed` (single-arg arrows have no parens), `react/jsx-props-no-spreading: off`, `react/react-in-jsx-scope: off`. Match existing style — `eslint:recommended`/airbnb are strict, so run `yarn lint` before considering work done.
-- A live **OpenWeatherMap API key is hardcoded** in [components/WeatherApp/index.jsx](components/WeatherApp/index.jsx). If touching that file, move it to an env var rather than copying the literal.
-- `package.json` lists `ethers`, `@web3-react/core`, and `@walletconnect/*` but no code uses them — they are vestigial. Don't assume Web3 functionality exists.
-- The qiibee store uses the consistent misspellings `reedeemed_points` / `reedeem_points` throughout — match them when editing that slice so lookups keep working.
+## Adding a new lib (extraction recipe)
+1. `git mv components/<Feature>` (or its source) → `libs/<name>/src/lib` (relative imports survive the move).
+2. Barrel `src/index.ts` (single default, or named exports for a multi-page lib — then add `package.json` with `sideEffects: false`).
+3. `project.json` — tags `["scope:<name>", "type:feature"]` + `lint` and (for TS) `typecheck` targets.
+4. Per-lib `tsconfig.json` extending `../../tsconfig.base.json`.
+5. Alias `@my-portfolio/<name>` in **tsconfig.json + tsconfig.base.json + jest.config.js**.
+6. Redirect the page(s) to `import … from '@my-portfolio/<name>'`.
+7. Verify: `pnpm nx lint <name>`, `pnpm nx typecheck <name>`, `pnpm build`, `pnpm testc`.
+
+## Conventions & gotchas
+- **pnpm config home is [pnpm-workspace.yaml](pnpm-workspace.yaml)** — pnpm 11 **ignores** the `package.json` `pnpm` field (it warns). Both `allowBuilds` (native build-script allowlist: `nx`, `sharp`, `unrs-resolver`) and `overrides` (security bumps) live there. Applying new overrides needs `pnpm install --no-frozen-lockfile`.
+- **ESLint 9 flat config** ([eslint.config.mjs](eslint.config.mjs)): `eslint-config-next` + `js.recommended`, `@typescript-eslint` for `.ts/.tsx`, jest rules for tests, and the boundary rule. `arrow-parens: as-needed`. Run `pnpm lint` before considering work done.
+- The **OpenWeatherMap key** is `NEXT_PUBLIC_OPENWEATHERMAP_API_KEY` in `.env.local` (see [.env.example](.env.example)) — no longer hardcoded.
+- The qiibee slice uses the consistent misspellings **`reedeemed_points` / `reedeem_points`** — match them so lookups keep working.
+- Redux state and some dynamic/chart data are intentionally typed `any` (pragmatic — the legacy reducer mutates); don't over-invest in typing them.

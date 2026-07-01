@@ -1,13 +1,26 @@
 import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
 import Link from 'next/link';
 import gsap from 'gsap';
 // import { ReactComponent as Arrow } from 'images/up-arrow-circle.svg';
 import { HeaderContainer } from './styles';
 
-const timeline = gsap.timeline();
+interface Dimensions {
+  width: number;
+  height: number;
+}
 
-const Header = ({ history, dimensions }) => {
+interface HeaderHistory {
+  listen?: () => void;
+}
+
+interface HeaderProps {
+  history?: HeaderHistory;
+  dimensions: Dimensions;
+}
+
+const timeline: gsap.core.Timeline = gsap.timeline();
+
+const Header = ({ history = undefined, dimensions }: HeaderProps) => {
   const [menuState, setMenuState] = useState({ isMenuOpened: false });
 
   useEffect(() => {
@@ -159,15 +172,6 @@ const Header = ({ history, dimensions }) => {
       </div>
     </HeaderContainer>
   );
-};
-
-Header.propTypes = {
-  history: PropTypes.shape({
-    listen: PropTypes.func,
-  }).isRequired,
-  dimensions: PropTypes.shape({
-    width: PropTypes.number,
-  }).isRequired,
 };
 
 export default Header;

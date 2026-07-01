@@ -1,9 +1,9 @@
-import Document from 'next/document';
+import Document, { DocumentContext, DocumentInitialProps } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
 import { createCache, extractStyle, StyleProvider } from '@ant-design/cssinjs';
 
 export default class MyDocument extends Document {
-  static async getInitialProps(ctx) {
+  static async getInitialProps(ctx: DocumentContext): Promise<DocumentInitialProps> {
     const sheet = new ServerStyleSheet();
     const cache = createCache();
     const originalRenderPage = ctx.renderPage;
@@ -18,7 +18,7 @@ export default class MyDocument extends Document {
       });
 
       const initialProps = await Document.getInitialProps(ctx);
-      // antd 5 is CSS-in-JS; extract its styles on the server to avoid FOUC.
+      // antd is CSS-in-JS; extract its styles on the server to avoid FOUC.
       const antdStyle = extractStyle(cache, true);
 
       return {
@@ -50,7 +50,7 @@ export default class MyDocument extends Document {
           <script key="6" src="//cdn.amcharts.com/lib/4/maps.js" />,
           /* eslint-enable @next/next/no-sync-scripts */
         ],
-      };
+      } as DocumentInitialProps;
     } finally {
       sheet.seal();
     }

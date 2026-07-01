@@ -4,8 +4,8 @@ module.exports = {
   testEnvironment: 'jsdom',
   verbose: true,
   collectCoverageFrom: [
-    'libs/haptik/src/lib/**/*.{js,jsx}',
-    '!libs/haptik/src/lib/**/styles.{js,jsx}',
+    'libs/haptik/src/lib/**/*.{js,jsx,ts,tsx}',
+    '!libs/haptik/src/lib/**/styles.{js,jsx,ts,tsx}',
   ],
   setupFilesAfterEnv: ['./jest.setup.js'],
   // .babelrc was removed so Next can use SWC; give Jest its own babel transform.

@@ -1,27 +1,49 @@
 import { notification } from 'antd';
 import { syncTypes } from './_types';
 import { CUSTOMERS, BRANDS } from './dummyData';
+import type {
+  Brand, BrandFollowing, Customer, CurrentUser, SignInPayload, SignUpValues, UserType,
+} from './types';
 
-const INIT_STATE = {
+export interface QiibeeState {
+  currentUserType: UserType | null;
+  currentUser: CurrentUser | null;
+  customers: Customer[];
+  brands: Brand[];
+}
+
+// The reducer only reads `type` + `data`; `data` is cast to the per-action
+// payload inside each case. `data?: unknown` keeps this a supertype of RTK's
+// UnknownAction, so it's a valid reducer for configureStore.
+interface QiibeeAction {
+  type: string;
+  data?: unknown;
+}
+
+const INIT_STATE: QiibeeState = {
   currentUserType: null,
   currentUser: null,
   customers: CUSTOMERS,
   brands: BRANDS,
 };
 
-const counterReducer = (state = INIT_STATE, action) => {
+const counterReducer = (
+  state: QiibeeState = INIT_STATE,
+  action: QiibeeAction,
+): QiibeeState => {
   const { type, data } = action;
   switch (type) {
     case syncTypes.SIGN_IN: {
+      const { type: userType, currentUser } = data as SignInPayload;
       return {
         ...state,
-        currentUserType: data.type,
-        currentUser: data.currentUser,
+        currentUserType: userType,
+        currentUser,
       };
     }
 
     case syncTypes.SIGN_UP: {
-      const { user_type, ...rest } = data;
+      const { user_type, ...rest } = data as SignUpValues;
       if (user_type === 'customer') {
         const copy = [...state.customers];
         copy.push({
@@ -29,7 +51,7 @@ const counterReducer = (state = INIT_STATE, action) => {
           id: `customer-id-${copy.length + 1}`,
           reedeemed_points: 0,
           brands_following: [],
-        });
+        } as Customer);
 
         return {
           ...state,
@@ -48,7 +70,8 @@ const counterReducer = (state = INIT_STATE, action) => {
           created_at: null,
           reedeemed_points: 0,
           brands_following: [],
-        });
+          // a newly-registered brand has no total_loyalty_points / icon yet
+        } as unknown as Brand);
 
         return {
           ...state,
@@ -66,16 +89,17 @@ const counterReducer = (state = INIT_STATE, action) => {
     }
 
     case syncTypes.REDEEM_POINTS: {
-      // update currentUser
-      const copy = { ...state.currentUser };
+      const brandId = data as string;
+      // currentUser is a customer in this flow
+      const copy = { ...state.currentUser } as Customer;
       const brand = copy.brands_following.find(
-        ({ brand_id }) => data === brand_id,
-      );
+        ({ brand_id }) => brandId === brand_id,
+      ) as BrandFollowing;
       copy.reedeemed_points += brand.reedeem_points_provided;
       brand.reedeem_points_provided = 0;
       copy.brands_following = copy.brands_following.map(item => {
         const { brand_id } = item;
-        if (data !== brand_id) return item;
+        if (brandId !== brand_id) return item;
         return brand;
       });
 
@@ -98,9 +122,10 @@ const counterReducer = (state = INIT_STATE, action) => {
     }
 
     case syncTypes.FOLLOW_BRAND: {
-      const copy = { ...state.currentUser };
+      const brandId = data as string;
+      const copy = { ...state.currentUser } as Customer;
       copy.brands_following.push({
-        brand_id: data,
+        brand_id: brandId,
         reedeem_points_provided: 0,
       });
 
@@ -112,7 +137,7 @@ const counterReducer = (state = INIT_STATE, action) => {
 
       // brand
       const brandsCopy = state.brands.map(item => {
-        if (item.id !== data) return item;
+        if (item.id !== brandId) return item;
         return {
           ...item,
           followers: [...(item.followers || []), copy.id],
@@ -128,9 +153,11 @@ const counterReducer = (state = INIT_STATE, action) => {
     }
 
     case syncTypes.AWARDS_POINTS: {
-      const { currentUser } = state;
+      const customerIds = data as string[];
+      // currentUser is a brand in this flow
+      const currentUser = state.currentUser as Brand;
 
-      if (currentUser.total_loyalty_points < 20 * data.length) {
+      if (currentUser.total_loyalty_points < 20 * customerIds.length) {
         notification.error({
           placement: 'bottomLeft',
           message: 'Sorry, you do not have enough points!',
@@ -139,19 +166,19 @@ const counterReducer = (state = INIT_STATE, action) => {
       }
 
       // update currentUser
-      const currentUserCopy = {
-        ...state.currentUser,
+      const currentUserCopy: Brand = {
+        ...currentUser,
         total_loyalty_points:
-          currentUser.total_loyalty_points - 20 * data.length,
+          currentUser.total_loyalty_points - 20 * customerIds.length,
       };
 
-      // update customer can redeem points!
-      const copy = state.customers.map(customer => {
-        if (!data.includes(customer.id)) return customer;
+      // update customers who can redeem points
+      const customersCopy = state.customers.map(customer => {
+        if (!customerIds.includes(customer.id)) return customer;
 
         const brandCopy = customer.brands_following.map(item => {
           const { brand_id, reedeem_points_provided } = item;
-          if (brand_id !== state.currentUser.id) return item;
+          if (brand_id !== currentUser.id) return item;
 
           return {
             ...item,
@@ -165,10 +192,9 @@ const counterReducer = (state = INIT_STATE, action) => {
         };
       });
 
-      // update brands!
+      // update brands
       const brandsCopy = state.brands.map(item => {
-        const { id } = item;
-        if (state.currentUser.id !== id) return item;
+        if (currentUser.id !== item.id) return item;
         return currentUserCopy;
       });
 
@@ -180,7 +206,7 @@ const counterReducer = (state = INIT_STATE, action) => {
       return {
         ...state,
         currentUser: currentUserCopy,
-        customers: copy,
+        customers: customersCopy,
         brands: brandsCopy,
       };
     }

@@ -20,7 +20,7 @@ export const Row = styled.div`
   }
 `;
 
-export const Input = styled.input.attrs(props => ({
+export const Input = styled.input.attrs<{ size?: string; mohanColor?: string }>(props => ({
   type: 'password',
   size: props.size || '1em',
   mohanColor: 'violet',

@@ -1,8 +1,8 @@
 import Head from 'next/head';
+import type { AppProps } from 'next/app';
 import { Provider } from 'react-redux';
 import { StyleSheetManager } from 'styled-components';
 import isPropValid from '@emotion/is-prop-valid';
-import PropTypes from 'prop-types';
 // import * as Progress from 'util/progress';
 
 import Layout from 'components/Layout';
@@ -15,9 +15,9 @@ import { wrapper } from '../store';
  * with the standard @emotion/is-prop-valid recipe; custom components still
  * receive every prop.
  */
-const shouldForwardProp = (propName, target) => (typeof target === 'string' ? isPropValid(propName) : true);
+const shouldForwardProp = (propName: string, target: unknown) => (typeof target === 'string' ? isPropValid(propName) : true);
 
-const MyApp = ({ Component, ...rest }) => {
+const MyApp = ({ Component, ...rest }: AppProps) => {
   const { store, props } = wrapper.useWrappedStore(rest);
   const { pageProps = {} } = props;
 
@@ -35,11 +35,6 @@ const MyApp = ({ Component, ...rest }) => {
       </Provider>
     </StyleSheetManager>
   );
-};
-
-MyApp.propTypes = {
-  Component: PropTypes.elementType.isRequired,
-  pageProps: PropTypes.shape({}),
 };
 
 export default MyApp;

@@ -6,8 +6,8 @@ import Home from './Pages/Home';
 import Navigation from './Navigation';
 import { Container } from './styles';
 
-const debounce = (fn, ms = 300) => {
-  let timer;
+const debounce = (fn: () => void, ms = 300) => {
+  let timer: ReturnType<typeof setTimeout>;
   return () => {
     clearInterval(timer);
     timer = setTimeout(() => {
@@ -40,6 +40,7 @@ const App = () => {
     document.documentElement.style.setProperty('--vh', `${vh}px`);
 
     /* prevents flashing */
+    // @ts-expect-error GSAP 3 typings drop the legacy 3-arg (target, duration, vars) signature; kept for parity
     gsap.to('body', 0, { css: { visibility: 'visible' } });
 
     /* resize listener */

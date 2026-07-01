@@ -62,9 +62,9 @@ const config = [
       '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }],
     },
   },
-  // jest rules only apply to test files + the jest setup.
+  // jest rules only apply to test files (co-located in each lib) + the jest setup.
   {
-    files: ['tests/**/*.{js,jsx}', '**/*.test.{js,jsx}', 'jest.setup.js'],
+    files: ['**/*.test.{js,jsx}', 'jest.setup.js'],
     ...jest.configs['flat/recommended'],
   },
 ];

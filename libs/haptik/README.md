@@ -22,11 +22,10 @@ the package, don't reach into `lib/`.
 
 ## Tests
 
-Covered by a Jest test at
-[tests/components/FriendsList/List/index.test.jsx](../../tests/components/FriendsList/List/index.test.jsx),
-which imports `@my-portfolio/haptik` and drives the component via its
-`data-testid` attributes (search, sort, add, pagination). Run the suite
-centrally with `pnpm testc`.
+Covered by a co-located Jest test at
+[src/lib/index.test.jsx](src/lib/index.test.jsx), which imports the component
+relatively (`./index`) and drives it via its `data-testid` attributes (search,
+sort, add, pagination). Run the suite centrally with `pnpm testc`.
 
 ## Targets
 

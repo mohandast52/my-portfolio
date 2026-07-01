@@ -6,6 +6,8 @@ module.exports = {
   collectCoverageFrom: [
     'libs/haptik/src/lib/**/*.{js,jsx,ts,tsx}',
     '!libs/haptik/src/lib/**/styles.{js,jsx,ts,tsx}',
+    // Co-located specs are test code, not sources to measure.
+    '!libs/haptik/src/lib/**/*.test.{js,jsx,ts,tsx}',
   ],
   setupFilesAfterEnv: ['./jest.setup.js'],
   // .babelrc was removed so Next can use SWC; give Jest its own babel transform.
@@ -14,7 +16,7 @@ module.exports = {
   },
   moduleNameMapper: {
     // antd injects .less/.css requires Jest can't parse; stub them.
-    '\\.(less|css|scss|sass)$': '<rootDir>/tests/__mocks__/styleMock.js',
+    '\\.(less|css|scss|sass)$': '<rootDir>/jest/styleMock.js',
     // Path aliases (previously babel-plugin-module-resolver, now jsconfig paths).
     // Nx libs use a scoped alias; keep this in sync with jsconfig.json.
     '^@my-portfolio/weather-app$': '<rootDir>/libs/weather-app/src/index.ts',

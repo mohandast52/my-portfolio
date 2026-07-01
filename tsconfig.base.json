@@ -1,5 +1,5 @@
 {
-  "//": "Workspace path mappings for Nx, read by @nx/enforce-module-boundaries to resolve SCOPED lib imports (@my-portfolio/*) to their project so depConstraints can be enforced. Only lib entry points belong here. The app's legacy convenience aliases (components/*, util/*, store/*, images/*) live in tsconfig.json (which extends this), NOT here — they are in-app imports, not project boundaries, and mapping them here would make the rule flag every one of them. Per-lib tsconfig.json files also extend this.",
+  "//": "Workspace path mappings for Nx, read by @nx/enforce-module-boundaries to resolve SCOPED lib imports (@my-portfolio/*) to their project so depConstraints can be enforced. Only lib entry points belong here. The app's legacy convenience aliases (components/*, store/*, images/*) live in tsconfig.json (which extends this), NOT here — they are in-app imports, not project boundaries, and mapping them here would make the rule flag every one of them. Per-lib tsconfig.json files also extend this.",
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
@@ -14,7 +14,8 @@
       "@my-portfolio/fynd": ["libs/fynd/src/index.ts"],
       "@my-portfolio/haptik": ["libs/haptik/src/index.ts"],
       "@my-portfolio/plaza": ["libs/plaza/src/index.ts"],
-      "@my-portfolio/appbase": ["libs/appbase/src/index.ts"]
+      "@my-portfolio/appbase": ["libs/appbase/src/index.ts"],
+      "@my-portfolio/ui-theme": ["libs/ui-theme/src/index.ts"]
     }
   }
 }

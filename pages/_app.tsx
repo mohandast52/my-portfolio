@@ -3,7 +3,6 @@ import type { AppProps } from 'next/app';
 import { Provider } from 'react-redux';
 import { StyleSheetManager } from 'styled-components';
 import isPropValid from '@emotion/is-prop-valid';
-// import * as Progress from 'util/progress';
 
 import Layout from 'components/Layout';
 import GlobalStyle from 'components/GlobalStyles';
@@ -38,13 +37,3 @@ const MyApp = ({ Component, ...rest }: AppProps) => {
 };
 
 export default MyApp;
-
-// Router.onRouteChangeStart = () => {
-//   Progress.start();
-// };
-
-// Router.onRouteChangeComplete = () => {
-//   Progress.stop();
-// };
-
-// https://github.com/vercel/next.js/issues/7945

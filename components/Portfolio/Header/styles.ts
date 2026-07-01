@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { COLOR } from 'util/theme';
+import { COLOR } from '@my-portfolio/ui-theme';
 
 export const EC = styled.div``;
 

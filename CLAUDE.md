@@ -40,6 +40,7 @@ A **portfolio + learning-sandbox site** — a collection of largely independent 
 - **One Next.js app** (Nx project `my-portfolio`, tag `type:app`) — Pages Router. `pages/` are thin, `store/` holds the redux wiring, and `components/` now holds only the **app shell**: `GlobalStyles`, `Layout`, and the `Portfolio` landing page.
 - **12 feature libs** under [libs/](libs/), each its own Nx project (tag `type:feature`), each a self-contained mini-app:
   `weather-app` · `valory` · `timer` · `solid-principles` · `qiibee` · `dashboard` · `cogsy` · `taikai` · `fynd` · `appbase` · `plaza` · `haptik`.
+- **1 util lib** — [`ui-theme`](libs/ui-theme/) (tag `type:util`), the app-shell design tokens (the `COLOR` palette used by `GlobalStyles`, `Layout`, and `Portfolio`). Import it as `@my-portfolio/ui-theme`. Each mini-app keeps its **own** brand palette — `ui-theme` is deliberately just the site-shell tokens, not a merged cross-app theme.
 
 There is almost no shared domain logic between features — treat each lib as its own app.
 
@@ -63,11 +64,11 @@ libs/<name>/
 - `type:feature` → may import `type:util` **only — never another feature**
 - so **one mini-app cannot import another**; a cross-lib import is a lint error.
 
-The app's legacy convenience aliases (`components/*`, `store/*`, `util/*`, `images/*`) are **allow-listed** in the rule — they're in-app imports, not project boundaries.
+The app's legacy convenience aliases (`components/*`, `store/*`, `images/*`) are **allow-listed** in the rule — they're in-app imports, not project boundaries.
 
 ### Path aliases (in THREE places — keep in sync)
 - **Scoped lib aliases** `@my-portfolio/<name>` → `libs/<name>/src/index.ts`, declared in **all three** of: [tsconfig.json](tsconfig.json) (Next + `tsc`), [tsconfig.base.json](tsconfig.base.json) (read by the boundary rule), and [jest.config.js](jest.config.js) `moduleNameMapper`.
-- **App aliases** (`components/*`, `store`, `store/*`, `util/*`, `images/*`) live in **`tsconfig.json` only** — do **not** add them to `tsconfig.base.json` or the boundary rule would flag every in-app import.
+- **App aliases** (`components/*`, `store`, `store/*`, `images/*`) live in **`tsconfig.json` only** — do **not** add them to `tsconfig.base.json` or the boundary rule would flag every in-app import.
 
 ### State management
 - **Redux (qiibee only):** the redux **slice stays app-level** — [store/qiibee/](store/qiibee/) (reducer/actions/dummyData) is composed in [store/index.ts](store/index.ts) via RTK `configureStore` + `next-redux-wrapper` (immutability & serializability checks are **off** because the legacy reducer mutates in place). The `qiibee` **lib**'s `connect()`ed components import `store/qiibee/actions` (allow-listed, so no boundary violation). Redux state is pragmatically typed (`any`). A `blocpal` slice exists but is **not** wired into the store — ignore it.

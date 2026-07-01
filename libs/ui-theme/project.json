@@ -1,0 +1,17 @@
+{
+  "name": "ui-theme",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/ui-theme/src",
+  "tags": ["scope:ui-theme", "type:util"],
+  "targets": {
+    "lint": {
+      "command": "eslint libs/ui-theme",
+      "cache": true
+    },
+    "typecheck": {
+      "command": "tsc --noEmit -p libs/ui-theme/tsconfig.json",
+      "cache": true
+    }
+  }
+}

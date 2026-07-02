@@ -11,7 +11,7 @@ pnpm dev          # Next.js dev server (http://localhost:3000)
 pnpm build        # Production build
 pnpm start        # Serve the production build
 pnpm lint         # ESLint 9 (flat config) over the whole repo
-pnpm testc        # Jest with coverage + verbose (there is no plain `test` script)
+pnpm testc        # Jest: coverage + verbose + --forceExit (no plain `test` script)
 ```
 
 This is an **Nx workspace**, so also:
@@ -31,7 +31,7 @@ pnpm jest libs/haptik/src/lib/index.test.tsx
 pnpm jest -t "search filter works"
 ```
 
-Tests are **co-located with their libs** as `libs/<name>/src/lib/index.test.tsx` (importing the lib **relatively** — `./index` / `./state` — so the module-boundary rule doesn't flag a self-import), and run via a single root Jest (`pnpm testc` discovers them by the default `*.test.tsx` glob). **Every feature lib has a co-located spec**: the FriendsList/Haptik behavioural suite (`haptik`), a redux-connected Qiibee tripwire (`qiibee`), and mount **smoke** tests for the rest (`dashboard`, `timer`, `solid-principles`, `cogsy`, `taikai`, `fynd`, `plaza`, `appbase`) — plus `weather-app`/`valory`, which install a never-resolving `fetch` stub (jsdom has no `fetch`) so they stay in their loading state instead of hitting the network or the amCharts CDN global. [jest.setup.js](jest.setup.js) polyfills `matchMedia` + `MessageChannel` and mocks `next/router`; [jest.config.js](jest.config.js) stubs `.less/.css` (→ [jest/styleMock.js](jest/styleMock.js)), maps the `@my-portfolio/*` aliases, transforms `ts/tsx` via `next/babel`, and scopes coverage to Haptik (excluding `*.test.*`). The specs are **TypeScript** (`.tsx`): they import jest globals from `@jest/globals` and load the jest-dom matcher types via `import '@testing-library/jest-dom/jest-globals'` — so the per-lib `tsconfig` (which includes `.tsx`) **type-checks them too** under `nx typecheck`.
+Tests are **co-located with their libs** as `libs/<name>/src/lib/index.test.tsx` (importing the lib **relatively** — `./index` / `./state` — so the module-boundary rule doesn't flag a self-import), and run via a single root Jest (`pnpm testc` discovers them by the default `*.test.tsx` glob). **Every feature lib has a co-located spec**: the FriendsList/Haptik behavioural suite (`haptik`), a redux-connected Qiibee tripwire (`qiibee`), and mount **smoke** tests for the rest (`dashboard`, `timer`, `solid-principles`, `cogsy`, `taikai`, `fynd`, `plaza`, `appbase`) — plus `weather-app`/`valory`, which install a never-resolving `fetch` stub (jsdom has no `fetch`) so they stay in their loading state instead of hitting the network or the amCharts CDN global. [jest.setup.js](jest.setup.js) polyfills `matchMedia` + `MessageChannel` and mocks `next/router` (the `MessageChannel` polyfill uses `worker_threads`, whose handle React's scheduler keeps alive — so `testc` runs with `--forceExit` to avoid a multi-second lingering exit); [jest.config.js](jest.config.js) stubs `.less/.css` (→ [jest/styleMock.js](jest/styleMock.js)), maps the `@my-portfolio/*` aliases, transforms `ts/tsx` via `next/babel`, and scopes coverage to Haptik (excluding `*.test.*`). The specs are **TypeScript** (`.tsx`): they import jest globals from `@jest/globals` and load the jest-dom matcher types via `import '@testing-library/jest-dom/jest-globals'` — so the per-lib `tsconfig` (which includes `.tsx`) **type-checks them too** under `nx typecheck`.
 
 ## Architecture
 

@@ -11,9 +11,20 @@ module.exports = {
   ],
   setupFilesAfterEnv: ['./jest.setup.js'],
   // .babelrc was removed so Next can use SWC; give Jest its own babel transform.
+  // sourceType:'unambiguous' lets babel detect + rewrite the bare ESM `import`s
+  // in the node_modules deps we un-ignore below (they ship ESM from a CJS entry).
   transform: {
-    '^.+\\.(js|jsx|ts|tsx)$': ['babel-jest', { presets: ['next/babel'] }],
+    '^.+\\.(js|jsx|ts|tsx)$': ['babel-jest', { presets: ['next/babel'], sourceType: 'unambiguous' }],
   },
+  // @ant-design/icons 6.3.x (and its @ant-design/fast-color dep) ship bare ESM
+  // `import` statements from their CJS entry, which the default "ignore all of
+  // node_modules" rule leaves untransformed → "Cannot use import statement
+  // outside a module" when any antd component mounts under Jest. Un-ignore just
+  // those two (pnpm nests real files under .pnpm/<pkg>@<ver>/) so babel-jest
+  // transpiles their ESM to CJS.
+  transformIgnorePatterns: [
+    '/node_modules/\\.pnpm/(?!@ant-design\\+)',
+  ],
   moduleNameMapper: {
     // antd injects .less/.css requires Jest can't parse; stub them.
     '\\.(less|css|scss|sass)$': '<rootDir>/jest/styleMock.js',

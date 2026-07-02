@@ -1,5 +1,6 @@
-import React from 'react';
+import { describe, it, expect } from '@jest/globals';
 import { render } from '@testing-library/react';
+import '@testing-library/jest-dom/jest-globals';
 import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
 import Qiibee from './index';

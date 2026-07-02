@@ -64,7 +64,7 @@ const config = [
   },
   // jest rules only apply to test files (co-located in each lib) + the jest setup.
   {
-    files: ['**/*.test.{js,jsx}', 'jest.setup.js'],
+    files: ['**/*.test.{js,jsx,ts,tsx}', 'jest.setup.js'],
     ...jest.configs['flat/recommended'],
   },
 ];

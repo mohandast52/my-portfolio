@@ -27,11 +27,11 @@ pnpm nx show projects
 Single test file / by name:
 
 ```bash
-pnpm jest libs/haptik/src/lib/index.test.jsx
+pnpm jest libs/haptik/src/lib/index.test.tsx
 pnpm jest -t "search filter works"
 ```
 
-Tests are **co-located with their libs** as `libs/<name>/src/lib/index.test.jsx` (importing the lib **relatively** — `./index` / `./state` — so the module-boundary rule doesn't flag a self-import), and run via a single root Jest (`pnpm testc` discovers them by the default `*.test.jsx` glob): the FriendsList/Haptik suite (`haptik`), smoke tripwires (`dashboard`, `timer`), and a redux-connected Qiibee tripwire (`qiibee`). [jest.setup.js](jest.setup.js) polyfills `matchMedia` + `MessageChannel` and mocks `next/router`; [jest.config.js](jest.config.js) stubs `.less/.css` (→ [jest/styleMock.js](jest/styleMock.js)), maps the `@my-portfolio/*` aliases, transforms `ts/tsx` via `next/babel`, and scopes coverage to Haptik (excluding `*.test.*`). Test files are still `.jsx` (converting them needs `@jest/globals` + jest-dom matcher types) — the per-lib `tsconfig` only includes `.ts/.tsx`, so `nx typecheck` ignores them.
+Tests are **co-located with their libs** as `libs/<name>/src/lib/index.test.tsx` (importing the lib **relatively** — `./index` / `./state` — so the module-boundary rule doesn't flag a self-import), and run via a single root Jest (`pnpm testc` discovers them by the default `*.test.tsx` glob): the FriendsList/Haptik suite (`haptik`), smoke tripwires (`dashboard`, `timer`), and a redux-connected Qiibee tripwire (`qiibee`). [jest.setup.js](jest.setup.js) polyfills `matchMedia` + `MessageChannel` and mocks `next/router`; [jest.config.js](jest.config.js) stubs `.less/.css` (→ [jest/styleMock.js](jest/styleMock.js)), maps the `@my-portfolio/*` aliases, transforms `ts/tsx` via `next/babel`, and scopes coverage to Haptik (excluding `*.test.*`). The specs are **TypeScript** (`.tsx`): they import jest globals from `@jest/globals` and load the jest-dom matcher types via `import '@testing-library/jest-dom/jest-globals'` — so the per-lib `tsconfig` (which includes `.tsx`) **type-checks them too** under `nx typecheck`.
 
 ## Architecture
 

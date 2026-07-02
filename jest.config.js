@@ -27,7 +27,7 @@ module.exports = {
   ],
   moduleNameMapper: {
     // antd injects .less/.css requires Jest can't parse; stub them.
-    '\\.(less|css|scss|sass)$': '<rootDir>/jest/styleMock.js',
+    '\\.(less|css|scss|sass)$': '<rootDir>/jest.styleMock.js',
     // Path aliases (previously babel-plugin-module-resolver, now jsconfig paths).
     // Nx libs use a scoped alias; keep this in sync with jsconfig.json.
     '^@my-portfolio/weather-app$': '<rootDir>/libs/weather-app/src/index.ts',

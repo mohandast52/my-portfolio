@@ -6,7 +6,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint ./",
-    "testc": "jest --coverage --verbose"
+    "testc": "jest --coverage --verbose --forceExit"
   },
   "dependencies": {
     "@ant-design/charts": "^1.1.7",
@@ -28,6 +28,7 @@
   "devDependencies": {
     "@eslint/eslintrc": "3",
     "@eslint/js": "9",
+    "@jest/globals": "^30.4.1",
     "@nx/eslint-plugin": "23.0.1",
     "@testing-library/dom": "10.4.0",
     "@testing-library/jest-dom": "6.9.1",

@@ -1,5 +1,6 @@
-import React from 'react';
+import { describe, it, expect } from '@jest/globals';
 import { render, fireEvent } from '@testing-library/react';
+import '@testing-library/jest-dom/jest-globals';
 import FriendsList from './index';
 
 describe('<FriendsList />', () => {
@@ -29,7 +30,7 @@ describe('<FriendsList />', () => {
     let firstName = friendsList.querySelector('div:nth-child(1) > div > h3');
 
     /* checking 1st element is non-favourite as it is un-sorted */
-    expect(firstName.textContent).toBe('Rakesh Gupta');
+    expect(firstName!.textContent).toBe('Rakesh Gupta');
 
     /* clicking sort button */
     expect(button).toBeInTheDocument();
@@ -37,7 +38,7 @@ describe('<FriendsList />', () => {
 
     /* checking 1st element is favourite as sorted button is clicked */
     firstName = friendsList.querySelector('div:nth-child(1) > div > h3');
-    expect(firstName.textContent).toBe('Shivangi Sharma');
+    expect(firstName!.textContent).toBe('Shivangi Sharma');
   });
 
   it('adding new friend works', () => {
@@ -50,7 +51,7 @@ describe('<FriendsList />', () => {
     let firstName = friendsList.querySelector('div:nth-child(1) > div > h3');
 
     /* checking 1st element before adding new friend */
-    expect(firstName.textContent).toBe('Rakesh Gupta');
+    expect(firstName!.textContent).toBe('Rakesh Gupta');
 
     /* adding new friend Test */
     fireEvent.change(addInput, { target: { value: newFriendName } });
@@ -60,11 +61,11 @@ describe('<FriendsList />', () => {
 
     /* checking 1st element is new friend */
     firstName = friendsList.querySelector('div:nth-child(1) > div > h3');
-    expect(firstName.textContent).toBe(newFriendName);
+    expect(firstName!.textContent).toBe(newFriendName);
 
     /* checking 2nd element is previous 1st friend */
     firstName = friendsList.querySelector('div:nth-child(2) > div > h3');
-    expect(firstName.textContent).toBe('Rakesh Gupta');
+    expect(firstName!.textContent).toBe('Rakesh Gupta');
   });
 
   it('pagination works', () => {
@@ -78,7 +79,7 @@ describe('<FriendsList />', () => {
 
     /* checking 1st element before adding new friend */
     const firstName = friendsList.querySelector('div:nth-child(1) > div > h3');
-    expect(firstName.textContent).toBe('Rakesh Gupta');
+    expect(firstName!.textContent).toBe('Rakesh Gupta');
 
     /* 6 seeded friends at 4 per page => 2 pages present from the start */
     expect(pagination.querySelector('button:nth-child(1)')).toBeEnabled();
@@ -96,10 +97,10 @@ describe('<FriendsList />', () => {
     /* checking if 2nd pagination is enabled */
     const secondBtn = pagination.querySelector('button:nth-child(2)');
     expect(secondBtn).toBeEnabled();
-    fireEvent.click(secondBtn);
+    fireEvent.click(secondBtn!);
 
     /* checking last friend */
     const lastName = friendsList.querySelector('div:nth-child(1) > div > h3');
-    expect(lastName.textContent).toBe('Mohan Das');
+    expect(lastName!.textContent).toBe('Mohan Das');
   });
 });

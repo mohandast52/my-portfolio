@@ -23,7 +23,7 @@ the package, don't reach into `lib/`.
 ## Tests
 
 Covered by a co-located Jest test at
-[src/lib/index.test.jsx](src/lib/index.test.jsx), which imports the component
+[src/lib/index.test.tsx](src/lib/index.test.tsx), which imports the component
 relatively (`./index`) and drives it via its `data-testid` attributes (search,
 sort, add, pagination). Run the suite centrally with `pnpm testc`.
 

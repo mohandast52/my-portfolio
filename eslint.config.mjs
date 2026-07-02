@@ -1,11 +1,9 @@
 import js from '@eslint/js';
-import { FlatCompat } from '@eslint/eslintrc';
+import nextCoreWebVitals from 'eslint-config-next/core-web-vitals';
 import jest from 'eslint-plugin-jest';
 import nx from '@nx/eslint-plugin';
 import tsParser from '@typescript-eslint/parser';
 import tsPlugin from '@typescript-eslint/eslint-plugin';
-
-const compat = new FlatCompat({ baseDirectory: import.meta.dirname });
 
 const config = [
   {
@@ -19,9 +17,10 @@ const config = [
     ],
   },
   js.configs.recommended,
-  // Next's recommended rules + the react/react-hooks/jsx-a11y/import plugins,
-  // brought in via FlatCompat (eslint-config-next 15 is still eslintrc-shaped).
-  ...compat.extends('next/core-web-vitals'),
+  // Next's recommended rules + the react/react-hooks/jsx-a11y/import plugins.
+  // eslint-config-next 16 ships a native flat-config array — spread it directly
+  // (no more FlatCompat bridge; it choked on the new circular-ref config shape).
+  ...nextCoreWebVitals,
   {
     rules: {
       'arrow-parens': ['error', 'as-needed'],

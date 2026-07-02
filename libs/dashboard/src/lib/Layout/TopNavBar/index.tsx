@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import { FaPlusCircle, FaRegBell } from 'react-icons/fa';
 import {
   LeftNavBarContainer, ColumnOne, ColumnTwo, Logo,
@@ -29,7 +30,7 @@ const LeftNavBar = () => (
       <span className="divider" />
 
       <div className="profile-picture">
-        <img src="/images/girl_1.jpg" alt="Profile" />
+        <Image src="/images/girl_1.jpg" alt="Profile" width={38} height={38} />
       </div>
 
       <HyperLink

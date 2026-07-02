@@ -1,6 +1,6 @@
-/* eslint-disable jsx-a11y/alt-text */
 import React from 'react';
 import styled from 'styled-components';
+import Image from 'next/image';
 
 export const Container = styled.div`
   display: flex;
@@ -30,17 +30,29 @@ export const Container = styled.div`
 function Carousel() {
   return (
     <Container>
-      <img
+      <Image
         className="slide"
         src="https://images.unsplash.com/photo-1559757849-1331b7beb222"
+        alt=""
+        width={320}
+        height={500}
+        unoptimized
       />
-      <img
+      <Image
         className="slide"
         src="https://images.unsplash.com/photo-1559757742-654d5da2eaab"
+        alt=""
+        width={320}
+        height={500}
+        unoptimized
       />
-      <img
+      <Image
         className="slide"
         src="https://images.unsplash.com/photo-1559757740-e85122cb7466"
+        alt=""
+        width={320}
+        height={500}
+        unoptimized
       />
     </Container>
   );

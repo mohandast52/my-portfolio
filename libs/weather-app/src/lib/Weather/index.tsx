@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { Card } from 'antd';
 import { getCurrentFromTime } from '../utils';
 import { Cards } from '../styles';
@@ -34,9 +35,12 @@ const Weather = ({ isCelcius = false, active = 0, list = [] }: WeatherProps) => 
         <Card
           key={key}
           cover={(
-            <img
+            <Image
               alt={weatherMain}
               src={`http://openweathermap.org/img/w/${weatherIcon}.png`}
+              width={50}
+              height={50}
+              unoptimized
             />
           )}
           className={index === active ? 'active' : ''}

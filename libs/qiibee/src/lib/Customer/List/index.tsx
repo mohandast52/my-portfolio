@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { connect } from 'react-redux';
 import {
   Button, Card, Col, Row, Tooltip,
@@ -71,9 +72,12 @@ const Brands = ({
             <BrandCard
               hoverable
               cover={(
-                <img
+                <Image
                   alt="example"
                   src={icon || 'https://fakeimg.pl/250x160?text="No+Image'}
+                  width={280}
+                  height={150}
+                  unoptimized
                 />
               )}
               actions={[

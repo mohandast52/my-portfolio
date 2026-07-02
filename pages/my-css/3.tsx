@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Image from 'next/image';
 
 // REFLECTION
 
@@ -18,11 +19,12 @@ export const ContainerOne = styled.div`
 function Carousel() {
   return (
     <ContainerOne>
-      <img
+      <Image
         src="https://avatars.githubusercontent.com/u/22061815?v=4"
         width={300}
         height={300}
         alt="mohan"
+        unoptimized
       />
     </ContainerOne>
   );

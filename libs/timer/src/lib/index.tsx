@@ -34,7 +34,7 @@ const StopWatch = ({ initial = '0', interval = '1' }: StopWatchProps) => {
     } else if (timerRef.current) {
       clearInterval(timerRef.current);
     }
-  }, [isTimerOn]);
+  }, [isTimerOn, interval]);
 
   const minutes = Math.floor((duration % 3600) / 60);
   const seconds = Math.floor(duration % 60);

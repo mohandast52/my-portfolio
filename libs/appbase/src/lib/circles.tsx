@@ -37,8 +37,10 @@ export const ApproachOne = () => {
   }, []);
 
   /* Timer-driven state machine: lock positions are derived from `counter` on
-     each tick, so these setState-in-effect calls are intentional. */
-  /* eslint-disable react-hooks/set-state-in-effect */
+     each tick, so the setState-in-effect calls are intentional — and the effect
+     is deliberately keyed to `counter` only (reading `lockOne`/`lockTwo` as
+     current state, not as triggers), so exhaustive-deps is disabled here too. */
+  /* eslint-disable react-hooks/set-state-in-effect, react-hooks/exhaustive-deps */
   useEffect(() => {
     /* in case of ODD => update only 1st circle */
     if (counter % 2 === 1) {
@@ -57,7 +59,7 @@ export const ApproachOne = () => {
       });
     }
   }, [counter]);
-  /* eslint-enable react-hooks/set-state-in-effect */
+  /* eslint-enable react-hooks/set-state-in-effect, react-hooks/exhaustive-deps */
 
   return (
     <>

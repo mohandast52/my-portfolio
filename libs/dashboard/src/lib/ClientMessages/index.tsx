@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import { FaSearch, FaStar, FaRegStar } from 'react-icons/fa';
 import {
   MessagesContainer,
@@ -83,7 +84,7 @@ const ClientMessages = () => (
       }) => (
         <EachMessage key={id}>
           <Avatar>
-            <img src={`/images/${imageName}.jpg`} alt="" />
+            <Image src={`/images/${imageName}.jpg`} alt="" width={50} height={50} />
           </Avatar>
 
           <Content>

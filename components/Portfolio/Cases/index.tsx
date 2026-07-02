@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 // import { ReactComponent as ArrowPrevious } from '../assets/arrow-left.svg';
 // import ArrowNext from '../../../public/images/';
 import { CasesContainer } from './styles';
@@ -50,7 +51,7 @@ const Cases = () => (
       </div>
 
       <div className="row">
-        {CASE_STUDIES.map(({ // eslint-disable-next-line no-unused-vars
+        {CASE_STUDIES.map(({
           id, subtitle, title, img,
         }) => (
           <div className="case" key={id}>
@@ -60,7 +61,13 @@ const Cases = () => (
             </div>
 
             <div className="case-image">
-              <img src={`/images/${img}.png`} alt={title} />
+              <Image
+                src={`/images/${img}.png`}
+                alt={title}
+                fill
+                sizes="33vw"
+                style={{ objectFit: 'cover' }}
+              />
             </div>
           </div>
         ))}

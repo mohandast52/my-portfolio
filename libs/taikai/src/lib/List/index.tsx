@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import { FaSearchengin } from 'react-icons/fa';
 import JobDetails from '../JobDetails';
 import { Employees } from '../Helpers';
@@ -40,7 +41,7 @@ export const List = ({ pageNumber = 1, list = [] }: ListProps) => {
           <CompanyContainer key={id}>
             <CompanyInfo>
               <Avatar>
-                <img src={`/images/${logo}.jpg`} alt="" />
+                <Image src={`/images/${logo}.jpg`} alt="" width={50} height={50} />
               </Avatar>
 
               <div>

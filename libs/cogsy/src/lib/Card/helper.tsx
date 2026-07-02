@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Image from 'next/image';
 import { InactiveStarIcon, ActiveStarIcon, KebabIcon } from '../Helpers/icons';
 import {
   MenuContainer,
@@ -39,7 +40,7 @@ export const Header = ({ source = null, sourceType = null }: HeaderProps) => {
       )}
 
       {sourceType === 'img' && typeof source === 'string' && (
-        <img src={source} alt={source} />
+        <Image src={source} alt={source} width={280} height={180} unoptimized />
       )}
     </HeaderContainer>
   );

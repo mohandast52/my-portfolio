@@ -41,6 +41,7 @@ A **portfolio + learning-sandbox site** — a collection of largely independent 
 - **12 feature libs** under [libs/](libs/), each its own Nx project (tag `type:feature`), each a self-contained mini-app:
   `weather-app` · `valory` · `timer` · `solid-principles` · `qiibee` · `dashboard` · `cogsy` · `taikai` · `fynd` · `appbase` · `plaza` · `haptik`.
 - **1 util lib** — [`ui-theme`](libs/ui-theme/) (tag `type:util`), the app-shell design tokens (the `COLOR` palette used by `GlobalStyles`, `Layout`, and `Portfolio`). Import it as `@my-portfolio/ui-theme`. Each mini-app keeps its **own** brand palette — `ui-theme` is deliberately just the site-shell tokens, not a merged cross-app theme.
+- **1 sandbox lib** — [`javascript-learning`](libs/javascript-learning/) (tag `type:feature`), plain-JS interview/concept practice snippets. **Not wired into the app** (nothing imports it), so it has a `lint` target only — no `typecheck`, barrel, alias, or page.
 
 There is almost no shared domain logic between features — treat each lib as its own app.
 

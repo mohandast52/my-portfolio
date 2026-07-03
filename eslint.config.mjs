@@ -13,7 +13,6 @@ const config = [
       'out/**',
       'coverage/**',
       'components/TypescriptLearning/**',
-      'JS/**',
     ],
   },
   js.configs.recommended,

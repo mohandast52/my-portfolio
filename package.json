@@ -9,19 +9,19 @@
     "testc": "jest --coverage --verbose --forceExit"
   },
   "dependencies": {
-    "@ant-design/charts": "^1.1.7",
+    "@ant-design/charts": "^2.6.7",
     "@ant-design/cssinjs": "2",
-    "@ant-design/icons": "6",
+    "@ant-design/icons": "^6.3.2",
     "@emotion/is-prop-valid": "1.4.0",
     "@reduxjs/toolkit": "2.12.0",
-    "antd": "6.4.3",
+    "antd": "6.5.0",
     "gsap": "3.15.0",
-    "next": "15",
+    "next": "^16.2.10",
     "next-redux-wrapper": "8.1.0",
     "prop-types": "15.8.1",
     "react": "19",
     "react-dom": "19",
-    "react-icons": "4.12.0",
+    "react-icons": "5.7.0",
     "react-redux": "9.3.0",
     "styled-components": "6.4.3"
   },
@@ -40,7 +40,7 @@
     "@typescript-eslint/eslint-plugin": "^8.62.1",
     "@typescript-eslint/parser": "^8.62.1",
     "eslint": "9",
-    "eslint-config-next": "15",
+    "eslint-config-next": "^16.2.10",
     "eslint-plugin-import": "^2.32.0",
     "eslint-plugin-jest": "^29.15.4",
     "eslint-plugin-jsx-a11y": "^6.10.2",
@@ -49,7 +49,7 @@
     "jest": "30",
     "jest-environment-jsdom": "30",
     "nx": "23.0.1",
-    "typescript": "5"
+    "typescript": "^6.0.3"
   },
   "engines": {
     "node": "24.x"

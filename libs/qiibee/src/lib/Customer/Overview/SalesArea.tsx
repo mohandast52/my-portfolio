@@ -213,7 +213,8 @@ const DemoArea = () => {
     data: DATA,
     xField: 'Date',
     yField: 'scales',
-    xAxis: { tickCount: 5 },
+    // v2 (G2 5): per-axis config moved from xAxis/yAxis to axis.{x,y}.
+    axis: { x: { tickCount: 5 } },
   };
 
   return <Area {...config} />;

@@ -35,16 +35,16 @@ const DemoPie = () => {
   ];
 
   const config: any = {
-    appendPadding: 10,
     data,
     angleField: 'value',
     colorField: 'type',
     radius: 0.8,
+    // v2 (G2 5): label.type/content -> label.text/position; appendPadding and
+    // the interactions array are dropped (element/legend interactions are on by default).
     label: {
-      type: 'outer',
-      content: '{name} {percentage}',
+      text: 'type',
+      position: 'outside',
     },
-    interactions: [{ type: 'pie-legend-active' }, { type: 'element-active' }],
   };
 
   return <Pie {...config} />;

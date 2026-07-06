@@ -1,0 +1,13 @@
+{
+  "name": "javascript-learning",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/javascript-learning/src",
+  "tags": ["scope:javascript-learning", "type:feature"],
+  "targets": {
+    "lint": {
+      "command": "eslint libs/javascript-learning",
+      "cache": true
+    }
+  }
+}

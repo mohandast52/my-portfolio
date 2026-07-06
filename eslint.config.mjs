@@ -3,7 +3,6 @@ import nextCoreWebVitals from 'eslint-config-next/core-web-vitals';
 import jest from 'eslint-plugin-jest';
 import nx from '@nx/eslint-plugin';
 import tsParser from '@typescript-eslint/parser';
-import tsPlugin from '@typescript-eslint/eslint-plugin';
 
 const config = [
   {
@@ -21,6 +20,10 @@ const config = [
   // (no more FlatCompat bridge; it choked on the new circular-ref config shape).
   ...nextCoreWebVitals,
   {
+    // eslint-config-next sets `react.version: 'detect'`, and eslint-plugin-react's
+    // detection calls the deprecated `context.getFilename()` — removed in ESLint 10,
+    // so it crashes. Pin the version explicitly to skip detection entirely.
+    settings: { react: { version: '19' } },
     rules: {
       'arrow-parens': ['error', 'as-needed'],
       // We migrated to default parameters in the React 19 phase; accept those.
@@ -49,16 +52,24 @@ const config = [
     },
   },
   // TypeScript: the base no-unused-vars misreads type-level parameter names
-  // (e.g. `fn: (acc, item) => number`) as unused vars. Use the TS-aware rule
-  // for .ts/.tsx (eslint-config-next only scopes its TS overrides to root *.ts).
+  // (e.g. `fn: (acc, item) => number`) as unused vars. Turn it off in favour of
+  // the TS-aware rule for .ts/.tsx. The @typescript-eslint plugin + parser are
+  // already registered by eslint-config-next (redefining the plugin is a hard
+  // error under ESLint 10), so we only add rule tweaks here.
   {
     files: ['**/*.{ts,tsx}'],
     languageOptions: { parser: tsParser },
-    plugins: { '@typescript-eslint': tsPlugin },
     rules: {
       'no-unused-vars': 'off',
       '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }],
     },
+  },
+  // eslint-config-next also applies @typescript-eslint/parser to plain JS, but
+  // its bundled copy predates ESLint 10's scopeManager.addGlobals API. Point JS
+  // at our ESLint-10-compatible parser (8.63) too.
+  {
+    files: ['**/*.{js,jsx,mjs,cjs}'],
+    languageOptions: { parser: tsParser },
   },
   // jest rules only apply to test files (co-located in each lib) + the jest setup.
   {

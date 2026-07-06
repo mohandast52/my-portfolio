@@ -9,7 +9,7 @@
     "testc": "jest --coverage --verbose --forceExit"
   },
   "dependencies": {
-    "@ant-design/charts": "^1.1.7",
+    "@ant-design/charts": "^2.6.7",
     "@ant-design/cssinjs": "2",
     "@ant-design/icons": "^6.3.2",
     "@emotion/is-prop-valid": "1.4.0",

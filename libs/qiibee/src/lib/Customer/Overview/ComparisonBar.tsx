@@ -91,10 +91,11 @@ const data: any = [
 const DemoColumn = () => {
   const config: any = {
     data,
-    isGroup: true,
     xField: 'month',
     yField: 'value',
-    seriesField: 'name',
+    // v2 (G2 5): seriesField -> colorField, isGroup -> group.
+    colorField: 'name',
+    group: true,
   };
   return <Column {...config} />;
 };

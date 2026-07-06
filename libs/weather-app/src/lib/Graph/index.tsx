@@ -3,9 +3,11 @@ import { Divider } from 'antd';
 import { ChartContainer } from '../styles';
 import type { WeatherEntry } from '../types';
 
-// amCharts v4 is loaded as global CDN scripts in _document (no npm types).
-declare const am4core: any;
-declare const am4charts: any;
+// amCharts v5 is loaded as global CDN scripts in _document (index.js + xy.js +
+// the Animated theme), so there are no npm types here — the globals are `any`.
+declare const am5: any;
+declare const am5xy: any;
+declare const am5themes_Animated: any;
 
 interface GraphProps {
   data: WeatherEntry[];
@@ -13,6 +15,9 @@ interface GraphProps {
 }
 
 class Graph extends Component<GraphProps> {
+  // v5 hands back a Root that must be disposed before the div is reused.
+  private root: any = null;
+
   componentDidMount() {
     this.chart();
   }
@@ -24,36 +29,61 @@ class Graph extends Component<GraphProps> {
     }
   }
 
+  componentWillUnmount() {
+    if (this.root) this.root.dispose();
+  }
+
   chart = () => {
     const { isCelcius, data } = this.props;
-    const chart = am4core.create('chartdiv', am4charts.XYChart);
 
-    // Add data
-    chart.data = data;
+    // Rebuild from scratch: dispose the previous Root so the div is clean.
+    if (this.root) this.root.dispose();
 
-    // axes
-    const categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
-    categoryAxis.dataFields.category = 'time';
-    categoryAxis.renderer.grid.template.location = 0;
-    categoryAxis.renderer.minGridDistance = 30;
-    categoryAxis.title.text = 'Time';
+    const root = am5.Root.new('chartdiv');
+    this.root = root;
+    root.setThemes([am5themes_Animated.new(root)]);
 
-    const valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
-    valueAxis.title.text = isCelcius ? 'Celcius' : 'Fahrenheit';
+    const chart = root.container.children.push(
+      am5xy.XYChart.new(root, { panX: false, panY: false }),
+    );
 
-    /* series */
-    const series = chart.series.push(new am4charts.ColumnSeries());
-    series.dataFields.valueY = isCelcius ? 'temperature' : 'fahrenheit';
-    series.dataFields.categoryX = 'time';
-    series.name = 'Visits';
-    series.columns.template.tooltipText = '[bold]{valueY}[/]: {categoryX}';
-    series.fill = am4core.color('#1890ff');
-    series.stroke = am4core.color('#1890ff');
-    series.columns.template.fillOpacity = 0.5;
+    // X axis — category (time)
+    const xRenderer = am5xy.AxisRendererX.new(root, { minGridDistance: 30 });
+    xRenderer.grid.template.setAll({ location: 0 });
+    const xAxis = chart.xAxes.push(
+      am5xy.CategoryAxis.new(root, { categoryField: 'time', renderer: xRenderer }),
+    );
+    xAxis.children.push(am5.Label.new(root, { text: 'Time', x: am5.p50, centerX: am5.p50 }));
+    xAxis.data.setAll(data);
 
-    const columnTemplate = series.columns.template;
-    columnTemplate.strokeWidth = 2;
-    columnTemplate.strokeOpacity = 1;
+    // Y axis — value (temperature / fahrenheit)
+    const yAxis = chart.yAxes.push(
+      am5xy.ValueAxis.new(root, { renderer: am5xy.AxisRendererY.new(root, {}) }),
+    );
+    yAxis.children.unshift(
+      am5.Label.new(root, {
+        text: isCelcius ? 'Celcius' : 'Fahrenheit',
+        rotation: -90,
+        y: am5.p50,
+        centerX: am5.p50,
+      }),
+    );
+
+    // Column series
+    const series = chart.series.push(
+      am5xy.ColumnSeries.new(root, {
+        name: 'Visits',
+        xAxis,
+        yAxis,
+        valueYField: isCelcius ? 'temperature' : 'fahrenheit',
+        categoryXField: 'time',
+        fill: am5.color('#1890ff'),
+        stroke: am5.color('#1890ff'),
+        tooltip: am5.Tooltip.new(root, { labelText: '[bold]{valueY}[/]: {categoryX}' }),
+      }),
+    );
+    series.columns.template.setAll({ fillOpacity: 0.5, strokeWidth: 2, strokeOpacity: 1 });
+    series.data.setAll(data);
   };
 
   render() {

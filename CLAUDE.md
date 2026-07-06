@@ -78,7 +78,7 @@ The app's legacy convenience aliases (`components/*`, `images/*`) are **allow-li
 ### Styling
 - **styled-components** — colocated `styles.ts` per lib. SSR via `ServerStyleSheet` in [pages/_document.tsx](pages/_document.tsx); SWC handles it (`compiler.styledComponents` in [next.config.js](next.config.js) — there is **no `.babelrc`**).
 - **antd 6** (CSS-in-JS) — its styles are extracted server-side in `_document.tsx` via `@ant-design/cssinjs`.
-- Global CSS from [components/GlobalStyles/](components/GlobalStyles/); **amCharts v4** loads from its CDN via `<script>` tags injected in the `_document` head (so chart pages depend on that CDN at runtime, and headless tooling tends to block on it).
+- Global CSS from [components/GlobalStyles/](components/GlobalStyles/); **amCharts v5** loads from its CDN via `<script>` tags injected in the `_document` head — `index.js` (`am5`) + `xy.js` (`am5xy`) + the Animated theme, used as untyped globals in [weather-app's Graph](libs/weather-app/src/lib/Graph/index.tsx) (so chart pages depend on that CDN at runtime, and headless tooling tends to block on it).
 
 ### Barrels & tree-shaking
 Multi-entry libs — **qiibee** (5 page components) and **appbase** (2) — carry a `package.json` with `{ "sideEffects": false }` so each Next page bundles only the component it imports (without it, every page pulls the whole barrel).

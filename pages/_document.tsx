@@ -43,11 +43,12 @@ export default class MyDocument extends Document {
             rel="stylesheet"
           />,
           /* eslint-disable @next/next/no-sync-scripts --
-             amCharts v4 loads from its CDN as synchronous scripts in the
-             document head; next/script is not usable in _document here. */
-          <script key="4" src="//cdn.amcharts.com/lib/4/core.js" />,
-          <script key="5" src="//cdn.amcharts.com/lib/4/charts.js" />,
-          <script key="6" src="//cdn.amcharts.com/lib/4/maps.js" />,
+             amCharts v5 loads from its CDN as synchronous scripts in the
+             document head; next/script is not usable in _document here.
+             index.js (core `am5`) must load before xy.js (`am5xy`). */
+          <script key="4" src="//cdn.amcharts.com/lib/5/index.js" />,
+          <script key="5" src="//cdn.amcharts.com/lib/5/xy.js" />,
+          <script key="6" src="//cdn.amcharts.com/lib/5/themes/Animated.js" />,
           /* eslint-enable @next/next/no-sync-scripts */
         ],
       } as DocumentInitialProps;

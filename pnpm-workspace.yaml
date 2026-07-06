@@ -8,6 +8,21 @@ allowBuilds:
   sharp: true
   unrs-resolver: true
 
+# pnpm 11's minimumReleaseAge guard blocks freshly-published packages. ESLint 10
+# needs @typescript-eslint 8.63 (first release peering eslint ^10), which is new
+# enough to trip it — allowlist exactly those packages so CI/Vercel can install.
+minimumReleaseAgeExclude:
+  - '@typescript-eslint/eslint-plugin@8.63.0'
+  - '@typescript-eslint/parser@8.63.0'
+  - '@typescript-eslint/project-service@8.63.0'
+  - '@typescript-eslint/scope-manager@8.63.0'
+  - '@typescript-eslint/tsconfig-utils@8.63.0'
+  - '@typescript-eslint/type-utils@8.63.0'
+  - '@typescript-eslint/types@8.63.0'
+  - '@typescript-eslint/typescript-estree@8.63.0'
+  - '@typescript-eslint/utils@8.63.0'
+  - '@typescript-eslint/visitor-keys@8.63.0'
+
 # Security overrides — pull vulnerable TRANSITIVE deps up to their patched
 # versions (GitHub Dependabot). All are deep transitive, none are direct deps.
 #   lodash    4.17.21 -> 4.18.x  code injection in _.template + prototype pollution  (via @ant-design/charts)

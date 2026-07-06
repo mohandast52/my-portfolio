@@ -108,7 +108,7 @@ const Reducer = (state: State, action: Action): State => {
     case API_TYPES.ON_OPTION_SELECT: {
       const { isMultiSelect, checkedListCopy } = state;
       const { selectedKey, updatedList } = action.payload;
-      let copy: ListItem[] = [];
+      let copy: ListItem[];
 
       if (isMultiSelect) {
         copy = [...checkedListCopy].map(item => {

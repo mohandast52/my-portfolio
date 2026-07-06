@@ -10,7 +10,7 @@ Uses **pnpm** (via corepack) on **Node 24** — see `.nvmrc` and the `engines` f
 pnpm dev          # Next.js dev server (http://localhost:3000)
 pnpm build        # Production build
 pnpm start        # Serve the production build
-pnpm lint         # ESLint 9 (flat config) over the whole repo
+pnpm lint         # ESLint 10 (flat config) over the whole repo
 pnpm testc        # Jest: coverage + verbose + --forceExit (no plain `test` script)
 ```
 
@@ -109,7 +109,7 @@ Durable rules for working in this repo — follow them by default.
 
 ## Conventions & gotchas
 - **pnpm config home is [pnpm-workspace.yaml](pnpm-workspace.yaml)** — pnpm 11 **ignores** the `package.json` `pnpm` field (it warns). Both `allowBuilds` (native build-script allowlist: `nx`, `sharp`, `unrs-resolver`) and `overrides` (security bumps) live there. Applying new overrides needs `pnpm install --no-frozen-lockfile`.
-- **ESLint 9 flat config** ([eslint.config.mjs](eslint.config.mjs)): `eslint-config-next` + `js.recommended`, `@typescript-eslint` for `.ts/.tsx`, jest rules for tests, and the boundary rule. `arrow-parens: as-needed`. Run `pnpm lint` before considering work done.
+- **ESLint 10 flat config** ([eslint.config.mjs](eslint.config.mjs)): `eslint-config-next` (native flat array) + `js.recommended`, `@typescript-eslint` for `.ts/.tsx`, jest rules for tests, and the boundary rule. `arrow-parens: as-needed`. Run `pnpm lint` before considering work done. **ESLint 10 gotchas** (all handled in the config): pin `settings.react.version` (`eslint-plugin-react`'s version *detection* calls the removed `context.getFilename()`); **don't** re-declare the `@typescript-eslint` plugin (eslint-config-next registers it — redefining a plugin is a hard error in 10); and point plain **JS** at our `@typescript-eslint/parser` too (its bundled copy predates the `scopeManager.addGlobals` API). Needs `@typescript-eslint` ≥ 8.63 (first version peering ESLint 10).
 - The **OpenWeatherMap key** is `NEXT_PUBLIC_OPENWEATHERMAP_API_KEY` in `.env.local` (see [.env.example](.env.example)) — no longer hardcoded.
 - The qiibee slice uses the consistent misspellings **`reedeemed_points` / `reedeem_points`** — match them so lookups keep working.
 - Test files are still `.jsx` (jest transforms `ts/tsx` via `next/babel`); coverage is scoped to Haptik.

@@ -66,6 +66,13 @@ export const Cards = styled.div`
       width: 70px;
       height: 70px;
       margin: 0 auto;
+
+      img {
+        width: 100%;
+        height: 100%;
+        /* keep the (square) weather icon from being stretched to the box */
+        object-fit: contain;
+      }
     }
 
     .weather-info {

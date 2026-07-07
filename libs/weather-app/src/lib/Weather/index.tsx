@@ -41,9 +41,9 @@ const Weather = ({ isCelcius = false, active = 0, list = [] }: WeatherProps) => 
           cover={(
             <Image
               alt={weatherMain}
-              src={`http://openweathermap.org/img/w/${weatherIcon}.png`}
-              width={50}
-              height={50}
+              src={`https://openweathermap.org/img/wn/${weatherIcon}@2x.png`}
+              width={70}
+              height={70}
               unoptimized
             />
           )}

@@ -17,8 +17,12 @@ const Weather = ({ isCelcius = false, active = 0, list = [] }: WeatherProps) => 
         return null;
       }
 
+      // Today only has the slots remaining from now on, so its array is shorter
+      // than getCurrentFromTime()'s absolute 0-7 index. Fall back to the last
+      // entry when the index is out of range — `>` (not `>=`) so we never read
+      // value[value.length], which is undefined.
       const currentTime = getCurrentFromTime();
-      const currentWeather = value.length >= currentTime
+      const currentWeather = value.length > currentTime
         ? value[currentTime]
         : value[value.length - 1];
 

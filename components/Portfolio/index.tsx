@@ -1,64 +1,33 @@
-import React, { useEffect, useState } from 'react';
-// import Link from 'next/link';
-import gsap from 'gsap';
-import Header from './Header';
-import Home from './Pages/Home';
-import Navigation from './Navigation';
-import { Container } from './styles';
+import React from 'react';
+import Navbar from './Navbar';
+import Hero from './Hero';
+import About from './About';
+import Experience from './Experience';
+import Stack from './Stack';
+import Work from './Work';
+import OpenSource from './OpenSource';
+import Contact from './Contact';
+import type { Repo } from './github';
+import { Page } from './styles';
 
-const debounce = (fn: () => void, ms = 300) => {
-  let timer: ReturnType<typeof setTimeout>;
-  return () => {
-    clearInterval(timer);
-    timer = setTimeout(() => {
-      fn();
-    }, ms);
-  };
-};
+interface PortfolioProps {
+  /** Live GitHub repos, fetched in getStaticProps (see pages/index.tsx). */
+  repos?: Repo[];
+}
 
-const App = () => {
-  // const [dimensions, setDimensions] = useState({
-  //   width: window ? window.innerWidth : 0,
-  //   height: window ? window.innerHeight : 0,
-  // });
+const Portfolio = ({ repos = [] }: PortfolioProps) => (
+  <>
+    <Navbar />
+    <Page>
+      <Hero />
+      <About />
+      <Experience />
+      <Stack />
+      <Work />
+      <OpenSource repos={repos} />
+      <Contact />
+    </Page>
+  </>
+);
 
-  const [dimensions, setDimensions] = useState({
-    width: 0,
-    height: 0,
-  });
-
-  const onResize = debounce(() => {
-    setDimensions({
-      width: window.innerWidth,
-      height: window.innerHeight,
-    });
-  });
-
-  useEffect(() => {
-    const vh = dimensions.height * 0.01;
-    /* Then we set the value in the --vh custom property to the root of the document */
-    document.documentElement.style.setProperty('--vh', `${vh}px`);
-
-    /* prevents flashing */
-    // @ts-expect-error GSAP 3 typings drop the legacy 3-arg (target, duration, vars) signature; kept for parity
-    gsap.to('body', 0, { css: { visibility: 'visible' } });
-
-    /* resize listener */
-    window.addEventListener('resize', onResize);
-    return () => {
-      window.removeEventListener('resize', onResize);
-    };
-  }, [dimensions.height, onResize]);
-
-  return (
-    <Container>
-      <Header dimensions={dimensions} />
-      <div className="App">
-        <Home />
-      </div>
-      <Navigation />
-    </Container>
-  );
-};
-
-export default App;
+export default Portfolio;

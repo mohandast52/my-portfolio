@@ -43,8 +43,18 @@ const MyApp = ({ Component, ...rest }: AppProps) => {
       <Provider store={store}>
         <GlobalStyle />
         <Head>
-          <title>Mohan Portfolio</title>
-          <meta name="title" content="Manage your veOLAS and buOLAS" />
+          <title>Mohan Das — Software Developer</title>
+          <meta
+            name="description"
+            content="Mohan Das — software developer with 7+ years in React & TypeScript, now going full-stack. Projects, experience, and open-source work."
+          />
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
+          <meta property="og:title" content="Mohan Das — Software Developer" />
+          <meta
+            property="og:description"
+            content="Software developer with 7+ years in React & TypeScript, now going full-stack — projects, experience, and open-source work."
+          />
+          <meta property="og:type" content="website" />
         </Head>
         <Layout>
           <Component {...pageProps} />

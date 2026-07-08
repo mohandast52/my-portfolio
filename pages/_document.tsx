@@ -42,6 +42,11 @@ export default class MyDocument extends Document {
             href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap"
             rel="stylesheet"
           />,
+          <link
+            key="fonts-portfolio"
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+            rel="stylesheet"
+          />,
           /* eslint-disable @next/next/no-sync-scripts --
              amCharts v5 loads from its CDN as synchronous scripts in the
              document head; next/script is not usable in _document here.

@@ -1,155 +1,102 @@
 import styled from 'styled-components';
-import { COLOR } from '@my-portfolio/ui-theme';
+import { COLOR, FONT } from '@my-portfolio/ui-theme';
 
-export const EC = styled.div``;
+// Full-bleed dark ground for the landing page. GlobalStyles paints the <body>
+// white for every mini-app, so the portfolio owns its own dark background here
+// rather than changing the global — the other pages must stay light.
+export const Page = styled.main`
+  position: relative;
+  min-height: 100vh;
+  background: ${COLOR.INK};
+  color: ${COLOR.TEXT};
+  font-family: ${FONT.BODY};
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+
+  /* One restrained atmosphere: a soft violet glow bleeding from the top. */
+  &::before {
+    content: '';
+    position: absolute;
+    top: -12%;
+    left: 50%;
+    width: min(1100px, 120vw);
+    height: 620px;
+    transform: translateX(-50%);
+    background: radial-gradient(
+      ellipse at center,
+      ${COLOR.VIOLET}22 0%,
+      transparent 68%
+    );
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  ::selection {
+    background: ${COLOR.VIOLET};
+    color: ${COLOR.WHITE};
+  }
+
+  :focus-visible {
+    outline: 2px solid ${COLOR.VIOLET_LIGHT};
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+`;
 
 export const Container = styled.div`
-  .container {
-    /* width: 1560px; */
-    /* min-width: 1560px; */
-    margin: 0 auto;
-    height: 100%;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 clamp(20px, 5vw, 44px);
+`;
 
-    /* @include media("<=1560px") {
-      width: 1280px;
-      min-width: 1280px;
-    }
+export const Section = styled.section`
+  position: relative;
+  padding: clamp(72px, 12vh, 128px) 0;
+  scroll-margin-top: 84px;
+`;
 
-    @include media("<=desktop") {
-      width: 1080px;
-      min-width: 1080px;
-    }
+// Mono kicker: `// about`, `// selected work` — the recurring structural label
+// that ties the whole page to the code/craft theme.
+export const Eyebrow = styled.span`
+  display: inline-block;
+  font-family: ${FONT.MONO};
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  color: ${COLOR.VIOLET_LIGHT};
 
-    @include media("<=1080px") {
-      width: 100%;
-      min-width: 100%;
-    } */
-
-    .row {
-      display: flex;
-      height: 100%;
-      padding: 0 32px;
-
-      /* @include media("<=phone") {
-        padding: 0 16px;
-      } */
-    }
-
-    .v-center {
-      align-items: center;
-    }
-
-    .space-between {
-      justify-content: space-between;
-    }
+  &::before {
+    content: '// ';
+    color: ${COLOR.TEXT_FAINT};
   }
+`;
 
-  .container-fluid {
-    width: 100%;
-    height: 100%;
+export const SectionTitle = styled.h2`
+  margin: 14px 0 0;
+  font-family: ${FONT.DISPLAY};
+  font-weight: 600;
+  font-size: clamp(1.9rem, 4vw, 2.9rem);
+  line-height: 1.06;
+  letter-spacing: -0.02em;
+  color: ${COLOR.TEXT};
+`;
 
-    .row {
-      display: flex;
-      height: 100%;
-    }
-  }
+export const SectionNote = styled.p`
+  max-width: 46ch;
+  margin: 16px 0 0;
+  font-size: 1.02rem;
+  line-height: 1.65;
+  color: ${COLOR.TEXT_MUTED};
+`;
 
-  /* --------- overlay ----------- */
-  .intro-overlay {
-    .top {
-      z-index: 8;
-      position: absolute;
-      height: 50vh;
-      width: 100%;
-
-      .overlay-top {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 33.33vw;
-        height: 100%;
-        background-color: ${COLOR.BLACK};
-
-        /* @include media("<=tablet") {
-          width: 100vw;
-        } */
-
-        &:nth-child(2) {
-          left: 33.33%;
-
-          /* @include media("<=tablet") {
-            display: none;
-          } */
-        }
-
-        &:nth-child(3) {
-          left: 66.66%;
-
-          /* @include media("<=tablet") {
-            display: none;
-          } */
-        }
-      }
-    }
-
-    .bottom {
-      z-index: 8;
-      position: absolute;
-      height: 50vh;
-      width: 100%;
-      bottom: 0;
-
-      .overlay-bottom {
-        position: absolute;
-        bottom: 0;
-        right: 66.66%;
-        width: 33.33vw;
-        height: 100%;
-        background-color: ${COLOR.BLACK};
-
-        /* @include media("<=tablet") {
-          right: 0;
-          width: 100vw;
-        } */
-
-        &:nth-child(2) {
-          right: 33.33%;
-
-          /* @include media("<=tablet") {
-            width: 100vw;
-            top: 100%;
-            right: 0;
-          } */
-        }
-
-        &:nth-child(3) {
-          right: 0;
-
-          /* @include media("<=tablet") {
-            width: 100vw;
-            top: 200%;
-            right: 0;
-          } */
-        }
-      }
-    }
-  }
-
-  /* --------- App ----------- */
-  .App {
-    z-index: 2;
-    transform: translateY(0);
-    position: relative;
-  }
-
-  .page {
-    width: 100%;
-    height: 100vh;
-    background: ${COLOR.WHITE};
-
-    .row {
-      display: flex;
-      align-items: center;
-    }
-  }
+export const SectionHead = styled.header`
+  margin-bottom: clamp(36px, 6vw, 60px);
 `;

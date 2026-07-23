@@ -16,6 +16,7 @@
       "@my-portfolio/haptik": ["libs/haptik/src/index.ts"],
       "@my-portfolio/plaza": ["libs/plaza/src/index.ts"],
       "@my-portfolio/appbase": ["libs/appbase/src/index.ts"],
+      "@my-portfolio/mohan-gpt": ["libs/mohan-gpt/src/index.ts"],
       "@my-portfolio/ui-theme": ["libs/ui-theme/src/index.ts"]
     }
   }

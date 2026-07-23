@@ -1,0 +1,17 @@
+{
+  "name": "mohan-gpt",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/mohan-gpt/src",
+  "tags": ["scope:mohan-gpt", "type:feature"],
+  "targets": {
+    "lint": {
+      "command": "eslint libs/mohan-gpt",
+      "cache": true
+    },
+    "typecheck": {
+      "command": "tsc --noEmit -p libs/mohan-gpt/tsconfig.json",
+      "cache": true
+    }
+  }
+}

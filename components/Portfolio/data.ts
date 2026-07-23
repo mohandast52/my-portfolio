@@ -80,11 +80,8 @@ export const PROFILE = {
   thesisAccent: 'pixel-perfect',
   thesisTrail: 'interfaces.',
   blurb:
-    'Senior software developer with 7+ years building production React & '
-    + 'TypeScript apps — design systems, dashboards, and Web3 dApp frontends. '
-    + 'Currently a frontend tech lead on a long-term contract, and now '
-    + 'broadening into full-stack — Node, APIs and databases — to own features '
-    + 'end to end.',
+    'Senior software developer, 7+ years in React & TypeScript — '
+    + 'now going full-stack.',
 };
 
 export const NAV_LINKS: NavLink[] = [

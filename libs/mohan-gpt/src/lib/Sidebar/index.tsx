@@ -1,6 +1,7 @@
 // The app-shell sidebar: expanded (264px) and collapsed (68px) on desktop, an
 // overlay drawer below 1024px. Topic rows inject their prompt into the chat.
 
+import { useEffect, useRef } from 'react';
 import {
   IconBriefcase,
   IconDownload,
@@ -58,28 +59,52 @@ const Sidebar = ({
 }: SidebarProps) => {
   // The drawer always shows labels; only the desktop rail collapses.
   const labels = isMobile ? true : !collapsed;
+  // A closed drawer is translated off-screen but still in the DOM, so without
+  // `inert` its twelve controls stay in the tab order and keyboard focus
+  // disappears into an invisible panel. `inert` also hides it from the a11y
+  // tree, which is why aria-hidden tracks the same condition.
+  const offscreen = isMobile && !drawerOpen;
+  const asideRef = useRef<HTMLElement | null>(null);
+
+  // Opening the drawer moves focus into it, so a keyboard user lands on the
+  // thing that just appeared rather than continuing through the page behind it.
+  useEffect(() => {
+    if (isMobile && drawerOpen) asideRef.current?.focus();
+  }, [isMobile, drawerOpen]);
 
   return (
     <S.Aside
+      ref={asideRef}
       $mobile={isMobile}
       $open={drawerOpen}
       $collapsed={collapsed}
       aria-label="MohanGPT navigation"
-      aria-hidden={isMobile && !drawerOpen}
+      aria-hidden={offscreen}
+      inert={offscreen}
+      // Below 1024px it overlays the page behind a scrim — that is a modal.
+      role={isMobile ? 'dialog' : undefined}
+      aria-modal={isMobile ? true : undefined}
+      tabIndex={isMobile ? -1 : undefined}
       data-testid="sidebar"
     >
       <S.Head>
         <S.LogoRow $labels={labels}>
           <S.LogoGroup>
-            <S.Monogram
-              type="button"
-              $interactive={!isMobile}
-              onClick={isMobile ? undefined : onToggleCollapsed}
-              aria-label={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}
-              title="MohanGPT"
-            >
-              M
-            </S.Monogram>
+            {isMobile ? (
+              // No collapse behaviour on mobile, so the mark is decorative
+              // rather than a button that does nothing but take a tab stop.
+              <S.Monogram as="div" $interactive={false} aria-hidden>M</S.Monogram>
+            ) : (
+              <S.Monogram
+                type="button"
+                $interactive
+                onClick={onToggleCollapsed}
+                aria-label={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}
+                title="MohanGPT"
+              >
+                M
+              </S.Monogram>
+            )}
             {labels ? (
               <S.LogoText>
                 <S.LogoTitle>MohanGPT</S.LogoTitle>

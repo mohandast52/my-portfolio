@@ -1,4 +1,6 @@
-import Document, { DocumentContext, DocumentInitialProps } from 'next/document';
+import Document, {
+  DocumentContext, DocumentInitialProps, Head, Html, Main, NextScript,
+} from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
 import { createCache, extractStyle, StyleProvider } from '@ant-design/cssinjs';
 
@@ -66,5 +68,19 @@ export default class MyDocument extends Document {
     } finally {
       sheet.seal();
     }
+  }
+
+  // Next's default document renders <Html> with no lang, which fails
+  // WCAG 3.1.1 on every page. Overriding render just to set it.
+  render() {
+    return (
+      <Html lang="en">
+        <Head />
+        <body>
+          <Main />
+          <NextScript />
+        </body>
+      </Html>
+    );
   }
 }

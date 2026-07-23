@@ -51,6 +51,25 @@ a single accent — Vercel blue `#0070F3`. Lucide icons only, no emoji.
 The tokens are applied to the lib's root element rather than `<html>`, so they
 stay scoped here and cannot leak into the rest of the site.
 
+**One deliberate deviation from the spec's token values.** `--faint` failed WCAG
+AA in both themes for the small text it carries (step indicator, disclaimer,
+mono badges, the About location line): the spec's `#707070` measures 3.87:1 on
+`--panel` in dark, and `#999999` only 2.84:1 on white in light. Both are nudged
+to the closest AA-clean value — `#828282` and `#6f6f6f` — since the same brief
+also asks for WCAG 2.1 AA. Every other token is exactly as specified.
+
+## Accessibility
+
+Audited with axe-core (`wcag2a`, `wcag2aa`, `wcag21a`, `wcag21aa`) across six
+states — empty, conversation, classic/light, sidebar collapsed, and the mobile
+drawer open and closed. **Zero violations.**
+
+The mobile drawer is a real modal: it is `inert` while off-screen (otherwise its
+twelve controls stay in the tab order behind the scrim), it carries
+`role="dialog"` + `aria-modal`, opening it moves focus in and marks the main
+column `inert` so Tab stays contained, and Escape closes it and returns focus to
+the hamburger.
+
 ## Content
 
 `content.ts` mirrors the facts in `components/Portfolio/data.ts`. They are

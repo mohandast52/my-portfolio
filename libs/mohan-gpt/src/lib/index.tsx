@@ -82,6 +82,8 @@ const MohanGPT = () => {
   const seqRef = useRef(0);
   const timersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const hamburgerRef = useRef<HTMLButtonElement | null>(null);
+  const drawerWasOpen = useRef(false);
 
   const uid = () => {
     seqRef.current += 1;
@@ -108,6 +110,24 @@ const MohanGPT = () => {
     mq.addEventListener('change', update);
     return () => mq.removeEventListener('change', update);
   }, []);
+
+  // Modal-drawer conventions: Escape dismisses it, and closing hands focus back
+  // to the control that opened it instead of dropping it at the top of the page.
+  useEffect(() => {
+    if (!drawerOpen) {
+      if (drawerWasOpen.current) {
+        drawerWasOpen.current = false;
+        hamburgerRef.current?.focus();
+      }
+      return undefined;
+    }
+    drawerWasOpen.current = true;
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setDrawerOpen(false);
+    };
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, [drawerOpen]);
 
   // Clear every pending timer on unmount so a stream cannot outlive the view.
   useEffect(() => () => {
@@ -253,12 +273,16 @@ const MohanGPT = () => {
             onViewClassic={goClassic}
           />
 
-          <S.Main>
+          {/* Everything behind the open drawer is inert, so Tab stays inside
+              the drawer rather than wandering through the scrimmed page. */}
+          <S.Main inert={isMobile && drawerOpen}>
             <S.TopBar>
               {isMobile ? (
                 <S.Hamburger
+                  ref={hamburgerRef}
                   type="button"
                   aria-label="Open menu"
+                  aria-expanded={drawerOpen}
                   onClick={() => setDrawerOpen(prev => !prev)}
                 >
                   <IconMenu />

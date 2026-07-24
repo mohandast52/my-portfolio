@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { FaArrowDown, FaArrowRightLong } from 'react-icons/fa6';
 import { PROFILE, STATS, SOCIALS } from '../data';
 import { SOCIAL_ICON } from '../icons';
+import Magnet from '../magnet';
 import { Eyebrow } from '../styles';
 import {
   Wrap,
@@ -81,9 +82,13 @@ const Hero = () => (
       </Intro>
 
       <Aside>
-        <Avatar>
-          <Image src={PROFILE.avatar} alt={PROFILE.fullName} width={118} height={118} />
-        </Avatar>
+        {/* Gentler than a full-bleed portrait would want: a small avatar only
+            needs a short pull (padding) and a soft divisor (strength). */}
+        <Magnet padding={90} strength={4}>
+          <Avatar>
+            <Image src={PROFILE.avatar} alt={PROFILE.fullName} width={118} height={118} />
+          </Avatar>
+        </Magnet>
 
         <Card>
           <div className="chrome">

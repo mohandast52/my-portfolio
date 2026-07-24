@@ -4,6 +4,7 @@ import {
   Section, Container, Eyebrow, SectionTitle, SectionHead,
 } from '../styles';
 import Reveal from '../reveal';
+import AnimatedText from '../AnimatedText';
 import {
   Grid, Prose, Aside, InfoCard,
 } from './styles';
@@ -34,7 +35,10 @@ const About = () => (
 
       <Grid>
         <Prose>
-          {PARAGRAPHS.map((para, i) => (
+          {/* The lead paragraph reveals character-by-character on scroll; the
+              rest keep the standard block reveal so the effect stays an accent. */}
+          <AnimatedText text={PARAGRAPHS[0]} />
+          {PARAGRAPHS.slice(1).map((para, i) => (
             <Reveal key={para.slice(0, 24)} delay={i * 80}>
               <p>{para}</p>
             </Reveal>

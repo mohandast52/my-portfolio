@@ -6,8 +6,9 @@ coverage
 # local env files (keep .env.example committed)
 .env*.local
 
-# AI
+# AI — .claude/skills/ IS committed (shared agent context); local settings are not
 /.plans
+.claude/settings.local.json
 
 # Nx
 .nx/cache

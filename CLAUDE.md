@@ -2,6 +2,32 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Agent skills
+
+Deeper, task-scoped context lives in [.claude/skills/](.claude/skills/) — nine skills that
+load **on demand** when the work matches their description. This file stays the canonical
+quick reference (commands, architecture, principles); the skills carry the detail.
+
+| Skill | Covers |
+|---|---|
+| [project-overview](.claude/skills/project-overview/SKILL.md) | What the site is, audience, full route→lib map, out-of-scope, the confidential-client naming rule |
+| [architecture](.claude/skills/architecture/SKILL.md) | Nx projects/tags, boundary matrix, aliases-in-3-places, routing, state, SSR, barrels, extraction recipe |
+| [code-standards](.claude/skills/code-standards/SKILL.md) | No `any`, comment style, ESLint 10 rules, React 19 patterns, specs, commits, git hygiene, verification gate |
+| [ui-tokens](.claude/skills/ui-tokens/SKILL.md) | Real `COLOR`/`FONT` values, MohanGPT scoped CSS vars, webfonts, radius/layout/motion scales |
+| [ui-rules](.claude/skills/ui-rules/SKILL.md) | styled-components patterns, WCAG AA in every state, focus/keyboard, reduced-motion, SSR safety |
+| [ui-registry](.claude/skills/ui-registry/SKILL.md) | Inventory of existing primitives/icons/helpers + what's importable across boundaries |
+| [library-docs](.claude/skills/library-docs/SKILL.md) | Every version-specific workaround (pnpm 11, ESLint 10, antd/Jest ESM, amCharts CDN, Vercel) |
+| [build-plan](.claude/skills/build-plan/SKILL.md) | The `.plans/<topic>-plan.md` format + standard phase shapes |
+| [progress-tracker](.claude/skills/progress-tracker/SKILL.md) | Newest-first status log, phase entries with SHA + evidence, resume checklist |
+
+Plus [refresh-ui-registry](.claude/skills/refresh-ui-registry/SKILL.md) — a maintenance skill
+that re-scans the codebase and updates `ui-registry` (the one that drifts fastest).
+
+**When a change alters how the repo works** — new lib, new alias, new convention, new config
+workaround — update **this file and the affected skill in the same commit**.
+
+`.claude/skills/` is committed; `.claude/settings.local.json` is gitignored.
+
 ## Commands
 
 Uses **pnpm** (via corepack) on **Node 24** — see `.nvmrc` and the `engines` field. One-time: `corepack enable pnpm` and `nvm use`. **⚠️ Always `nvm use` first** — Nx needs Node 20+, and the default shell may be on an older Node.
@@ -87,7 +113,7 @@ Multi-entry libs — **qiibee** (5 page components) and **appbase** (2) — carr
 [.github/workflows/ci.yml](.github/workflows/ci.yml) runs `pnpm nx affected -t lint typecheck testc build` on PRs — only projects a change touches get checked (uses `nrwl/nx-set-shas`).
 
 ### Animation
-The Portfolio landing page ([components/Portfolio/Pages/Home.tsx](components/Portfolio/Pages/Home.tsx)) uses a **GSAP timeline** for the intro overlay; the overlay unmounts via React state once the animation completes so it stops blocking interaction.
+All landing-page motion is **hand-rolled** (CSS transitions + rAF-throttled scroll effects) — the reference implementations live in [components/Portfolio/](components/Portfolio/): `reveal.tsx` (IntersectionObserver fade+rise), `magnet.tsx` (magnetic avatar; skips itself on `hover: none` / reduced motion), `AnimatedText.tsx` (character reveal with an AA-mandated `DIM = 0.55` floor), and the Work sticky showcase (scroll-driven scale, degrades to a plain list under reduced motion / 640px). **GSAP is installed but currently unused** (the intro overlay that used it was removed in 6b8b983) — a removal candidate.
 
 ## Adding a new lib (extraction recipe)
 1. `git mv components/<Feature>` (or its source) → `libs/<name>/src/lib` (relative imports survive the move).

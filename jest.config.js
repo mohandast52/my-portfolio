@@ -42,6 +42,7 @@ module.exports = {
     '^@my-portfolio/haptik$': '<rootDir>/libs/haptik/src/index.ts',
     '^@my-portfolio/plaza$': '<rootDir>/libs/plaza/src/index.ts',
     '^@my-portfolio/appbase$': '<rootDir>/libs/appbase/src/index.ts',
+    '^@my-portfolio/mohan-gpt$': '<rootDir>/libs/mohan-gpt/src/index.ts',
     '^@my-portfolio/ui-theme$': '<rootDir>/libs/ui-theme/src/index.ts',
     '^components/(.*)$': '<rootDir>/components/$1',
     '^images/(.*)$': '<rootDir>/public/images/$1',

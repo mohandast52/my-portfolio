@@ -1,4 +1,6 @@
-import Document, { DocumentContext, DocumentInitialProps } from 'next/document';
+import Document, {
+  DocumentContext, DocumentInitialProps, Head, Html, Main, NextScript,
+} from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
 import { createCache, extractStyle, StyleProvider } from '@ant-design/cssinjs';
 
@@ -42,17 +44,43 @@ export default class MyDocument extends Document {
             href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap"
             rel="stylesheet"
           />,
+          <link
+            key="fonts-portfolio"
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+            rel="stylesheet"
+          />,
+          /* Geist + Geist Mono — the MohanGPT (/mohangpt) design system. */
+          <link
+            key="fonts-geist"
+            href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@400..600&display=swap"
+            rel="stylesheet"
+          />,
           /* eslint-disable @next/next/no-sync-scripts --
-             amCharts v4 loads from its CDN as synchronous scripts in the
-             document head; next/script is not usable in _document here. */
-          <script key="4" src="//cdn.amcharts.com/lib/4/core.js" />,
-          <script key="5" src="//cdn.amcharts.com/lib/4/charts.js" />,
-          <script key="6" src="//cdn.amcharts.com/lib/4/maps.js" />,
+             amCharts v5 loads from its CDN as synchronous scripts in the
+             document head; next/script is not usable in _document here.
+             index.js (core `am5`) must load before xy.js (`am5xy`). */
+          <script key="4" src="//cdn.amcharts.com/lib/5/index.js" />,
+          <script key="5" src="//cdn.amcharts.com/lib/5/xy.js" />,
+          <script key="6" src="//cdn.amcharts.com/lib/5/themes/Animated.js" />,
           /* eslint-enable @next/next/no-sync-scripts */
         ],
       } as DocumentInitialProps;
     } finally {
       sheet.seal();
     }
+  }
+
+  // Next's default document renders <Html> with no lang, which fails
+  // WCAG 3.1.1 on every page. Overriding render just to set it.
+  render() {
+    return (
+      <Html lang="en">
+        <Head />
+        <body>
+          <Main />
+          <NextScript />
+        </body>
+      </Html>
+    );
   }
 }

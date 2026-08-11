@@ -10,7 +10,7 @@ modal. Recruiter take-home assignment, authored in TypeScript.
 import Taikai from '@my-portfolio/taikai';
 ```
 
-Rendered by [pages/assignment/taikai.jsx](../../pages/assignment/taikai.jsx).
+Rendered by [pages/assignment/taikai.jsx](../../../pages/assignment/taikai.jsx).
 
 ## Public API
 

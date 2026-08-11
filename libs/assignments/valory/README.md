@@ -10,7 +10,7 @@ TypeScript.
 import Valory from '@my-portfolio/valory';
 ```
 
-Rendered by [pages/valory.jsx](../../pages/valory.jsx).
+Rendered by [pages/valory.jsx](../../../pages/valory.jsx).
 
 ## Public API
 

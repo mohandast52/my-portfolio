@@ -1,6 +1,6 @@
 {
-  "//": "Isolated type-check config for the valory lib (nx typecheck valory). Uses react-jsx so it runs standalone without the Next plugin.",
-  "extends": "../../tsconfig.base.json",
+  "//": "Isolated type-check config for the fynd lib.",
+  "extends": "../../../tsconfig.base.json",
   "compilerOptions": {
     "target": "ES2017",
     "lib": ["dom", "dom.iterable", "esnext"],

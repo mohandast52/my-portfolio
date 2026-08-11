@@ -1,6 +1,6 @@
 {
   "//": "Isolated type-check config for the haptik lib.",
-  "extends": "../../tsconfig.base.json",
+  "extends": "../../../tsconfig.base.json",
   "compilerOptions": {
     "target": "ES2017",
     "lib": ["dom", "dom.iterable", "esnext"],

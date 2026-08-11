@@ -17,8 +17,8 @@ Authored in TypeScript.
 import { Appbase, Circles } from '@my-portfolio/appbase';
 ```
 
-Rendered by [pages/assignment/appbase.jsx](../../pages/assignment/appbase.jsx)
-and [pages/assignment/circles.jsx](../../pages/assignment/circles.jsx).
+Rendered by [pages/assignment/appbase.jsx](../../../pages/assignment/appbase.jsx)
+and [pages/assignment/circles.jsx](../../../pages/assignment/circles.jsx).
 
 ## Public API
 

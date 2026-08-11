@@ -13,7 +13,7 @@ import {
 const featuredFirst = (a: Project, b: Project) => Number(Boolean(b.featured)) - Number(Boolean(a.featured));
 
 // Only self-built projects appear on the homepage. Recruiter take-homes are
-// deliberately kept off it — their pages still live at their own routes.
+// deliberately kept off it; their pages still live at their own routes.
 const BUILT = PROJECTS.filter(p => p.kind === 'Concept').sort(featuredFirst);
 
 const ProjectCard = ({ project }: { project: Project }) => (
@@ -42,11 +42,11 @@ const Work = () => (
       <SectionHead>
         <Reveal><Eyebrow>selected work</Eyebrow></Reveal>
         <Reveal delay={60}>
-          <SectionTitle>Things I&apos;ve built — live and clickable.</SectionTitle>
+          <SectionTitle>Things I&apos;ve built, live and clickable.</SectionTitle>
         </Reveal>
         <Reveal delay={90}>
           <SectionNote>
-            Apps I built to learn a tool or try an idea — each one runs right
+            Apps I built to learn a tool or try an idea. Each one runs right
             here in the site.
           </SectionNote>
         </Reveal>

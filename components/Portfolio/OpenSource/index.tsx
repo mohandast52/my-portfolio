@@ -39,7 +39,7 @@ const OpenSource = ({ repos }: OpenSourceProps) => (
       {repos.length === 0 ? (
         <Reveal>
           <Empty>
-            Live repos are taking a break — browse them directly on
+            Live repos are taking a break. Browse them directly on
             {' '}
             <a href={GITHUB_URL} target="_blank" rel="noreferrer">
               github.com/mohandast52

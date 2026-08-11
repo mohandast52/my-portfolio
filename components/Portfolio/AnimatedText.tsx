@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 // Character-by-character scroll reveal: as the paragraph moves through the
 // viewport (roughly from `top at 80%` to `bottom at 20%`), each character eases
-// from dim to full opacity in reading order — a soft left-to-right wipe.
+// from dim to full opacity in reading order, a soft left-to-right wipe.
 // SSR-safe and fully revealed for reduced-motion users.
 //
 // Deliberately carries no typography of its own: it renders a plain <p> so the
@@ -11,7 +11,7 @@ import styled from 'styled-components';
 
 // The dim floor is an accessibility constraint, not a taste call. At the 0.2
 // the source design used, TEXT (#ECECF1) over INK (#0A0A0F) blends to roughly
-// 2.2:1 — well under the 4.5:1 AA floor, so an un-scrolled paragraph would be
+// 2.2:1, well under the 4.5:1 AA floor, so an un-scrolled paragraph would be
 // unreadable. 0.55 measures ~5.5:1 (0.5 is break-even at ~4.7:1); keep it >= 0.55.
 const DIM = 0.55;
 
@@ -38,7 +38,7 @@ const AnimatedText = ({ text, className = undefined }: AnimatedTextProps) => {
   const ref = useRef<HTMLParagraphElement>(null);
   const [progress, setProgress] = useState(0);
   const chars = Array.from(text);
-  // How many characters the reveal edge is "wide" — a larger window softens
+  // How many characters the reveal edge is "wide"; a larger window softens
   // the leading edge so it isn't a hard cutoff.
   const windowSize = Math.max(8, Math.round(chars.length * 0.12));
 

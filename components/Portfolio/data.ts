@@ -2,7 +2,7 @@
 // lives here as typed data, so adding a project or a role is a data edit, not
 // a markup edit. All projects are real, live routes in this same app.
 //
-// NOTE: the current engagement is a confidential contract — the client and its
+// NOTE: the current engagement is a confidential contract; the client and its
 // product names are intentionally omitted; only the (public) technical scope is
 // described. Do not add the client name here.
 
@@ -29,7 +29,7 @@ export interface Stat {
 export interface SkillGroup {
   label: string;
   items: string[];
-  /** Areas actively being grown (the full-stack push) — badged in the UI. */
+  /** Areas actively being grown (the full-stack push); badged in the UI. */
   growing?: boolean;
 }
 
@@ -80,7 +80,7 @@ export const PROFILE = {
   thesisAccent: 'pixel-perfect',
   thesisTrail: 'interfaces.',
   blurb:
-    'Senior software developer, 7+ years in React & TypeScript — '
+    'Senior software developer, 7+ years in React & TypeScript, '
     + 'now going full-stack.',
 };
 
@@ -157,7 +157,7 @@ export const SKILL_GROUPS: SkillGroup[] = [
   },
 ];
 
-// Every project below is a page that runs in this same app — the href is its
+// Every project below is a page that runs in this same app; the href is its
 // live route. Featured ones lead the grid with a violet accent.
 export const PROJECTS: Project[] = [
   {
@@ -219,8 +219,8 @@ export const PROJECTS: Project[] = [
     name: 'friends list',
     href: '/friend-list',
     tagline:
-      'A searchable, paginated friends list — favourite, add, delete and sort '
-      + '— with a full Jest suite.',
+      'A searchable, paginated friends list with favourite, add, delete '
+      + 'and sort, plus a full Jest suite.',
     tags: ['React', 'useReducer', 'Jest'],
     kind: 'Take-home',
   },
@@ -229,8 +229,8 @@ export const PROJECTS: Project[] = [
     name: 'cogsy',
     href: '/cogsy',
     tagline:
-      'A responsive card grid where every card adapts to its data — image, '
-      + 'video or text — with a favourite toggle.',
+      'A responsive card grid where every card adapts to its data (image, '
+      + 'video or text), with a favourite toggle.',
     tags: ['React', 'Responsive', 'CSS'],
     kind: 'Take-home',
   },
@@ -269,7 +269,7 @@ export const PROJECTS: Project[] = [
     name: 'timer',
     href: '/timer',
     tagline:
-      'Three independent stopwatches — start, pause and stop — each tracking '
+      'Three independent stopwatches (start, pause and stop), each tracking '
       + 'its own time.',
     tags: ['React', 'Hooks', 'State'],
     kind: 'Concept',
@@ -288,9 +288,9 @@ export const PROJECTS: Project[] = [
 
 export const EXPERIENCE: ExperienceEntry[] = [
   {
-    period: 'Aug 2021 — Present',
+    period: 'Aug 2021 - Present',
     role: 'Senior Frontend Engineer (Contract)',
-    org: 'Web3 · decentralized-AI ecosystem — Remote',
+    org: 'Web3 · decentralized-AI ecosystem · Remote',
     live: true,
     detail:
       'Frontend technical lead and the team’s primary code reviewer across a '
@@ -308,7 +308,7 @@ export const EXPERIENCE: ExperienceEntry[] = [
     tech: ['React', 'Next.js', 'TypeScript', 'Redux Toolkit', 'ethers', 'viem', 'wagmi', 'The Graph', 'Electron'],
   },
   {
-    period: 'Jan 2019 — Apr 2021',
+    period: 'Jan 2019 - Apr 2021',
     role: 'Software Developer',
     org: 'GoComet Solutions · Mumbai, India',
     detail: 'Built core product frontends and led a small team.',
@@ -329,12 +329,12 @@ export const EXPERIENCE: ExperienceEntry[] = [
 export const EDUCATION: EducationEntry = {
   degree: 'M.Sc. Computer Science & Engineering',
   school: 'Mumbai University',
-  period: '2017 — 2019',
+  period: '2017 - 2019',
   detail: 'GPA 9.33 / 10',
 };
 
 export const ACHIEVEMENTS: string[] = [
-  'Top 400 worldwide — CSSBattle (2021)',
-  'Top 500 — InterviewBit CodersBit (2018)',
-  'Top 10% globally — HackerEarth (2017)',
+  'Top 400 worldwide on CSSBattle (2021)',
+  'Top 500 on InterviewBit CodersBit (2018)',
+  'Top 10% globally on HackerEarth (2017)',
 ];

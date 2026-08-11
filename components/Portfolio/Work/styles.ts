@@ -2,27 +2,8 @@ import styled from 'styled-components';
 import Link from 'next/link';
 import { COLOR, FONT } from '@my-portfolio/ui-theme';
 
-// The Work section is split into two groups — self-built "projects" and
-// recruiter "assignments" (take-homes) — so the take-homes are clearly not
-// claimed as personal projects.
-
-export const Group = styled.div`
-  & + & {
-    margin-top: clamp(52px, 9vh, 96px);
-  }
-`;
-
-export const GroupHead = styled.div`
-  margin-bottom: 26px;
-`;
-
-export const GroupNote = styled.p`
-  max-width: 62ch;
-  margin: 10px 0 0;
-  font-size: 0.98rem;
-  line-height: 1.62;
-  color: ${COLOR.TEXT_MUTED};
-`;
+// The Work section lists only Mohan's self-built projects. Recruiter
+// take-homes are intentionally kept off the homepage.
 
 export const Grid = styled.div`
   display: grid;

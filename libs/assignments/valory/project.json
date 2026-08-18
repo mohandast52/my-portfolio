@@ -1,0 +1,17 @@
+{
+  "name": "valory",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/assignments/valory/src",
+  "tags": ["scope:valory", "type:feature"],
+  "targets": {
+    "lint": {
+      "command": "eslint libs/assignments/valory",
+      "cache": true
+    },
+    "typecheck": {
+      "command": "tsc --noEmit -p libs/assignments/valory/tsconfig.json",
+      "cache": true
+    }
+  }
+}

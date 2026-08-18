@@ -9,15 +9,15 @@ import {
   Grid, Prose, Aside, InfoCard,
 } from './styles';
 
-// Editorial copy for the about section — résumé-accurate, full-stack framing.
+// Editorial copy for the about section: résumé-accurate, full-stack framing.
 const PARAGRAPHS = [
-  'For 7+ years I have built production interfaces in React and TypeScript — '
-  + 'design systems, dashboards, and Web3 dApp frontends — and, as a frontend '
-  + 'lead, reviewed thousands of the team’s pull requests and set the standards '
+  'For 7+ years I have built production interfaces in React and TypeScript: '
+  + 'design systems, dashboards, and Web3 dApp frontends. As a frontend '
+  + 'lead, I reviewed thousands of the team’s pull requests and set the standards '
   + 'the rest of the code follows.',
   'I care about the craft: accessible, performant, pixel-perfect UI, and code '
   + 'clean enough that the next person thanks you. Lately I am deliberately '
-  + 'going full-stack — Node, APIs, and databases — so I can take an idea from '
+  + 'going full-stack (Node, APIs, and databases) so I can take an idea from '
   + 'schema to screen.',
   'This site doubles as a sandbox: every project below is a real page running '
   + 'in this same app.',

@@ -1,6 +1,6 @@
 {
-  "//": "Isolated type-check config for the appbase lib.",
-  "extends": "../../tsconfig.base.json",
+  "//": "Isolated type-check config for the taikai lib.",
+  "extends": "../../../tsconfig.base.json",
   "compilerOptions": {
     "target": "ES2017",
     "lib": ["dom", "dom.iterable", "esnext"],

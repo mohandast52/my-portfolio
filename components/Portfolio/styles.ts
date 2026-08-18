@@ -3,7 +3,7 @@ import { COLOR, FONT } from '@my-portfolio/ui-theme';
 
 // Full-bleed dark ground for the landing page. GlobalStyles paints the <body>
 // white for every mini-app, so the portfolio owns its own dark background here
-// rather than changing the global — the other pages must stay light.
+// rather than changing the global; the other pages must stay light.
 export const Page = styled.main`
   position: relative;
   min-height: 100vh;
@@ -63,7 +63,7 @@ export const Section = styled.section`
   scroll-margin-top: 84px;
 `;
 
-// Mono kicker: `// about`, `// selected work` — the recurring structural label
+// Mono kicker: `// about`, `// selected work`. The recurring structural label
 // that ties the whole page to the code/craft theme.
 export const Eyebrow = styled.span`
   display: inline-block;

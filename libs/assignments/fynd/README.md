@@ -11,7 +11,7 @@ Authored in TypeScript as part of the incremental Nx migration.
 import Fynd from '@my-portfolio/fynd';
 ```
 
-Rendered by [pages/assignment/fynd.jsx](../../pages/assignment/fynd.jsx).
+Rendered by [pages/assignment/fynd.jsx](../../../pages/assignment/fynd.jsx).
 
 ## Public API
 

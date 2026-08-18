@@ -11,7 +11,7 @@ migration. Exported as `FriendsList`.
 import FriendsList from '@my-portfolio/haptik';
 ```
 
-Rendered by [pages/friend-list.jsx](../../pages/friend-list.jsx).
+Rendered by [pages/friend-list.jsx](../../../pages/friend-list.jsx).
 
 ## Public API
 

@@ -1,8 +1,8 @@
-// The portfolio site's shared design tokens — the app-shell palette used by the
+// The portfolio site's shared design tokens: the app-shell palette used by the
 // Portfolio landing page, Layout, and GlobalStyles. Each mini-app under libs/*
 // keeps its OWN brand palette; this is deliberately just the site-shell tokens.
 export const COLOR = {
-  // Legacy app-shell palette — used by Layout, Footer and GlobalStyles.
+  // Legacy app-shell palette, used by Layout, Footer and GlobalStyles.
   BLUE: '#337AB7',
   ORANGE: '#F97168',
   LIGHT_GREY: '#F2F2F2',
@@ -11,7 +11,7 @@ export const COLOR = {
   WHITE: '#FFFFFF',
   BLACK: '#000000',
 
-  // Portfolio landing page — dark + violet. INK is the page ground; SURFACE
+  // Portfolio landing page, dark + violet. INK is the page ground; SURFACE
   // the raised cards; VIOLET the single restrained accent.
   INK: '#0A0A0F',
   INK_2: '#0E0E15',

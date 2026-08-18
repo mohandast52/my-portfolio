@@ -1,0 +1,17 @@
+{
+  "name": "haptik",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/assignments/haptik/src",
+  "tags": ["scope:haptik", "type:feature"],
+  "targets": {
+    "lint": {
+      "command": "eslint libs/assignments/haptik",
+      "cache": true
+    },
+    "typecheck": {
+      "command": "tsc --noEmit -p libs/assignments/haptik/tsconfig.json",
+      "cache": true
+    }
+  }
+}

@@ -11,7 +11,7 @@ Authored in TypeScript.
 import Assignment from '@my-portfolio/plaza';
 ```
 
-Rendered by [pages/plaza.jsx](../../pages/plaza.jsx).
+Rendered by [pages/plaza.jsx](../../../pages/plaza.jsx).
 
 ## Public API
 

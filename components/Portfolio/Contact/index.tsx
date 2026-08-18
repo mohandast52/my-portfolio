@@ -25,7 +25,7 @@ const Contact = () => (
 
       <Reveal delay={120}>
         <Sub>
-          A role, a project, or just to talk shop — the fastest way to reach me
+          A role, a project, or just to talk shop. The fastest way to reach me
           is email. I read everything.
         </Sub>
       </Reveal>

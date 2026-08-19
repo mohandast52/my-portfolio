@@ -84,7 +84,44 @@ export const EDUCATION = {
   detail: 'GPA 9.33 / 10',
 };
 
-// Every project is a live route in this same app; the link is where it runs.
+// The real projects Mohan leads with. Dashboard UI is a live route on this
+// site; MyCodes and the Medium scraper live in their own repos.
+export const REAL_PROJECTS: ProjectItem[] = [
+  {
+    title: 'Dashboard UI',
+    badge: 'Project',
+    description:
+      'An analytics dashboard in React: side and top navigation, project-detail '
+      + 'cards with charts, and a client-messages panel.',
+    tags: ['React', 'TypeScript', 'Charts', 'UI'],
+    links: [{ label: 'Open', url: '/dashboard' }],
+  },
+  {
+    title: 'MyCodes',
+    badge: 'Project',
+    description:
+      'A collection of vanilla-JavaScript projects and demos, from DOM and '
+      + 'canvas experiments to CSS interactions.',
+    tags: ['JavaScript', 'HTML', 'CSS', 'DOM'],
+    links: [
+      { label: 'View', url: 'https://mohandast52.github.io/MyCodes', external: true },
+    ],
+  },
+  {
+    title: 'Medium Scraper',
+    badge: 'Project',
+    description:
+      'An article scraper that pulls and organises Medium content, built with '
+      + 'Ruby on Rails, Nokogiri and SQLite.',
+    tags: ['Ruby on Rails', 'Nokogiri', 'SQLite'],
+    links: [
+      { label: 'View code', url: 'https://github.com/mohandast52/medium-scrapper', external: true },
+    ],
+  },
+];
+
+// The mini-app sandbox on this site: take-home assignments and UI concepts,
+// each a live route in this same app.
 export const PROJECTS: ProjectItem[] = [
   {
     title: 'qiibee',
@@ -121,15 +158,6 @@ export const PROJECTS: ProjectItem[] = [
       + 'powered by OpenWeatherMap.',
     tags: ['React', 'amCharts', 'REST'],
     links: [{ label: 'Open', url: '/weather-app' }],
-  },
-  {
-    title: 'dashboard',
-    badge: 'Concept',
-    description:
-      'An admin analytics UI: side / top nav, project-detail cards with '
-      + 'charts, and a client-messages panel.',
-    tags: ['React', 'UI', 'Charts'],
-    links: [{ label: 'Open', url: '/dashboard' }],
   },
   {
     title: 'friends list',
@@ -196,8 +224,8 @@ export const PROJECTS: ProjectItem[] = [
   },
 ];
 
-/** The four the chat leads with; the rest are one follow-up chip away. */
-export const FEATURED_PROJECTS: ProjectItem[] = PROJECTS.slice(0, 4);
+/** The real projects the chat leads with; the sandbox is a follow-up chip away. */
+export const FEATURED_PROJECTS: ProjectItem[] = REAL_PROJECTS;
 
 export const SKILL_GROUPS: SkillGroupItem[] = [
   {

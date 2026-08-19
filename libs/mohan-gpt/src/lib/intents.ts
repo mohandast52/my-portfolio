@@ -9,7 +9,7 @@ const FU = {
   about: { label: 'Who is Mohan?', q: 'Who is Mohan?' },
   exp: { label: 'What’s his experience?', q: 'What’s his experience?' },
   proj: { label: 'Show his best projects', q: 'Show me his best projects' },
-  allProj: { label: 'See every project', q: 'Show me all projects' },
+  allProj: { label: 'See his take-homes', q: 'Show me all projects' },
   skills: { label: 'What’s his tech stack?', q: 'What’s his tech stack?' },
   contact: { label: 'How do I contact him?', q: 'How do I contact him?' },
   spec: { label: 'What does he specialize in?', q: 'What does he specialize in?' },
@@ -64,17 +64,15 @@ export const INTENTS: Record<string, Intent> = {
     kw: ['specialize', 'specialise', 'specialty', 'expertise', 'what does he do', 'focus on', 'good at', 'strengths'],
   },
   projects: {
-    text:
-      'Every project on this site is a live route in this same app, with no '
-      + 'screenshots of things you can’t click. Four he’d lead with:',
+    text: 'The projects he’d point to first:',
     comp: 'projects',
     fu: [FU.allProj, FU.skills, FU.contact],
     kw: ['project', 'best work', 'portfolio piece', 'built', 'shipped', 'things he made', 'case study', 'showcase', 'his work'],
   },
   allProjects: {
     text:
-      'All twelve, spanning take-home assignments and UI concepts, each one a live '
-      + 'route in this app:',
+      'Beyond those, the site is a sandbox of eleven mini-apps: take-home '
+      + 'assignments and UI concepts, each a live route here:',
     comp: 'allProjects',
     fu: [FU.skills, FU.contact],
     kw: ['all projects', 'every project', 'full list of projects', 'see all', 'show everything', 'complete list'],
@@ -178,7 +176,7 @@ export const INTENTS: Record<string, Intent> = {
   },
   outside: {
     text:
-      'Away from client work he keeps this site as a running sandbox of twelve '
+      'Away from client work he keeps this site as a running sandbox of eleven '
       + 'mini-apps of take-homes and UI concepts, andhe’s competed on '
       + 'CSSBattle, peaking in the top 400 worldwide.',
     comp: null,

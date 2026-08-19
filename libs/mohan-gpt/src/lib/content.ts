@@ -1,14 +1,8 @@
 // The single source of truth MohanGPT answers from. Both the chat and the
-// classic résumé view read from here — nothing else hardcodes copy.
+// classic résumé view read from here; nothing else hardcodes copy.
 //
-// The facts mirror the v1 landing-page content model in
-// components/Portfolio/data.ts. They are duplicated rather than imported on
-// purpose: a `type:feature` lib may only depend on `type:util` libs, so a lib
-// cannot reach back into the app's components/ folder.
-//
-// NOTE: the current engagement is a confidential contract — never name the
-// client or its products here. Describe it generically, exactly as data.ts
-// already does.
+// NOTE: the current engagement is a confidential contract; never name the
+// client or its products here. Describe it generically.
 
 import type {
   AboutData,

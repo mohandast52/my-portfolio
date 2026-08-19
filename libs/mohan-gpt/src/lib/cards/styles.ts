@@ -261,7 +261,7 @@ const projectLinkCss = css`
   }
 `;
 
-/** In-app routes — every project on this site is one, so these are the norm. */
+/** In-app routes: every project on this site is one, so these are the norm. */
 export const ProjectLinkInternal = styled(Link)`
   ${projectLinkCss};
 `;

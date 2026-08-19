@@ -1,5 +1,5 @@
 // The classic résumé view: one scrollable page laying out the exact same rich
-// components the chat renders inline — for recruiters, print, and crawlers.
+// components the chat renders inline, for recruiters, print, and crawlers.
 
 import {
   AboutCard,
@@ -90,7 +90,7 @@ const Classic = ({ theme, onBackToChat, onToggleTheme }: ClassicProps) => (
 
       <S.Section>
         <S.Heading>Contact</S.Heading>
-        {/* No onViewClassic here — this *is* the classic view. */}
+        {/* No onViewClassic here; this *is* the classic view. */}
         <ContactCard contact={CONTACT} />
       </S.Section>
     </S.Column>

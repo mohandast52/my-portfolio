@@ -16,7 +16,7 @@ import type {
 /**
  * Portrait for the AboutCard. `public/images/mohan.png` is still the v1 site's
  * placeholder graphic rather than a real photo, so this stays null and the card
- * falls back to the design's own Lucide placeholder — which reads as
+ * falls back to the design's own Lucide placeholder, which reads as
  * intentional, where the purple placeholder does not. Point this at
  * '/images/mohan.png' once a real portrait replaces that file.
  */
@@ -30,7 +30,7 @@ export const PROFILE = {
     + '& Web3 interfaces',
   bio:
     'Senior frontend engineer with 7+ years shipping production React and '
-    + 'TypeScript — design systems, dashboards, and Web3 dApp frontends. '
+    + 'TypeScript: design systems, dashboards, and Web3 dApp frontends. '
     + 'Currently a frontend tech lead and the team’s primary reviewer on a '
     + 'long-term contract, now broadening into full-stack. He also built the '
     + 'chat you’re using right now.',
@@ -41,8 +41,8 @@ export const ABOUT: AboutData = {
   role: PROFILE.role,
   bio:
     'Senior frontend engineer with 7+ years in React and TypeScript. He works '
-    + 'where interaction, performance and accessibility meet — design systems, '
-    + 'dashboards, and Web3 dApp frontends — and is broadening into full-stack '
+    + 'where interaction, performance and accessibility meet: design systems, '
+    + 'dashboards, and Web3 dApp frontends, and is broadening into full-stack '
     + 'to own features end to end.',
   location: 'Mumbai, India · Remote',
   tags: ['Design Systems', 'React & TypeScript', 'Web3 Frontends', 'a11y'],
@@ -52,7 +52,7 @@ export const EXPERIENCE: ExperienceItem[] = [
   {
     role: 'Senior Frontend Engineer (Contract)',
     company: 'Web3 · decentralized-AI ecosystem',
-    period: 'Aug 2021 — Present',
+    period: 'Aug 2021 - Present',
     summary:
       'Frontend technical lead and the team’s primary code reviewer across a '
       + 'large open-source Web3 ecosystem. Grew from top individual contributor '
@@ -66,7 +66,7 @@ export const EXPERIENCE: ExperienceItem[] = [
   {
     role: 'Software Developer',
     company: 'GoComet Solutions',
-    period: 'Jan 2019 — Apr 2021',
+    period: 'Jan 2019 - Apr 2021',
     summary:
       'Built core product frontends and led a team of 4. Stood up the frontend '
       + 'testing suite from scratch (Jest + React Testing Library) to 95% '
@@ -80,11 +80,11 @@ export const EXPERIENCE: ExperienceItem[] = [
 export const EDUCATION = {
   degree: 'M.Sc. Computer Science & Engineering',
   school: 'Mumbai University',
-  period: '2017 — 2019',
+  period: '2017 - 2019',
   detail: 'GPA 9.33 / 10',
 };
 
-// Every project is a live route in this same app — the link is where it runs.
+// Every project is a live route in this same app; the link is where it runs.
 export const PROJECTS: ProjectItem[] = [
   {
     title: 'qiibee',
@@ -135,8 +135,8 @@ export const PROJECTS: ProjectItem[] = [
     title: 'friends list',
     badge: 'Take-home',
     description:
-      'A searchable, paginated friends list — favourite, add, delete and sort '
-      + '— with a full Jest suite.',
+      'A searchable, paginated friends list with favourite, add, delete and '
+      + 'sort, plus a full Jest suite.',
     tags: ['React', 'useReducer', 'Jest'],
     links: [{ label: 'Open', url: '/friend-list' }],
   },
@@ -144,8 +144,8 @@ export const PROJECTS: ProjectItem[] = [
     title: 'cogsy',
     badge: 'Take-home',
     description:
-      'A responsive card grid where every card adapts to its data — image, '
-      + 'video or text — with a favourite toggle.',
+      'A responsive card grid where every card adapts to its data (image, '
+      + 'video or text), with a favourite toggle.',
     tags: ['React', 'Responsive', 'CSS'],
     links: [{ label: 'Open', url: '/cogsy' }],
   },
@@ -180,7 +180,7 @@ export const PROJECTS: ProjectItem[] = [
     title: 'timer',
     badge: 'Concept',
     description:
-      'Three independent stopwatches — start, pause and stop — each tracking '
+      'Three independent stopwatches (start, pause and stop), each tracking '
       + 'its own time.',
     tags: ['React', 'Hooks', 'State'],
     links: [{ label: 'Open', url: '/timer' }],

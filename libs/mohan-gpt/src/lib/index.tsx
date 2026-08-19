@@ -1,4 +1,4 @@
-// MohanGPT — a portfolio reimagined as an AI chat product. There is no live
+// MohanGPT, a portfolio reimagined as an AI chat product. There is no live
 // model: a client-side intent matcher maps free-typed questions onto a finite
 // set of hand-written answers, each with a rich inline component. The classic
 // résumé view reuses the very same components, laid out statically.
@@ -20,7 +20,7 @@ import type { Message, Theme, TourMeta } from './types';
 const THEME_KEY = 'mohangpt:theme';
 const MOBILE_QUERY = '(max-width: 1023px)';
 
-/** Timings from the design spec — thinking pause, stream rate, card reveal. */
+/** Timings from the design spec: thinking pause, stream rate, card reveal. */
 const THINKING_MS = 620;
 const STREAM_MS = 16;
 const STREAM_CHARS = 3;
@@ -32,7 +32,7 @@ interface RespondOptions {
 }
 
 /*
- * The theme lives in localStorage, not in React state — it *is* an external
+ * The theme lives in localStorage, not in React state; it *is* an external
  * store, so reading it through useSyncExternalStore avoids the
  * render-then-correct-in-an-effect dance. `storage` only fires cross-tab, so
  * toggling also dispatches a same-document event to notify subscribers.
@@ -310,7 +310,7 @@ const MohanGPT = () => {
                   <S.ComposerBarInner>
                     <Composer onSend={ask} disabled={busy} />
                     <S.Disclaimer>
-                      MohanGPT is a scripted agent — it only answers from Mohan’s résumé.
+                      MohanGPT is a scripted agent that only answers from Mohan’s résumé.
                     </S.Disclaimer>
                   </S.ComposerBarInner>
                 </S.ComposerBar>
@@ -321,7 +321,7 @@ const MohanGPT = () => {
                   <S.HeroMonogram aria-hidden>M</S.HeroMonogram>
                   <S.HeroText>
                     <S.Welcome>
-                      I’m MohanGPT — ask me anything about Mohan’s work.
+                      I’m MohanGPT, ask me anything about Mohan’s work.
                     </S.Welcome>
                     <S.HeroName>{PROFILE.name}</S.HeroName>
                     <S.HeroIdentity>{PROFILE.identity}</S.HeroIdentity>

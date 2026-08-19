@@ -8,7 +8,6 @@ import {
   IconDownload,
   IconFileText,
   IconGithub,
-  IconImage,
   IconLinkedin,
   IconMail,
   IconMapPin,
@@ -88,11 +87,8 @@ export const ExperienceTimeline = ({ items }: { items: ExperienceItem[] }) => (
 
 export const ProjectCard = ({ item }: { item: ProjectItem }) => (
   <S.ProjectShell>
-    <S.ProjectThumb>
-      <IconImage />
-      <S.ProjectBadge>{item.badge}</S.ProjectBadge>
-    </S.ProjectThumb>
     <S.ProjectBody>
+      <S.ProjectBadge>{item.badge}</S.ProjectBadge>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
         <S.ProjectTitle>{item.title}</S.ProjectTitle>
         <S.ProjectDesc>{item.description}</S.ProjectDesc>

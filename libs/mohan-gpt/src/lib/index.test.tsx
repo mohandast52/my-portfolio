@@ -68,7 +68,7 @@ describe('<MohanGPT />', () => {
 
     expect(getByTestId('mohan-gpt')).toHaveAttribute('data-theme', 'dark');
     expect(getByText('Mohan Das')).toBeInTheDocument();
-    expect(getByText('I’m MohanGPT — ask me anything about Mohan’s work.')).toBeInTheDocument();
+    expect(getByText('I’m MohanGPT, ask me anything about Mohan’s work.')).toBeInTheDocument();
     SUGGESTIONS.forEach(suggestion => {
       expect(getByText(suggestion)).toBeInTheDocument();
     });
@@ -80,7 +80,7 @@ describe('<MohanGPT />', () => {
 
     fireEvent.click(getByText('Who is Mohan?'));
 
-    // Thinking dots first — no answer text yet.
+    // Thinking dots first; no answer text yet.
     const thread = getByTestId('thread');
     expect(thread).toHaveTextContent('Who is Mohan?');
     expect(thread).not.toHaveTextContent('senior frontend engineer');

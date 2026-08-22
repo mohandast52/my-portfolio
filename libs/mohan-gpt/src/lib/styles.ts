@@ -4,7 +4,7 @@ import { focusRing, tokens } from './tokens';
 /**
  * Root of the whole experience. The design tokens live here rather than on
  * <html> so they stay scoped to this lib and never leak into the rest of the
- * site — every child reads them as var(--token).
+ * site; every child reads them as var(--token).
  */
 export const Root = styled.div`
   ${tokens};

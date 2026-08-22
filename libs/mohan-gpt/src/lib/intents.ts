@@ -1,4 +1,4 @@
-// The agent's whole vocabulary. Every answer is hand-written from content.ts —
+// The agent's whole vocabulary. Every answer is hand-written from content.ts;
 // there is no model, so an unmatched question must fall through to `fallback`
 // rather than be invented.
 
@@ -9,7 +9,7 @@ const FU = {
   about: { label: 'Who is Mohan?', q: 'Who is Mohan?' },
   exp: { label: 'What’s his experience?', q: 'What’s his experience?' },
   proj: { label: 'Show his best projects', q: 'Show me his best projects' },
-  allProj: { label: 'See every project', q: 'Show me all projects' },
+  allProj: { label: 'See his take-homes', q: 'Show me all projects' },
   skills: { label: 'What’s his tech stack?', q: 'What’s his tech stack?' },
   contact: { label: 'How do I contact him?', q: 'How do I contact him?' },
   spec: { label: 'What does he specialize in?', q: 'What does he specialize in?' },
@@ -40,14 +40,14 @@ export const INTENTS: Record<string, Intent> = {
     text:
       'Mohan is a senior frontend engineer with 7+ years in React and '
       + 'TypeScript. He builds design systems, dashboards and Web3 dApp '
-      + 'frontends — and he built the chat you’re using right now.',
+      + 'frontends, and he built the chat you’re using right now.',
     comp: 'about',
     fu: [FU.exp, FU.proj, FU.contact],
     kw: ['who is', 'about mohan', 'tell me about', 'his bio', 'biography', 'who’s mohan', "who's mohan", 'introduce', 'who he is'],
   },
   experience: {
     text:
-      'Seven-plus years across two companies — currently frontend tech lead on '
+      'Seven-plus years across two companies. Currently frontend tech lead on '
       + 'a long-term Web3 contract, and before that a software developer at '
       + 'GoComet. Here’s the timeline:',
     comp: 'timeline',
@@ -64,17 +64,15 @@ export const INTENTS: Record<string, Intent> = {
     kw: ['specialize', 'specialise', 'specialty', 'expertise', 'what does he do', 'focus on', 'good at', 'strengths'],
   },
   projects: {
-    text:
-      'Every project on this site is a live route in this same app — no '
-      + 'screenshots of things you can’t click. Four he’d lead with:',
+    text: 'The projects he’d point to first:',
     comp: 'projects',
     fu: [FU.allProj, FU.skills, FU.contact],
     kw: ['project', 'best work', 'portfolio piece', 'built', 'shipped', 'things he made', 'case study', 'showcase', 'his work'],
   },
   allProjects: {
     text:
-      'All twelve — take-home assignments and UI concepts, each one a live '
-      + 'route in this app:',
+      'Beyond those, the site is a sandbox of eleven mini-apps: take-home '
+      + 'assignments and UI concepts, each a live route here:',
     comp: 'allProjects',
     fu: [FU.skills, FU.contact],
     kw: ['all projects', 'every project', 'full list of projects', 'see all', 'show everything', 'complete list'],
@@ -99,7 +97,7 @@ export const INTENTS: Record<string, Intent> = {
   },
   resume: {
     text:
-      'There’s a classic résumé view of everything here — same content, laid '
+      'There’s a classic résumé view of everything here: same content, laid '
       + 'out as a single scrollable page. Contact details below:',
     comp: 'contact',
     fu: [FU.proj, FU.exp],
@@ -107,7 +105,7 @@ export const INTENTS: Record<string, Intent> = {
   },
   years: {
     text:
-      '7+ years — since January 2019. He’s currently a senior frontend '
+      '7+ years, since January 2019. He’s currently a senior frontend '
       + 'engineer and technical lead, and is broadening into full-stack. Want '
       + 'the breakdown by role?',
     comp: null,
@@ -117,7 +115,7 @@ export const INTENTS: Record<string, Intent> = {
   education: {
     text:
       'M.Sc. in Computer Science & Engineering from Mumbai University '
-      + '(2017 — 2019), GPA 9.33 / 10. Most of the craft, though, came from '
+      + '(2017 - 2019), GPA 9.33 / 10. Most of the craft, though, came from '
       + 'shipping and reviewing a lot of code.',
     comp: null,
     fu: [FU.exp, FU.skills],
@@ -140,7 +138,7 @@ export const INTENTS: Record<string, Intent> = {
   designSystems: {
     text:
       'Design systems are his core. He’s the sole author and maintainer of a '
-      + 'published React + Web3 component library — a shared design system '
+      + 'published React + Web3 component library, a shared design system '
       + 'reused across every dApp in the ecosystem, Storybook-driven, '
       + 'accessible and themeable.',
     comp: 'skills',
@@ -150,7 +148,7 @@ export const INTENTS: Record<string, Intent> = {
   web3: {
     text:
       'Plenty. Wallet flows, on-chain reads and writes, and subgraph data with '
-      + 'ethers, viem, wagmi and The Graph — across 7 blockchains, including an '
+      + 'ethers, viem, wagmi and The Graph, across 7 blockchains, including an '
       + 'Electron + Next.js desktop app that operates autonomous on-chain '
       + 'agents.',
     comp: 'skills',
@@ -159,7 +157,7 @@ export const INTENTS: Record<string, Intent> = {
   },
   review: {
     text:
-      'A lot of it. He’s the team’s primary code reviewer — 1,800+ pull '
+      'A lot of it. He’s the team’s primary code reviewer: 1,800+ pull '
       + 'requests reviewed across 45+ repositories, after 1,500+ of his own '
       + 'merged at a 94% merge rate. He also led a supply-chain security push: '
       + 'license-compliance CI gates, Dependabot triage, Snyk, and XSS fixes.',
@@ -178,8 +176,8 @@ export const INTENTS: Record<string, Intent> = {
   },
   outside: {
     text:
-      'Away from client work he keeps this site as a running sandbox — twelve '
-      + 'mini-apps of take-homes and UI concepts — and he’s competed on '
+      'Away from client work he keeps this site as a running sandbox of eleven '
+      + 'mini-apps of take-homes and UI concepts, andhe’s competed on '
       + 'CSSBattle, peaking in the top 400 worldwide.',
     comp: null,
     fu: [FU.site, FU.proj],
@@ -196,7 +194,7 @@ export const INTENTS: Record<string, Intent> = {
   },
   site: {
     text:
-      'This one is a Next.js app in an Nx monorepo — TypeScript throughout, '
+      'This one is a Next.js app in an Nx monorepo: TypeScript throughout, '
       + 'styled-components, twelve feature libs with enforced module '
       + 'boundaries, and CI that lints, type-checks, tests and builds only what '
       + 'a change touches. MohanGPT is one of those libs.',
@@ -207,7 +205,7 @@ export const INTENTS: Record<string, Intent> = {
   why: {
     text:
       'Because a static PDF can’t show frontend craft. This chat is the '
-      + 'portfolio — the medium is the demonstration.',
+      + 'portfolio; the medium is the demonstration.',
     comp: null,
     fu: [FU.real, FU.proj],
     kw: ['why this website', 'why build this', 'why a chat', 'why did he make', 'purpose of this site', 'why chat', 'why website'],
@@ -215,24 +213,24 @@ export const INTENTS: Record<string, Intent> = {
   real: {
     text:
       'Honest answer: no. This is a scripted agent that only knows Mohan’s '
-      + 'résumé — no live model, no API keys, no cost. The AI-product feel is '
+      + 'résumé: no live model, no API keys, no cost. The AI-product feel is '
       + 'the point; the craft is the portfolio.',
     comp: null,
     fu: [FU.why, FU.site, FU.proj],
     kw: ['real ai', 'are you real', 'actually ai', 'is this an ai', 'an llm', 'chatgpt', 'is this real', 'really ai', 'are you an ai'],
   },
 
-  // System intents — never keyword-matched, only dispatched directly.
+  // System intents: never keyword-matched, only dispatched directly.
   greeting: {
     text:
-      'Hey — I’m MohanGPT. I can tell you about Mohan’s experience, projects, '
+      'Hey, I’m MohanGPT. I can tell you about Mohan’s experience, projects, '
       + 'skills, and how to reach him. Where should we start?',
     comp: null,
     fu: [FU.about, FU.proj, FU.contact],
     kw: [],
   },
   exitTour: {
-    text: 'Sure — ask me anything. Here are a few starting points:',
+    text: 'Sure, ask me anything. Here are a few starting points:',
     comp: null,
     fu: [FU.about, FU.exp, FU.proj, FU.contact],
     kw: [],
@@ -246,7 +244,7 @@ export const INTENTS: Record<string, Intent> = {
   fallback: {
     text:
       'I can answer questions about Mohan’s experience, projects, skills, and '
-      + 'contact info — I stick strictly to what’s on his résumé. Try one of '
+      + 'contact info; I stick strictly to what’s on his résumé. Try one of '
       + 'these:',
     comp: null,
     fu: [FU.about, FU.proj, FU.skills, FU.contact],

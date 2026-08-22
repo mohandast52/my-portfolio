@@ -1,5 +1,5 @@
 // The classic résumé view: one scrollable page laying out the exact same rich
-// components the chat renders inline — for recruiters, print, and crawlers.
+// components the chat renders inline, for recruiters, print, and crawlers.
 
 import {
   AboutCard,
@@ -18,6 +18,7 @@ import {
   EXPERIENCE,
   PROFILE,
   PROJECTS,
+  REAL_PROJECTS,
   SKILL_GROUPS,
 } from '../content';
 import { IconArrowLeft, IconMoon, IconSun } from '../icons';
@@ -75,6 +76,11 @@ const Classic = ({ theme, onBackToChat, onToggleTheme }: ClassicProps) => (
 
       <S.Section>
         <S.Heading>Projects</S.Heading>
+        <ProjectCardGrid items={REAL_PROJECTS} min={240} />
+      </S.Section>
+
+      <S.Section>
+        <S.Heading>Assignments and concepts</S.Heading>
         <ProjectCardGrid items={PROJECTS} min={240} />
       </S.Section>
 
@@ -90,7 +96,7 @@ const Classic = ({ theme, onBackToChat, onToggleTheme }: ClassicProps) => (
 
       <S.Section>
         <S.Heading>Contact</S.Heading>
-        {/* No onViewClassic here — this *is* the classic view. */}
+        {/* No onViewClassic here; this *is* the classic view. */}
         <ContactCard contact={CONTACT} />
       </S.Section>
     </S.Column>

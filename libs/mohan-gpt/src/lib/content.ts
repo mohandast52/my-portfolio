@@ -1,14 +1,8 @@
 // The single source of truth MohanGPT answers from. Both the chat and the
-// classic résumé view read from here — nothing else hardcodes copy.
+// classic résumé view read from here; nothing else hardcodes copy.
 //
-// The facts mirror the v1 landing-page content model in
-// components/Portfolio/data.ts. They are duplicated rather than imported on
-// purpose: a `type:feature` lib may only depend on `type:util` libs, so a lib
-// cannot reach back into the app's components/ folder.
-//
-// NOTE: the current engagement is a confidential contract — never name the
-// client or its products here. Describe it generically, exactly as data.ts
-// already does.
+// NOTE: the current engagement is a confidential contract; never name the
+// client or its products here. Describe it generically.
 
 import type {
   AboutData,
@@ -22,7 +16,7 @@ import type {
 /**
  * Portrait for the AboutCard. `public/images/mohan.png` is still the v1 site's
  * placeholder graphic rather than a real photo, so this stays null and the card
- * falls back to the design's own Lucide placeholder — which reads as
+ * falls back to the design's own Lucide placeholder, which reads as
  * intentional, where the purple placeholder does not. Point this at
  * '/images/mohan.png' once a real portrait replaces that file.
  */
@@ -36,7 +30,7 @@ export const PROFILE = {
     + '& Web3 interfaces',
   bio:
     'Senior frontend engineer with 7+ years shipping production React and '
-    + 'TypeScript — design systems, dashboards, and Web3 dApp frontends. '
+    + 'TypeScript: design systems, dashboards, and Web3 dApp frontends. '
     + 'Currently a frontend tech lead and the team’s primary reviewer on a '
     + 'long-term contract, now broadening into full-stack. He also built the '
     + 'chat you’re using right now.',
@@ -47,8 +41,8 @@ export const ABOUT: AboutData = {
   role: PROFILE.role,
   bio:
     'Senior frontend engineer with 7+ years in React and TypeScript. He works '
-    + 'where interaction, performance and accessibility meet — design systems, '
-    + 'dashboards, and Web3 dApp frontends — and is broadening into full-stack '
+    + 'where interaction, performance and accessibility meet: design systems, '
+    + 'dashboards, and Web3 dApp frontends, and is broadening into full-stack '
     + 'to own features end to end.',
   location: 'Mumbai, India · Remote',
   tags: ['Design Systems', 'React & TypeScript', 'Web3 Frontends', 'a11y'],
@@ -58,7 +52,7 @@ export const EXPERIENCE: ExperienceItem[] = [
   {
     role: 'Senior Frontend Engineer (Contract)',
     company: 'Web3 · decentralized-AI ecosystem',
-    period: 'Aug 2021 — Present',
+    period: 'Aug 2021 - Present',
     summary:
       'Frontend technical lead and the team’s primary code reviewer across a '
       + 'large open-source Web3 ecosystem. Grew from top individual contributor '
@@ -72,7 +66,7 @@ export const EXPERIENCE: ExperienceItem[] = [
   {
     role: 'Software Developer',
     company: 'GoComet Solutions',
-    period: 'Jan 2019 — Apr 2021',
+    period: 'Jan 2019 - Apr 2021',
     summary:
       'Built core product frontends and led a team of 4. Stood up the frontend '
       + 'testing suite from scratch (Jest + React Testing Library) to 95% '
@@ -86,11 +80,48 @@ export const EXPERIENCE: ExperienceItem[] = [
 export const EDUCATION = {
   degree: 'M.Sc. Computer Science & Engineering',
   school: 'Mumbai University',
-  period: '2017 — 2019',
+  period: '2017 - 2019',
   detail: 'GPA 9.33 / 10',
 };
 
-// Every project is a live route in this same app — the link is where it runs.
+// The real projects Mohan leads with. Dashboard UI is a live route on this
+// site; MyCodes and the Medium scraper live in their own repos.
+export const REAL_PROJECTS: ProjectItem[] = [
+  {
+    title: 'Dashboard UI',
+    badge: 'Project',
+    description:
+      'An analytics dashboard in React: side and top navigation, project-detail '
+      + 'cards with charts, and a client-messages panel.',
+    tags: ['React', 'TypeScript', 'Charts', 'UI'],
+    links: [{ label: 'Open', url: '/dashboard' }],
+  },
+  {
+    title: 'MyCodes',
+    badge: 'Project',
+    description:
+      'A collection of vanilla-JavaScript projects and demos, from DOM and '
+      + 'canvas experiments to CSS interactions.',
+    tags: ['JavaScript', 'HTML', 'CSS', 'DOM'],
+    links: [
+      { label: 'View', url: 'https://mohandast52.github.io/MyCodes', external: true },
+    ],
+  },
+  {
+    title: 'Medium Scraper',
+    badge: 'Project',
+    description:
+      'An article scraper that pulls and organises Medium content, built with '
+      + 'Ruby on Rails, Nokogiri and SQLite.',
+    tags: ['Ruby on Rails', 'Nokogiri', 'SQLite'],
+    links: [
+      { label: 'View code', url: 'https://github.com/mohandast52/medium-scrapper', external: true },
+    ],
+  },
+];
+
+// The mini-app sandbox on this site: take-home assignments and UI concepts,
+// each a live route in this same app.
 export const PROJECTS: ProjectItem[] = [
   {
     title: 'qiibee',
@@ -129,20 +160,11 @@ export const PROJECTS: ProjectItem[] = [
     links: [{ label: 'Open', url: '/weather-app' }],
   },
   {
-    title: 'dashboard',
-    badge: 'Concept',
-    description:
-      'An admin analytics UI: side / top nav, project-detail cards with '
-      + 'charts, and a client-messages panel.',
-    tags: ['React', 'UI', 'Charts'],
-    links: [{ label: 'Open', url: '/dashboard' }],
-  },
-  {
     title: 'friends list',
     badge: 'Take-home',
     description:
-      'A searchable, paginated friends list — favourite, add, delete and sort '
-      + '— with a full Jest suite.',
+      'A searchable, paginated friends list with favourite, add, delete and '
+      + 'sort, plus a full Jest suite.',
     tags: ['React', 'useReducer', 'Jest'],
     links: [{ label: 'Open', url: '/friend-list' }],
   },
@@ -150,8 +172,8 @@ export const PROJECTS: ProjectItem[] = [
     title: 'cogsy',
     badge: 'Take-home',
     description:
-      'A responsive card grid where every card adapts to its data — image, '
-      + 'video or text — with a favourite toggle.',
+      'A responsive card grid where every card adapts to its data (image, '
+      + 'video or text), with a favourite toggle.',
     tags: ['React', 'Responsive', 'CSS'],
     links: [{ label: 'Open', url: '/cogsy' }],
   },
@@ -186,7 +208,7 @@ export const PROJECTS: ProjectItem[] = [
     title: 'timer',
     badge: 'Concept',
     description:
-      'Three independent stopwatches — start, pause and stop — each tracking '
+      'Three independent stopwatches (start, pause and stop), each tracking '
       + 'its own time.',
     tags: ['React', 'Hooks', 'State'],
     links: [{ label: 'Open', url: '/timer' }],
@@ -202,8 +224,8 @@ export const PROJECTS: ProjectItem[] = [
   },
 ];
 
-/** The four the chat leads with; the rest are one follow-up chip away. */
-export const FEATURED_PROJECTS: ProjectItem[] = PROJECTS.slice(0, 4);
+/** The real projects the chat leads with; the sandbox is a follow-up chip away. */
+export const FEATURED_PROJECTS: ProjectItem[] = REAL_PROJECTS;
 
 export const SKILL_GROUPS: SkillGroupItem[] = [
   {

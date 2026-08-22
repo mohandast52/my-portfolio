@@ -51,7 +51,7 @@ export const tokens = css`
     --text: #ededed;
     --muted: #a1a1a1;
     /* Spec value was #707070, which measures 3.87:1 on --panel and 4.27:1 on
-       --elevated — under the 4.5:1 AA floor for the small text it carries
+       --elevated, under the 4.5:1 AA floor for the small text it carries
        (step indicator, disclaimer, mono badges). Nudged to the lightest value
        that clears AA against all three surfaces. */
     --faint: #828282;
@@ -70,7 +70,7 @@ export const tokens = css`
     --composer-border: #e2e2e2;
     --text: #171717;
     --muted: #666666;
-    /* Spec value was #999999 — only 2.84:1 on white, the worst offender in
+    /* Spec value was #999999, only 2.84:1 on white, the worst offender in
        either theme. Darkened to the lightest AA-clean value. */
     --faint: #6f6f6f;
     --accent: #0070f3;

@@ -37,7 +37,7 @@ const Thread = ({
     stickRef.current = el.scrollHeight - el.clientHeight - el.scrollTop < STICK_THRESHOLD;
   };
 
-  // Runs on every message change — streaming chunks and the card reveal both
+  // Runs on every message change; streaming chunks and the card reveal both
   // produce a new array, which is what keeps the view pinned.
   useEffect(() => {
     const el = scrollRef.current;
@@ -73,7 +73,7 @@ const Thread = ({
           const showTour = Boolean(
             message.tour && message.revealed && tourActive && index === lastIndex,
           );
-          // Follow-ups sit alongside the tour controls, as in the prototype —
+          // Follow-ups sit alongside the tour controls, as in the prototype,
           // clicking one is the concrete "ask something else" escape hatch.
           const showFollowups = Boolean(message.revealed && message.followups?.length);
           const isLastStep = message.tour

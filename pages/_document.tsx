@@ -44,12 +44,7 @@ export default class MyDocument extends Document {
             href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap"
             rel="stylesheet"
           />,
-          <link
-            key="fonts-portfolio"
-            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@500;600;700&display=swap"
-            rel="stylesheet"
-          />,
-          /* Geist + Geist Mono — the MohanGPT (/mohangpt) design system. */
+          /* Geist + Geist Mono: the MohanGPT design-system fonts (the homepage). */
           <link
             key="fonts-geist"
             href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@400..600&display=swap"

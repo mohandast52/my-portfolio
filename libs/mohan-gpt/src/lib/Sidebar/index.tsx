@@ -81,7 +81,7 @@ const Sidebar = ({
       aria-label="MohanGPT navigation"
       aria-hidden={offscreen}
       inert={offscreen}
-      // Below 1024px it overlays the page behind a scrim — that is a modal.
+      // Below 1024px it overlays the page behind a scrim; that is a modal.
       role={isMobile ? 'dialog' : undefined}
       aria-modal={isMobile ? true : undefined}
       tabIndex={isMobile ? -1 : undefined}

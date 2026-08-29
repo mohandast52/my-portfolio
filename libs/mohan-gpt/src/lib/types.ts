@@ -47,7 +47,7 @@ export interface SkillGroupItem {
   domain: string;
   icon: SkillIcon;
   skills: string[];
-  /** Areas actively being grown — badged in the UI, mirroring the v1 data model. */
+  /** Areas actively being grown; badged in the UI, mirroring the v1 data model. */
   growing?: boolean;
 }
 
@@ -64,7 +64,7 @@ export interface ContactInfo {
   github: string;
   githubLabel: string;
   /**
-   * Path to a downloadable résumé PDF, or null when none is published — in
+   * Path to a downloadable résumé PDF, or null when none is published; in
    * which case the résumé affordances fall back to the classic view instead of
    * linking at a file that would 404.
    */
@@ -103,7 +103,7 @@ export interface TourMeta {
 export interface Message {
   id: string;
   role: 'user' | 'agent';
-  /** What is currently on screen — grows one chunk at a time while streaming. */
+  /** What is currently on screen; grows one chunk at a time while streaming. */
   display: string;
   /** The full answer text, for agent messages. */
   text?: string;

@@ -185,21 +185,7 @@ export const ProjectShell = styled.div`
   width: 100%;
 `;
 
-export const ProjectThumb = styled.div`
-  position: relative;
-  aspect-ratio: 16 / 9;
-  background: var(--elevated);
-  border-bottom: 1px solid var(--border);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--faint);
-`;
-
 export const ProjectBadge = styled.span`
-  position: absolute;
-  bottom: 8px;
-  left: 10px;
   font-family: var(--font-mono);
   font-size: 10.5px;
   color: var(--faint);
@@ -261,7 +247,7 @@ const projectLinkCss = css`
   }
 `;
 
-/** In-app routes — every project on this site is one, so these are the norm. */
+/** In-app routes: every project on this site is one, so these are the norm. */
 export const ProjectLinkInternal = styled(Link)`
   ${projectLinkCss};
 `;

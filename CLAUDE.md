@@ -132,6 +132,7 @@ Durable rules for working in this repo — follow them by default.
 - **Verify before calling it done.** Run the relevant checks and confirm green — `pnpm lint`, `pnpm nx typecheck <lib>` (or `nx run-many -t typecheck`), `pnpm build`, `pnpm testc` — never report "done" on a guess.
 - **Preserve behavior when refactoring.** Type-tightening, renames, and extractions must not change runtime behavior. If a "correct" type would force a behavior change, prefer a documented assertion over changing the logic.
 - **Match the surrounding code.** Keep the existing conventions (the `...Copy` reducer pattern, the `reedeem` misspellings, `arrow-parens: as-needed`, the lib/barrel layout) rather than introducing new styles.
+- **No em-dashes (`—`).** They read as AI-written, so keep them out of user-facing copy and code comments alike. Reach for a comma, colon, semicolon, parentheses, or two sentences instead; a plain hyphen is fine for ranges (e.g. `2019 - 2021`).
 
 ## Conventions & gotchas
 - **pnpm config home is [pnpm-workspace.yaml](pnpm-workspace.yaml)** — pnpm 11 **ignores** the `package.json` `pnpm` field (it warns). Both `allowBuilds` (native build-script allowlist: `nx`, `sharp`, `unrs-resolver`) and `overrides` (security bumps) live there. Applying new overrides needs `pnpm install --no-frozen-lockfile`.

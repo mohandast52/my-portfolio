@@ -1,0 +1,17 @@
+{
+  "name": "cogsy",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/assignments/cogsy/src",
+  "tags": ["scope:cogsy", "type:feature"],
+  "targets": {
+    "lint": {
+      "command": "eslint libs/assignments/cogsy",
+      "cache": true
+    },
+    "typecheck": {
+      "command": "tsc --noEmit -p libs/assignments/cogsy/tsconfig.json",
+      "cache": true
+    }
+  }
+}

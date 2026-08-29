@@ -1,0 +1,17 @@
+{
+  "name": "appbase",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/assignments/appbase/src",
+  "tags": ["scope:appbase", "type:feature"],
+  "targets": {
+    "lint": {
+      "command": "eslint libs/assignments/appbase",
+      "cache": true
+    },
+    "typecheck": {
+      "command": "tsc --noEmit -p libs/assignments/appbase/tsconfig.json",
+      "cache": true
+    }
+  }
+}

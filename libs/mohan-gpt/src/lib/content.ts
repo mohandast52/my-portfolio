@@ -45,7 +45,15 @@ export const ABOUT: AboutData = {
     + 'dashboards, and Web3 dApp frontends, and is broadening into full-stack '
     + 'to own features end to end.',
   location: 'Mumbai, India · Remote',
-  tags: ['Design Systems', 'React & TypeScript', 'Web3 Frontends', 'a11y'],
+  tags: [
+    'React & TypeScript',
+    'Design Systems',
+    'Full-stack (Node.js)',
+    'Web3 Frontends',
+    'Freight & Logistics SaaS',
+    'Property-Tax Software',
+    'a11y',
+  ],
 };
 
 export const EXPERIENCE: ExperienceItem[] = [

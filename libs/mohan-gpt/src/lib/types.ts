@@ -2,6 +2,8 @@
 // modelled here, so the UI never has to guess at a shape.
 
 export type Theme = 'dark' | 'light';
+/** The sky behind the empty state: light splits by local time, dark is night. */
+export type Phase = 'morning' | 'evening' | 'night';
 export type View = 'chat' | 'classic';
 
 export interface AboutData {
@@ -33,8 +35,8 @@ export interface ProjectItem {
   title: string;
   /**
    * Mono label in the thumbnail corner. The design used a year; the real
-   * projects are undated, so this carries their kind ("Take-home" / "Concept")
-   * rather than inventing dates.
+   * projects are undated, so this carries their kind ("Project") rather than
+   * inventing dates.
    */
   badge: string;
   description: string;
@@ -78,7 +80,6 @@ export type CompType =
   | 'about'
   | 'timeline'
   | 'projects'
-  | 'allProjects'
   | 'skills'
   | 'achievements'
   | 'contact';

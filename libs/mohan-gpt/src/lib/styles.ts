@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { focusRing, tokens } from './tokens';
 
 /**
@@ -66,21 +66,50 @@ export const Scrim = styled.button`
   cursor: pointer;
 `;
 
-export const Main = styled.div`
+/*
+ * The empty state sits on the animated sky, whose stops are more saturated
+ * than --bg, so the small text tokens are adjusted here. Measured against the
+ * worst stop each can sit on:
+ *   light --muted #666666 was 3.56:1 on the sunset #ebc3b8; #4d4d4d is 5.25:1.
+ *   light --faint #6f6f6f was 3.12:1 there; #555555 is 4.63:1.
+ *   light --accent-strong #0761d1 was 3.58:1 there; #0a4ca0 is 5.10:1.
+ *   dark --faint #828282 was 3.81:1 on the night horizon #1c2843; #999999 is 5.14:1.
+ */
+const scenic = css`
+  position: relative;
+  isolation: isolate;
+
+  /* No top-bar rule over the sky; the scene runs up under it. */
+  --topbar-border: transparent;
+
+  [data-theme='light'] & {
+    --muted: #4d4d4d;
+    --faint: #555555;
+    --accent-strong: #0a4ca0;
+  }
+
+  [data-theme='dark'] & {
+    --faint: #999999;
+  }
+`;
+
+export const Main = styled.div<{ $scenic: boolean }>`
   display: flex;
   flex-direction: column;
   flex: 1;
   min-width: 0;
+  ${props => (props.$scenic ? scenic : '')};
 `;
 
 export const TopBar = styled.div`
+  position: relative;
   display: flex;
   align-items: center;
   gap: 12px;
   padding: 0 16px;
   height: 53px;
   flex: 0 0 auto;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid var(--topbar-border, var(--border));
 `;
 
 export const TopBarSpacer = styled.div`
@@ -129,6 +158,7 @@ export const ClassicButton = styled.button`
 /* ------------------------------------------------------------- empty state */
 
 export const Empty = styled.div`
+  position: relative;
   flex: 1;
   overflow-y: auto;
   display: flex;

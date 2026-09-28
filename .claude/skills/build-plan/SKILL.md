@@ -67,7 +67,7 @@ Four things make this format work here, and they're all easy to skip:
 2. **Open decisions carry a default.** "Default: 3 sticky cards + a quiet link
    to the full grid" means work can start without a blocking question. Reserve
    real blocking questions for choices where guessing wrong wastes the work.
-3. **Guardrails are restated in the plan**, even though they're in `CLAUDE.md`
+3. **Guardrails are restated in the plan**, even though they're in `AGENTS.md`
    and these skills. Repeating them at the top of the plan is what keeps a
    long-running effort from drifting.
 4. **Date the locked decisions.** Convert relative dates to absolute.
@@ -100,7 +100,7 @@ Phase 1 — Core UI: sections/components, each folder index.tsx + styles.ts
 Phase 2 — State: useReducer (or the `...Copy` pattern if it filters/sorts a list)
 Phase 3 — A11y + motion pass: contrast in every state, focus, reduced-motion
 Phase 4 — Spec: co-located src/lib/index.test.tsx (mount smoke test minimum)
-Phase 5 — Verify: nx lint/typecheck <name>, testc, build; README + CLAUDE.md
+Phase 5 — Verify: nx lint/typecheck <name>, testc, build; README + AGENTS.md
 ```
 
 ### Landing page / visual work

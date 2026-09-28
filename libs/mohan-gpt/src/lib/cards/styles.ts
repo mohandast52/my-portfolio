@@ -66,6 +66,22 @@ export const AboutBio = styled.p`
   text-wrap: pretty;
 `;
 
+export const AboutHighlights = styled.ul`
+  margin: 0;
+  padding-left: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--muted);
+  text-wrap: pretty;
+
+  li::marker {
+    color: var(--faint);
+  }
+`;
+
 export const AboutLocation = styled.div`
   display: flex;
   align-items: center;

@@ -44,14 +44,21 @@ export const ABOUT: AboutData = {
     + 'where interaction, performance and accessibility meet: design systems, '
     + 'dashboards, and Web3 dApp frontends, and is broadening into full-stack '
     + 'to own features end to end.',
+  highlights: [
+    'Web3: frontend lead for a decentralized-AI ecosystem, from dApps to an '
+    + 'Electron desktop app running agents across 7 chains',
+    'Freight & logistics SaaS at GoComet: RFQ and vendor bidding over '
+    + 'WebSockets, plus a report-scheduling analytics tool',
+    'Property-tax software',
+  ],
   location: 'Mumbai, India · Remote',
   tags: [
-    'React & TypeScript',
+    'React',
+    'TypeScript',
+    'Next.js',
+    'Node.js',
+    'Web3',
     'Design Systems',
-    'Full-stack (Node.js)',
-    'Web3 Frontends',
-    'Freight & Logistics SaaS',
-    'Property-Tax Software',
     'a11y',
   ],
 };

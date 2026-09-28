@@ -95,6 +95,7 @@ describe('<MohanGPT />', () => {
     });
     expect(queryByTestId('skeleton')).toBeNull();
     expect(thread).toHaveTextContent('Mumbai, India · Remote');
+    expect(thread).toHaveTextContent('Freight & logistics SaaS at GoComet');
   });
 
   it('switches to the classic résumé view and back', () => {

@@ -8,7 +8,10 @@ export interface AboutData {
   name: string;
   role: string;
   bio: string;
+  /** Domains he has shipped in, rendered as bullets under the bio. */
+  highlights: string[];
   location: string;
+  /** Skills only; domains belong in `highlights`. */
   tags: string[];
 }
 

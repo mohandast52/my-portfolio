@@ -26,8 +26,8 @@ export const PROFILE = {
   name: 'Mohan Das',
   role: 'Senior Frontend Engineer',
   identity:
-    'Senior Frontend Engineer · 7+ years · React, TypeScript, design systems '
-    + '& Web3 interfaces',
+    'Senior Frontend Engineer · 7+ years · React, TypeScript, Web3 · '
+    + 'AI-assisted full-stack',
   bio:
     'Senior frontend engineer with 7+ years shipping production React and '
     + 'TypeScript: design systems, dashboards, and Web3 dApp frontends. '

@@ -185,7 +185,6 @@ export const HeroName = styled.h1`
 export const HeroIdentity = styled.span`
   font-size: 13.5px;
   color: var(--faint);
-  max-width: 52ch;
   text-wrap: pretty;
 `;
 

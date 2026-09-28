@@ -21,14 +21,7 @@ const untilRevealed = (text: string) => untilStreamed(text) + REVEAL_MS;
 describe('intent matcher', () => {
   it('routes every suggestion chip to its intended intent', () => {
     expect.hasAssertions();
-    const expected = [
-      'about',
-      'experience',
-      'specialization',
-      'projects',
-      'skills',
-      'contact',
-    ];
+    const expected = ['projects', 'experience', 'contact'];
     SUGGESTIONS.forEach((question, index) => {
       expect(resolve(question)).toBe(expected[index]);
     });
@@ -37,6 +30,8 @@ describe('intent matcher', () => {
   it('matches free-typed variants, including straight apostrophes', () => {
     expect.hasAssertions();
     expect(resolve("what's his tech stack?")).toBe('skills');
+    expect(resolve('Who is Mohan?')).toBe('about');
+    expect(resolve('What does he specialize in?')).toBe('specialization');
     expect(resolve('Where has he worked?')).toBe('experience');
     expect(resolve('how many years of experience does he have')).toBe('years');
     expect(resolve('show me all projects')).toBe('allProjects');
@@ -76,9 +71,10 @@ describe('<MohanGPT />', () => {
 
   it('streams an answer and reveals its rich component', () => {
     expect.hasAssertions();
-    const { getByText, getByTestId, queryByTestId } = render(<MohanGPT />);
+    const { getByTestId, queryByTestId } = render(<MohanGPT />);
 
-    fireEvent.click(getByText('Who is Mohan?'));
+    fireEvent.change(getByTestId('composer-input'), { target: { value: 'Who is Mohan?' } });
+    fireEvent.click(getByTestId('composer-send'));
 
     // Thinking dots first; no answer text yet.
     const thread = getByTestId('thread');

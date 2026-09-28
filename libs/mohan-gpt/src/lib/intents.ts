@@ -23,11 +23,8 @@ const FU = {
 } satisfies Record<string, Followup>;
 
 export const SUGGESTIONS: string[] = [
-  'Who is Mohan?',
-  'What’s his experience?',
-  'What does he specialize in?',
   'Show me his best projects',
-  'What’s his tech stack?',
+  'What’s his experience?',
   'How do I contact him?',
 ];
 

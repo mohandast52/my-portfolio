@@ -38,8 +38,8 @@ export const PROFILE = {
 export const ABOUT: AboutData = {
   name: PROFILE.name,
   highlights: [
-    'Web3: frontend lead for a decentralized-AI ecosystem, from dApps to an '
-    + 'Electron desktop app running agents across 7 chains',
+    'Web3: senior frontend engineer for a decentralized-AI ecosystem, from '
+    + 'dApps to an Electron desktop app running agents across 7 chains',
     'Freight & logistics SaaS at GoComet: RFQ and vendor bidding over '
     + 'WebSockets, plus a report-scheduling analytics tool',
     'Property-tax software',

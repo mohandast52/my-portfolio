@@ -38,11 +38,6 @@ export const AboutCard = ({ data, photo = null }: AboutCardProps) => (
       </S.AboutPhoto>
     )}
     <S.AboutBody>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-        <S.AboutName>{data.name}</S.AboutName>
-        <S.AboutRole>{data.role}</S.AboutRole>
-      </div>
-      <S.AboutBio>{data.bio}</S.AboutBio>
       <S.AboutHighlights>
         {data.highlights.map(item => (
           <li key={item}>{item}</li>

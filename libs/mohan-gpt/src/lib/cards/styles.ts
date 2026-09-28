@@ -45,35 +45,15 @@ export const AboutBody = styled.div`
   min-width: 0;
 `;
 
-export const AboutName = styled.span`
-  font-size: 17px;
-  font-weight: 600;
-  color: var(--text);
-  letter-spacing: -0.01em;
-`;
-
-export const AboutRole = styled.span`
-  font-size: 13px;
-  color: var(--muted);
-`;
-
-export const AboutBio = styled.p`
-  margin: 0;
-  font-size: 14px;
-  line-height: 1.6;
-  color: var(--text);
-  text-wrap: pretty;
-`;
-
 export const AboutHighlights = styled.ul`
   margin: 0;
   padding-left: 18px;
   display: flex;
   flex-direction: column;
   gap: 4px;
-  font-size: 13.5px;
-  line-height: 1.55;
-  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text);
   text-wrap: pretty;
 
   li::marker {

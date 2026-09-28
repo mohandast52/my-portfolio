@@ -37,12 +37,6 @@ export const PROFILE = {
 
 export const ABOUT: AboutData = {
   name: PROFILE.name,
-  role: PROFILE.role,
-  bio:
-    'Senior frontend engineer with 7+ years in React and TypeScript. He works '
-    + 'where interaction, performance and accessibility meet: design systems, '
-    + 'dashboards, and Web3 dApp frontends, and is broadening into full-stack '
-    + 'to own features end to end.',
   highlights: [
     'Web3: frontend lead for a decentralized-AI ecosystem, from dApps to an '
     + 'Electron desktop app running agents across 7 chains',

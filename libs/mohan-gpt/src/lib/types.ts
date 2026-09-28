@@ -5,10 +5,9 @@ export type Theme = 'dark' | 'light';
 export type View = 'chat' | 'classic';
 
 export interface AboutData {
+  /** Alt text for the portrait; the card never shows it as a heading. */
   name: string;
-  role: string;
-  bio: string;
-  /** Domains he has shipped in, rendered as bullets under the bio. */
+  /** Domains he has shipped in. */
   highlights: string[];
   location: string;
   /** Skills only; domains belong in `highlights`. */

@@ -21,14 +21,7 @@ const untilRevealed = (text: string) => untilStreamed(text) + REVEAL_MS;
 describe('intent matcher', () => {
   it('routes every suggestion chip to its intended intent', () => {
     expect.hasAssertions();
-    const expected = [
-      'about',
-      'experience',
-      'specialization',
-      'projects',
-      'skills',
-      'contact',
-    ];
+    const expected = ['projects', 'experience', 'contact'];
     SUGGESTIONS.forEach((question, index) => {
       expect(resolve(question)).toBe(expected[index]);
     });
@@ -37,9 +30,10 @@ describe('intent matcher', () => {
   it('matches free-typed variants, including straight apostrophes', () => {
     expect.hasAssertions();
     expect(resolve("what's his tech stack?")).toBe('skills');
+    expect(resolve('Who is Mohan?')).toBe('about');
+    expect(resolve('What does he specialize in?')).toBe('specialization');
     expect(resolve('Where has he worked?')).toBe('experience');
     expect(resolve('how many years of experience does he have')).toBe('years');
-    expect(resolve('show me all projects')).toBe('allProjects');
     expect(resolve('is this a real AI?')).toBe('real');
     expect(resolve('what web3 work has he done')).toBe('web3');
   });
@@ -74,11 +68,39 @@ describe('<MohanGPT />', () => {
     });
   });
 
+  it('paints night in dark mode and a time-of-day sky in light mode', () => {
+    expect.hasAssertions();
+    jest.setSystemTime(new Date(2026, 0, 1, 9, 0));
+    const { getByTestId, getByTitle, queryByTestId } = render(<MohanGPT />);
+
+    expect(getByTestId('sky')).toHaveAttribute('data-phase', 'night');
+
+    fireEvent.click(getByTitle('Toggle theme'));
+    expect(getByTestId('sky')).toHaveAttribute('data-phase', 'morning');
+
+    // The clock is re-read every minute, so an open tab drifts into sunset.
+    jest.setSystemTime(new Date(2026, 0, 1, 18, 30));
+    act(() => {
+      jest.advanceTimersByTime(60_000);
+    });
+    expect(getByTestId('sky')).toHaveAttribute('data-phase', 'evening');
+
+    // Restore the dark default so later tests start from it.
+    fireEvent.click(getByTitle('Toggle theme'));
+    expect(getByTestId('sky')).toHaveAttribute('data-phase', 'night');
+
+    // The sky belongs to the empty state only; a conversation clears it.
+    fireEvent.change(getByTestId('composer-input'), { target: { value: 'Who is Mohan?' } });
+    fireEvent.click(getByTestId('composer-send'));
+    expect(queryByTestId('sky')).toBeNull();
+  });
+
   it('streams an answer and reveals its rich component', () => {
     expect.hasAssertions();
-    const { getByText, getByTestId, queryByTestId } = render(<MohanGPT />);
+    const { getByTestId, queryByTestId } = render(<MohanGPT />);
 
-    fireEvent.click(getByText('Who is Mohan?'));
+    fireEvent.change(getByTestId('composer-input'), { target: { value: 'Who is Mohan?' } });
+    fireEvent.click(getByTestId('composer-send'));
 
     // Thinking dots first; no answer text yet.
     const thread = getByTestId('thread');
@@ -99,6 +121,7 @@ describe('<MohanGPT />', () => {
     });
     expect(queryByTestId('skeleton')).toBeNull();
     expect(thread).toHaveTextContent('Mumbai, India · Remote');
+    expect(thread).toHaveTextContent('Freight & logistics SaaS at GoComet');
   });
 
   it('switches to the classic résumé view and back', () => {
@@ -107,8 +130,9 @@ describe('<MohanGPT />', () => {
 
     fireEvent.click(getByText('View classic résumé'));
     expect(getByTestId('classic-view')).toBeInTheDocument();
-    // The classic view lays out every project, not just the featured four.
-    expect(getByTestId('classic-view')).toHaveTextContent('solid principles');
+    // The classic view lays out every project; the take-home sandbox is gone.
+    expect(getByTestId('classic-view')).toHaveTextContent('Medium Scraper');
+    expect(getByTestId('classic-view')).not.toHaveTextContent('qiibee');
 
     fireEvent.click(getByText('Chat with MohanGPT instead'));
     expect(queryByTestId('classic-view')).toBeNull();

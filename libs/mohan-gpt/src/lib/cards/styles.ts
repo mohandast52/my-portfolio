@@ -38,15 +38,16 @@ export const AboutPhoto = styled.div`
   }
 `;
 
+/* The left inset is a gutter for the bullet markers, which hang into it so the
+   bullet text lines up with the tags and location below. */
 export const AboutBody = styled.div`
   display: flex;
   flex-direction: column;
   gap: 8px;
   min-width: 0;
+  padding-left: 18px;
 `;
 
-/* The markers hang into the shell's padding so the bullet text lines up with
-   the tags and location below it. */
 export const AboutHighlights = styled.ul`
   margin: 0;
   padding-left: 0;

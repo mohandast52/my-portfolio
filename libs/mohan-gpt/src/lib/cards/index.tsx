@@ -12,7 +12,6 @@ import {
   IconMail,
   IconMapPin,
   IconTrophy,
-  IconUser,
   SkillGlyph,
 } from '../icons';
 import type {
@@ -27,19 +26,17 @@ import * as S from './styles';
 
 interface AboutCardProps {
   data: AboutData;
-  /** Public path to the portrait; falls back to a Lucide glyph when absent. */
+  /** Public path to the portrait; the photo slot is omitted when absent. */
   photo?: string | null;
 }
 
 export const AboutCard = ({ data, photo = null }: AboutCardProps) => (
   <S.AboutShell>
-    <S.AboutPhoto>
-      {photo ? (
+    {photo && (
+      <S.AboutPhoto>
         <Image src={photo} alt={data.name} width={92} height={92} />
-      ) : (
-        <IconUser size={34} />
-      )}
-    </S.AboutPhoto>
+      </S.AboutPhoto>
+    )}
     <S.AboutBody>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
         <S.AboutName>{data.name}</S.AboutName>

@@ -12,7 +12,6 @@ export const AboutShell = styled.div`
   border: 1px solid var(--border);
   border-radius: 16px;
   padding: 18px;
-  max-width: 560px;
 
   @media (max-width: 479px) {
     flex-direction: column;

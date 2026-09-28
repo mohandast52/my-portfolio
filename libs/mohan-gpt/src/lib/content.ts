@@ -16,9 +16,8 @@ import type {
 /**
  * Portrait for the AboutCard. `public/images/mohan.png` is still the v1 site's
  * placeholder graphic rather than a real photo, so this stays null and the card
- * falls back to the design's own Lucide placeholder, which reads as
- * intentional, where the purple placeholder does not. Point this at
- * '/images/mohan.png' once a real portrait replaces that file.
+ * renders without a photo slot. Point this at '/images/mohan.png' once a real
+ * portrait replaces that file.
  */
 export const AVATAR_SRC: string | null = null;
 

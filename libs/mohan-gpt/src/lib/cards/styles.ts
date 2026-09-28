@@ -45,9 +45,11 @@ export const AboutBody = styled.div`
   min-width: 0;
 `;
 
+/* The markers hang into the shell's padding so the bullet text lines up with
+   the tags and location below it. */
 export const AboutHighlights = styled.ul`
   margin: 0;
-  padding-left: 18px;
+  padding-left: 0;
   display: flex;
   flex-direction: column;
   gap: 4px;

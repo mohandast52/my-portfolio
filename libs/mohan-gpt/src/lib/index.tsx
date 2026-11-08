@@ -13,6 +13,7 @@ import { IconCompass, IconFileText, IconMenu } from './icons';
 import { INTENTS, SUGGESTIONS, TOUR } from './intents';
 import { getAnswer } from './match';
 import Sidebar from './Sidebar';
+import Sky from './Sky';
 import * as S from './styles';
 import Thread from './Thread';
 import type { Message, Theme, TourMeta } from './types';
@@ -275,7 +276,8 @@ const MohanGPT = () => {
 
           {/* Everything behind the open drawer is inert, so Tab stays inside
               the drawer rather than wandering through the scrimmed page. */}
-          <S.Main inert={isMobile && drawerOpen}>
+          <S.Main inert={isMobile && drawerOpen} $scenic={!hasMessages}>
+            {hasMessages ? null : <Sky theme={theme} />}
             <S.TopBar>
               {isMobile ? (
                 <S.Hamburger

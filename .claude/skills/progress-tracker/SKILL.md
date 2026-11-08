@@ -121,8 +121,8 @@ history of *why* something was blocked is what let Next 16 eventually land.
 3. Add the phase-outcome section at the top of the plan body, with the SHA.
 4. Rewrite the status blockquote.
 5. If it changed how the repo works — a new lib, a new alias, a new convention,
-   a new config workaround — **update [CLAUDE.md](../../../CLAUDE.md) and the
-   affected skill** in the same commit. `CLAUDE.md` and these skills are the
+   a new config workaround — **update [AGENTS.md](../../../AGENTS.md) and the
+   affected skill** in the same commit. `AGENTS.md` and these skills are the
    published memory; `.plans/` is the private working memory, and it's gitignored
    so it will not travel to another machine or a fresh clone.
 

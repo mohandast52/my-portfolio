@@ -12,7 +12,6 @@ export const AboutShell = styled.div`
   border: 1px solid var(--border);
   border-radius: 16px;
   padding: 18px;
-  max-width: 560px;
 
   @media (max-width: 479px) {
     flex-direction: column;
@@ -39,31 +38,30 @@ export const AboutPhoto = styled.div`
   }
 `;
 
+/* The left inset is a gutter for the bullet markers, which hang into it so the
+   bullet text lines up with the tags and location below. */
 export const AboutBody = styled.div`
   display: flex;
   flex-direction: column;
   gap: 8px;
   min-width: 0;
+  padding-left: 18px;
 `;
 
-export const AboutName = styled.span`
-  font-size: 17px;
-  font-weight: 600;
-  color: var(--text);
-  letter-spacing: -0.01em;
-`;
-
-export const AboutRole = styled.span`
-  font-size: 13px;
-  color: var(--muted);
-`;
-
-export const AboutBio = styled.p`
+export const AboutHighlights = styled.ul`
   margin: 0;
+  padding-left: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
   font-size: 14px;
   line-height: 1.6;
   color: var(--text);
   text-wrap: pretty;
+
+  li::marker {
+    color: var(--faint);
+  }
 `;
 
 export const AboutLocation = styled.div`

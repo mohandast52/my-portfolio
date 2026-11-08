@@ -17,7 +17,6 @@ import {
   EDUCATION,
   EXPERIENCE,
   PROFILE,
-  PROJECTS,
   REAL_PROJECTS,
   SKILL_GROUPS,
 } from '../content';
@@ -77,11 +76,6 @@ const Classic = ({ theme, onBackToChat, onToggleTheme }: ClassicProps) => (
       <S.Section>
         <S.Heading>Projects</S.Heading>
         <ProjectCardGrid items={REAL_PROJECTS} min={240} />
-      </S.Section>
-
-      <S.Section>
-        <S.Heading>Assignments and concepts</S.Heading>
-        <ProjectCardGrid items={PROJECTS} min={240} />
       </S.Section>
 
       <S.Section>

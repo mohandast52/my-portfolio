@@ -7,8 +7,7 @@ import {
   AVATAR_SRC,
   CONTACT,
   EXPERIENCE,
-  FEATURED_PROJECTS,
-  PROJECTS,
+  REAL_PROJECTS,
   SKILL_GROUPS,
 } from '../content';
 import {
@@ -33,9 +32,7 @@ const RichComponent = ({ type, onViewClassic }: RichComponentProps) => {
     case 'timeline':
       return <ExperienceTimeline items={EXPERIENCE} />;
     case 'projects':
-      return <ProjectCardGrid items={FEATURED_PROJECTS} />;
-    case 'allProjects':
-      return <ProjectCardGrid items={PROJECTS} />;
+      return <ProjectCardGrid items={REAL_PROJECTS} />;
     case 'skills':
       return <SkillsGrid groups={SKILL_GROUPS} />;
     case 'achievements':
